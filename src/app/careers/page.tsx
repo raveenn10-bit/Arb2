@@ -1,0 +1,58 @@
+import type { Metadata } from "next";
+import { PageHero } from "@/components/ui/PageHero";
+import { CareersForm } from "@/components/forms/CareersForm";
+import { WORKFORCE_ROLES } from "@/data/workforce";
+
+export const metadata: Metadata = {
+  title: "Careers & Job Enquiries",
+  description:
+    "Submit a job enquiry and share your trade background with Pak Arab Manpower Supply LLC in Abu Dhabi, UAE via WhatsApp.",
+  alternates: { canonical: "/careers" },
+};
+
+export default function CareersPage() {
+  const mepCount = WORKFORCE_ROLES.filter((r) => r.division === "mep").length;
+  const civilCount = WORKFORCE_ROLES.filter((r) => r.division === "civil").length;
+
+  return (
+    <>
+      <PageHero
+        eyebrow="Careers & Recruitment Enquiries"
+        title="Submit Your Trade Profile"
+        description="Skilled technicians, engineers, welders, and civil tradesmen can submit a general job enquiry via WhatsApp and attach their CV directly in chat."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Careers", href: "/careers" },
+        ]}
+      />
+
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-5 space-y-6">
+            <h2 className="text-2xl font-extrabold text-[#111315]">
+              How Job Enquiries Work
+            </h2>
+            <p className="text-base leading-relaxed text-[#667085]">
+              Pak Arab Manpower Supply LLC maintains a candidate pool across{" "}
+              {mepCount} Onshore/Offshore MEP categories and {civilCount} Civil &amp;
+              Construction trades. Submitting this form formats your experience summary
+              for our recruitment team on WhatsApp.
+            </p>
+            <div className="rounded-xl border border-[#E5E7EB] bg-[#F5F6F8] p-5 space-y-2 text-sm text-[#667085]">
+              <p className="font-bold text-[#111315]">Important Notice for Applicants</p>
+              <p>
+                Do not enter passport numbers, Emirates ID numbers, or sensitive
+                identity documents in this form. Once WhatsApp opens, you may attach your
+                CV directly in the conversation.
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7">
+            <CareersForm />
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

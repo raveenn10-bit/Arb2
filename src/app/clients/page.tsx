@@ -1,0 +1,52 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { PageHero } from "@/components/ui/PageHero";
+import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
+
+export const metadata: Metadata = {
+  title: "Our Clients",
+  description:
+    "26 major UAE energy, EPC, construction, and industrial companies to which Pak Arab Manpower Supply LLC has supplied skilled manpower.",
+  alternates: { canonical: "/clients" },
+};
+
+export default function ClientsPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Client Portfolio"
+        title="Companies We Supply Manpower To"
+        description="A portfolio of 26 leading UAE energy, construction, fabrication, and industrial companies supported by Pak Arab Manpower Supply LLC."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Our Clients", href: "/clients" },
+        ]}
+      />
+
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="container-wide space-y-10">
+          <ClientLogoGrid />
+
+          <div className="rounded-xl bg-[#F5F6F8] border border-[#E5E7EB] p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="space-y-1.5">
+              <h2 className="text-xl font-extrabold text-[#111315]">
+                Need Manpower Support for Your Next UAE Project?
+              </h2>
+              <p className="text-sm text-[#667085]">
+                Share your trade categories, crew size, and site location with our Abu Dhabi team.
+              </p>
+            </div>
+            <Link
+              href="/#manpower-request"
+              className="inline-flex items-center gap-2 rounded-md bg-[#D40820] px-5 py-3 text-sm font-semibold text-white hover:bg-[#A40E21] transition-colors shrink-0 min-h-[44px]"
+            >
+              <span>Request Manpower</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
