@@ -223,7 +223,7 @@ export function Header() {
       {/* Mobile Drawer */}
       {mobileOpen && (
         <div
-          className="xl:hidden fixed inset-0 top-[97px] z-40 bg-white overflow-y-auto border-t border-[#E5E7EB]"
+          className="xl:hidden fixed inset-0 top-16 lg:top-[74px] z-40 bg-white overflow-y-auto border-t border-[#E5E7EB]"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"
