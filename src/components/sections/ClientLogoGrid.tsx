@@ -15,7 +15,7 @@ function Logo({ client, decorative = false }: { client: ClientLogo; decorative?:
         aria-hidden={decorative || undefined}
         fill
         sizes="(max-width: 640px) 160px, (max-width: 1024px) 208px, 240px"
-        quality={90}
+        unoptimized /* serve the original full-resolution logo files as supplied */
         className="object-contain"
       />
     </div>
