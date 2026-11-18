@@ -5,9 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
-  Phone,
-  Mail,
-  MapPin,
   ChevronDown,
   Menu,
   X,
@@ -81,49 +78,6 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      {/* Top Corporate Contact Bar */}
-      <div className="bg-[#111315] text-white/90 border-b border-white/10 text-xs">
-        <div className="container-wide flex flex-wrap items-center justify-between gap-2 py-2">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
-            <span className="inline-flex items-center gap-1.5 text-white/80">
-              <MapPin className="h-3.5 w-3.5 text-[#D40820]" aria-hidden="true" />
-              <span>Abu Dhabi, UAE</span>
-            </span>
-            <a
-              href={COMPANY.telephone.tel}
-              className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Phone className="h-3.5 w-3.5 text-[#D40820]" aria-hidden="true" />
-              <span>{COMPANY.telephone.display}</span>
-            </a>
-            <a
-              href={`mailto:${COMPANY.email}`}
-              className="hidden sm:inline-flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Mail className="h-3.5 w-3.5 text-[#D40820]" aria-hidden="true" />
-              <span>{COMPANY.email}</span>
-            </a>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/quality"
-              className="hidden md:inline-block text-white/75 hover:text-white transition-colors"
-            >
-              Quality &amp; Certifications
-            </Link>
-            <a
-              href={buildQuickEnquiryUrl("General Manpower Enquiry")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-medium text-[#25D366] hover:text-white transition-colors"
-            >
-              <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>WhatsApp: {COMPANY.whatsapp.display}</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navigation Bar */}
       <div
         className={`w-full bg-white/95 backdrop-blur-md transition-shadow duration-200 border-b border-[#E5E7EB] ${
