@@ -8,98 +8,80 @@ const HIGHLIGHTS = [
   { icon: Users, label: "Supervised site teams" },
 ];
 
+const BLUE = "/images/team/pak-arab-crew-blue.webp";
+const RED = "/images/team/pak-arab-crew-red.webp";
+const BLUE_ALT = "Pak Arab Manpower Supply crew in branded blue coveralls and hard hats at a UAE oil and gas facility";
+const RED_ALT = "Pak Arab Manpower Supply supervisors in red coveralls reviewing work plans at a refinery at sunset";
+
+function Kicker({ light = false }: { light?: boolean }) {
+  return (
+    <div className="inline-flex items-center gap-2.5">
+      <span className="h-[2px] w-8 bg-brand" />
+      <span className={`text-xs font-bold uppercase tracking-[0.18em] ${light ? "text-brand-light" : "text-brand"}`}>
+        Our People On Site
+      </span>
+    </div>
+  );
+}
+
+/* "Our People On Site": two expanding photo panels (hover widens a panel on desktop) */
+const PANELS = [
+  { src: BLUE, alt: BLUE_ALT, tag: "Onshore Operations", title: "Operations & maintenance teams", text: "Skilled, uniformed crews mobilised for plant operations, maintenance and shutdowns." },
+  { src: RED, alt: RED_ALT, tag: "Site Supervision", title: "Field supervisors & work planning", text: "Experienced supervisors coordinating safe, on-schedule work at every site." },
+];
+
 export function TeamShowcase() {
   return (
-    <section className="relative overflow-hidden bg-navy-900 py-16 sm:py-24 text-white">
-      {/* subtle brand glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-1/4 top-0 h-full w-2/3 rounded-full bg-brand/10 blur-3xl"
-      />
-
-      <div className="container-wide relative space-y-10 lg:space-y-14">
-        {/* Heading */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-          <div className="max-w-2xl space-y-3">
-            <div className="inline-flex items-center gap-2.5">
-              <span className="h-[2px] w-8 bg-brand" />
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-light">
-                Our People On Site
-              </span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-              Pak Arab Crews. Ready for Every Site.
-            </h2>
-            <p className="text-base sm:text-lg text-white/75 leading-relaxed">
-              Uniformed, equipped and coordinated teams deployed across UAE oil &amp; gas,
-              refinery and industrial facilities, representing your project with the
-              standards it demands.
-            </p>
-          </div>
-          <Link
-            href="/#manpower-request"
-            className="inline-flex items-center gap-2 self-start lg:self-auto rounded-md bg-brand px-5 py-3 text-sm font-bold text-white hover:bg-brand-dark transition-colors min-h-[2.75rem] shrink-0"
-          >
-            <span>Request a Crew</span>
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+    <section className="relative overflow-hidden bg-navy-900 py-16 text-white sm:py-24">
+      <div className="container-wide space-y-10">
+        <div className="mx-auto max-w-3xl space-y-4 text-center">
+          <div className="flex justify-center"><Kicker light /></div>
+          <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
+            Pak Arab Crews. Ready for Every Site.
+          </h2>
+          <p className="text-base leading-relaxed text-white/75 sm:text-lg">
+            Uniformed, equipped and coordinated teams deployed across UAE oil &amp; gas, refinery and industrial facilities.
+          </p>
         </div>
 
-        {/* Photo composition */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
-          <figure className="lg:col-span-7 relative aspect-[16/10] lg:aspect-auto lg:min-h-[30rem] overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-            <Image
-              src="/images/team/pak-arab-crew-blue.webp"
-              alt="Pak Arab Manpower Supply crew in branded blue coveralls and hard hats at a UAE oil and gas facility"
-              fill
-              sizes="(max-width: 1024px) 100vw, 58vw"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent pointer-events-none" />
-            <figcaption className="absolute bottom-0 left-0 right-0 p-5 sm:p-7">
-              <span className="inline-block rounded-full bg-brand px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-wider">
-                Onshore Operations
-              </span>
-              <p className="mt-2 text-lg sm:text-2xl font-extrabold leading-tight">
-                Operations &amp; maintenance teams
-              </p>
-            </figcaption>
-          </figure>
-
-          <div className="lg:col-span-5 flex flex-col gap-5 lg:gap-6">
-            <figure className="relative aspect-[16/10] lg:aspect-auto lg:flex-1 lg:min-h-[17.5rem] overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-              <Image
-                src="/images/team/pak-arab-crew-red.webp"
-                alt="Pak Arab Manpower Supply supervisors in red coveralls reviewing work plans at a refinery at sunset"
-                fill
-                sizes="(max-width: 1024px) 100vw, 42vw"
-                className="object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent pointer-events-none" />
-              <figcaption className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
-                <span className="inline-block rounded-full bg-white/15 backdrop-blur-md border border-white/20 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-wider">
-                  Site Supervision
+        <div className="group/panels flex flex-col gap-4 lg:h-[34rem] lg:flex-row">
+          {PANELS.map((p, i) => (
+            <figure
+              key={p.title}
+              className={`group relative h-80 overflow-hidden rounded-2xl transition-[flex-grow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-96 lg:h-auto ${
+                i === 0 ? "lg:flex-[1.7] lg:group-hover/panels:flex-1 lg:hover:!flex-[1.7]" : "lg:flex-1 lg:hover:flex-[1.7]"
+              }`}
+            >
+              <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105">
+                <Image src={p.src} alt={p.alt} fill sizes="(max-width:1024px) 100vw, 62vw" className="object-cover" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+              <figcaption className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                <span className="inline-block rounded-full bg-brand px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-wider">
+                  {p.tag}
                 </span>
-                <p className="mt-2 text-lg sm:text-xl font-extrabold leading-tight">
-                  Field supervisors &amp; work planning
-                </p>
+                <p className="mt-3 font-display text-2xl font-extrabold leading-tight sm:text-3xl">{p.title}</p>
+                <p className="mt-2 max-w-md text-sm text-white/80 sm:text-base">{p.text}</p>
               </figcaption>
             </figure>
+          ))}
+        </div>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3">
-              {HIGHLIGHTS.map(({ icon: Icon, label }) => (
-                <li
-                  key={label}
-                  className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5"
-                >
-                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand">
-                    <Icon className="h-4.5 w-4.5" aria-hidden="true" />
-                  </span>
-                  <span className="text-sm font-semibold text-white/90">{label}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="flex flex-col items-center justify-between gap-6 rounded-xl border border-white/10 bg-white/[0.04] p-5 lg:flex-row lg:px-8">
+          <ul className="flex flex-col gap-4 sm:flex-row sm:gap-8">
+            {HIGHLIGHTS.map(({ icon: Icon, label }) => (
+              <li key={label} className="flex items-center gap-2.5 text-sm font-semibold text-white/90 sm:text-base">
+                <Icon className="h-5 w-5 text-brand-light" aria-hidden="true" />
+                {label}
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/#manpower-request"
+            className="inline-flex min-h-[3rem] shrink-0 items-center gap-2 rounded-md bg-brand px-6 text-sm font-bold text-white hover:bg-brand-dark"
+          >
+            Request a Crew <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
         </div>
       </div>
     </section>
