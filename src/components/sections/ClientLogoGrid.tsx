@@ -1,8 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
-import { Pause, Play } from "lucide-react";
 import { CLIENTS, type ClientLogo } from "@/data/clients";
 
 interface ClientLogoGridProps {
@@ -39,8 +35,6 @@ function Logo({ client, decorative = false, fluid = false }: { client: ClientLog
 }
 
 export function ClientLogoGrid({ variant = "marquee" }: ClientLogoGridProps) {
-  const [paused, setPaused] = useState(false);
-
   if (variant === "wall") {
     return (
       <ul className="grid grid-cols-2 place-items-center gap-x-6 gap-y-10 bg-white sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
@@ -57,23 +51,10 @@ export function ClientLogoGrid({ variant = "marquee" }: ClientLogoGridProps) {
   const rows = variant === "rows" ? [CLIENTS.slice(0, half), CLIENTS.slice(half)] : [CLIENTS];
 
   return (
-    <div className="space-y-4">
-      <div className="space-y-6 sm:space-y-8" data-paused={paused || undefined} role="region" aria-label="Client logos">
-        {rows.map((row, r) => (
-          <MarqueeRow key={r} clients={row} reverse={r === 1} />
-        ))}
-      </div>
-      <div className="client-marquee-control flex justify-center">
-        <button
-          type="button"
-          onClick={() => setPaused((p) => !p)}
-          aria-pressed={paused}
-          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-sm font-semibold text-navy-900 hover:border-navy-900"
-        >
-          {paused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
-          {paused ? "Play logos" : "Pause logos"}
-        </button>
-      </div>
+    <div className="space-y-6 sm:space-y-8" role="region" aria-label="Client logos">
+      {rows.map((row, r) => (
+        <MarqueeRow key={r} clients={row} reverse={r === 1} />
+      ))}
     </div>
   );
 }

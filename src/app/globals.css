@@ -135,7 +135,6 @@
   .client-marquee-track { animation-duration: 45s; }
 }
 
-[data-paused] .client-marquee-track { animation-play-state: paused; }
 .client-marquee-reverse { animation-direction: reverse; }
 
 /* Reduced motion: no scrolling; show every logo in a static, wrapping row instead */
@@ -148,7 +147,6 @@
     row-gap: 1.5rem;
   }
   .client-marquee-dup,
-  .client-marquee-control { display: none; }
 }
 
 /* Micro-interaction: arrow icons nudge forward on link/button hover */
