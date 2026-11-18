@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/page-meta";
 import { PageHero } from "@/components/ui/PageHero";
 import { CareersForm } from "@/components/forms/CareersForm";
 import { WORKFORCE_ROLES } from "@/data/workforce";
 
-export const metadata: Metadata = {
-  title: "Careers & Job Enquiries",
+export const metadata: Metadata = pageMeta({
+  title: "UAE Jobs – Skilled Trades Careers",
   description:
-    "Submit a job enquiry and share your trade background with Pak Arab Manpower Supply LLC in Abu Dhabi, UAE via WhatsApp.",
-  alternates: { canonical: "/careers" },
-};
+    "Looking for skilled trade jobs in the UAE? Send your trade, experience and CV to Pak Arab Manpower Supply LLC in Abu Dhabi via our quick WhatsApp job enquiry.",
+  path: "/careers",
+  keywords: ["jobs in UAE skilled trades", "manpower jobs Abu Dhabi", "welder jobs UAE"],
+});
 
 export default function CareersPage() {
   const mepCount = WORKFORCE_ROLES.filter((r) => r.division === "mep").length;

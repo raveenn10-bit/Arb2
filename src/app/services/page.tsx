@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/page-meta";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MessageCircle, Check } from "lucide-react";
@@ -6,12 +7,13 @@ import { SERVICES } from "@/data/services";
 import { PageHero } from "@/components/ui/PageHero";
 import { buildQuickEnquiryUrl } from "@/lib/whatsapp";
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata: Metadata = pageMeta({
+  title: "Manpower Supply Services in the UAE",
   description:
-    "Explore Pak Arab Manpower Supply LLC services: Manpower Supply, Workforce Support & Process, Oil & Gas, Civil & Construction, Mechanical & Electrical, and Travel & Transportation.",
-  alternates: { canonical: "/services" },
-};
+    "Manpower supply, workforce support, Oil & Gas, Civil & Construction, Mechanical & Electrical and workforce transport services in Abu Dhabi and across the UAE.",
+  path: "/services",
+  keywords: ["manpower supply services UAE", "labour supply Abu Dhabi", "industrial staffing UAE"],
+});
 
 export default function ServicesPage() {
   return (

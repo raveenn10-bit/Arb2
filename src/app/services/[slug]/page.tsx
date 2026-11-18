@@ -2,12 +2,52 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, MessageCircle, ArrowLeft } from "lucide-react";
+import { Check, MessageCircle, ArrowLeft, ArrowRight } from "lucide-react";
 import { SERVICES } from "@/data/services";
 import { PageHero } from "@/components/ui/PageHero";
 import { ManpowerRequestForm } from "@/components/forms/ManpowerRequestForm";
 import { buildQuickEnquiryUrl } from "@/lib/whatsapp";
 import { getServiceSchema } from "@/lib/seo";
+import { pageMeta } from "@/lib/page-meta";
+
+const SERVICE_SEO: Record<string, { title: string; description: string; keywords: string[] }> = {
+  "manpower-supply": {
+    title: "Manpower Supply Company in Abu Dhabi, UAE",
+    description:
+      "Skilled and unskilled manpower supply in Abu Dhabi and all 7 UAE emirates: vetted technicians, tradesmen and labour for short- and long-term industrial projects.",
+    keywords: ["manpower supply Abu Dhabi", "manpower supply company UAE", "labour supply UAE"],
+  },
+  "workforce-support": {
+    title: "Workforce Support, Payroll & Compliance UAE",
+    description:
+      "Outsourced workforce support in the UAE: inductions, training, payroll, benefits administration and compliance coordination for your site personnel.",
+    keywords: ["workforce management UAE", "payroll outsourcing manpower", "manpower compliance UAE"],
+  },
+  "oil-and-gas": {
+    title: "Oil & Gas Manpower Supply in UAE",
+    description:
+      "ADNOC-compliant, CICPA-eligible oil & gas manpower in the UAE: welders, pipe fitters, riggers, safety officers and shutdown crews for onshore and offshore sites.",
+    keywords: ["oil and gas manpower UAE", "ADNOC manpower supply", "shutdown manpower Abu Dhabi", "offshore manpower UAE"],
+  },
+  "civil-construction": {
+    title: "Construction Labour Supply in Abu Dhabi, UAE",
+    description:
+      "Civil & construction manpower in the UAE: masons, carpenters, steel fixers, plumbers, HVAC technicians, operators and site support for infrastructure projects.",
+    keywords: ["construction labour supply Abu Dhabi", "civil manpower UAE", "construction workers supply UAE"],
+  },
+  "mechanical-electrical": {
+    title: "Mechanical & Electrical Manpower in UAE",
+    description:
+      "Mechanical & electrical manpower supply in the UAE: fabricators, millwrights, industrial electricians, instrument technicians and MEP crews for industrial sites.",
+    keywords: ["electrical manpower supply UAE", "mechanical manpower UAE", "MEP manpower Abu Dhabi"],
+  },
+  "travel-transportation": {
+    title: "Workforce Transportation Services in UAE",
+    description:
+      "Staff and workforce transportation in the UAE: daily site commuting, shift-aligned crew movement and point-to-point logistics for project teams.",
+    keywords: ["workforce transportation UAE", "staff transport Abu Dhabi", "labour transport services UAE"],
+  },
+};
 
 export async function generateStaticParams() {
   return SERVICES.map((service) => ({ slug: service.slug }));
@@ -22,11 +62,13 @@ export async function generateMetadata({
   const service = SERVICES.find((s) => s.slug === slug);
   if (!service) return { title: "Service Not Found" };
 
-  return {
-    title: service.title,
-    description: service.shortDescription,
-    alternates: { canonical: `/services/${service.slug}` },
-  };
+  const seo = SERVICE_SEO[service.slug];
+  return pageMeta({
+    title: seo?.title ?? `${service.title} Services in UAE`,
+    description: seo?.description ?? service.shortDescription,
+    path: `/services/${service.slug}`,
+    keywords: seo?.keywords,
+  });
 }
 
 export default async function ServiceDetailPage({
@@ -124,6 +166,33 @@ export default async function ServiceDetailPage({
               with our Abu Dhabi team on WhatsApp.
             </p>
             <ManpowerRequestForm />
+          </div>
+        </div>
+      </section>
+
+      {/* Related services — internal linking */}
+      <section className="py-14 sm:py-16 bg-[#F5F6F8] border-t border-[#E5E7EB]">
+        <div className="container-wide space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#111315]">
+            Other Manpower Services in the UAE
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {SERVICES.filter((s) => s.slug !== service.slug).map((s) => (
+              <Link
+                key={s.slug}
+                href={`/services/${s.slug}`}
+                className="group rounded-xl border border-[#E5E7EB] bg-white p-5 hover:border-[#D40820]/60 hover:shadow-md transition-all"
+              >
+                <span className="text-xs font-bold text-[#D40820]">Service {s.number}</span>
+                <h3 className="mt-1 text-base font-extrabold text-[#111315] group-hover:text-[#D40820] transition-colors">
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-sm text-[#667085] line-clamp-3">{s.shortDescription}</p>
+                <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-[#111315]">
+                  Learn more <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

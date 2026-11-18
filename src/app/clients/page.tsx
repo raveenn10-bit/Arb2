@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/page-meta";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
 import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
 
-export const metadata: Metadata = {
-  title: "Our Clients",
+export const metadata: Metadata = pageMeta({
+  title: "Our Clients – 26 UAE Energy & EPC Firms",
   description:
-    "26 major UAE energy, EPC, construction, and industrial companies to which Pak Arab Manpower Supply LLC has supplied skilled manpower.",
-  alternates: { canonical: "/clients" },
-};
+    "See the 26 UAE energy, EPC, construction and industrial companies, including ADNOC, NPCC, Lamprell and Al Jaber, that Pak Arab Manpower has supplied workforce to.",
+  path: "/clients",
+  keywords: ["Pak Arab Manpower clients", "ADNOC manpower supplier", "EPC manpower UAE"],
+});
 
 export default function ClientsPage() {
   return (

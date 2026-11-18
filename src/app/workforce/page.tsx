@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/page-meta";
 import { PageHero } from "@/components/ui/PageHero";
 import { WorkforceDirectory } from "@/components/sections/WorkforceDirectory";
 
-export const metadata: Metadata = {
-  title: "Workforce Directory",
+export const metadata: Metadata = pageMeta({
+  title: "62 Skilled Trades & Workforce Categories",
   description:
-    "Search and filter Pak Arab Manpower Supply LLC's 62 active onshore/offshore MEP and Civil & Construction workforce categories in Abu Dhabi, UAE.",
-  alternates: { canonical: "/workforce" },
-};
+    "Browse 62 onshore/offshore MEP and Civil & Construction trades: welders, pipe fitters, riggers, electricians, scaffolders, masons, operators and more in the UAE.",
+  path: "/workforce",
+  keywords: ["welders supply UAE", "pipe fitters Abu Dhabi", "scaffolders manpower UAE", "skilled trades UAE"],
+});
 
 export default function WorkforcePage() {
   return (

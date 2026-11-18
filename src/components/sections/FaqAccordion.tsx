@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { FAQS } from "@/data/faq";
 
 export function FaqAccordion() {
@@ -16,6 +16,7 @@ export function FaqAccordion() {
           <div key={item.id} className="py-1">
             <button
               type="button"
+              id={`${item.id}-q`}
               onClick={() => setOpenId(isOpen ? null : item.id)}
               aria-expanded={isOpen}
               aria-controls={`${item.id}-panel`}
@@ -34,22 +35,20 @@ export function FaqAccordion() {
               </span>
             </button>
 
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  id={`${item.id}-panel`}
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.22, ease: "easeOut" }}
-                  className="overflow-hidden"
-                >
-                  <p className="pb-5 pl-8 sm:pl-10 pr-6 text-sm sm:text-base leading-relaxed text-[#667085] max-w-3xl">
-                    {item.answer}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Answer is always in the HTML (crawlable for Google & AI engines); visually collapsed when closed */}
+            <motion.div
+              id={`${item.id}-panel`}
+              role="region"
+              aria-labelledby={`${item.id}-q`}
+              initial={false}
+              animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="overflow-hidden"
+            >
+              <p className="pb-5 pl-8 sm:pl-10 pr-6 text-sm sm:text-base leading-relaxed text-[#667085] max-w-3xl">
+                {item.answer}
+              </p>
+            </motion.div>
           </div>
         );
       })}

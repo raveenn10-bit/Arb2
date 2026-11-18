@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/page-meta";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { INDUSTRIES } from "@/data/services";
 import { PageHero } from "@/components/ui/PageHero";
 
-export const metadata: Metadata = {
-  title: "Industries We Serve",
+export const metadata: Metadata = pageMeta({
+  title: "Oil & Gas, MEP & Construction Manpower",
   description:
-    "Industrial manpower supply across Oil & Gas, Civil & Construction, Mechanical Engineering, Electrical Engineering, Industrial & MEP, and Onshore/Offshore UAE operations.",
-  alternates: { canonical: "/industries" },
-};
+    "Skilled manpower for Oil & Gas, Civil & Construction, Mechanical, Electrical, Industrial & MEP, onshore and offshore operations across the UAE. Request a crew today.",
+  path: "/industries",
+  keywords: ["oil and gas manpower UAE", "MEP manpower supply", "construction labour supply UAE", "offshore manpower UAE"],
+});
 
 export default function IndustriesPage() {
   return (

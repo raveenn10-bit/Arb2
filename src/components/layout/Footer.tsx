@@ -64,12 +64,13 @@ export function Footer() {
               Navigation
             </h3>
             <ul className="space-y-2.5 text-sm text-[#D1D5DB]">
-              <li><Link href="#services" className="hover:text-white transition-colors">Services</Link></li>
-              <li><Link href="#workforce" className="hover:text-white transition-colors">Workforce Directory</Link></li>
-              <li><Link href="#industries" className="hover:text-white transition-colors">Industries Served</Link></li>
-              <li><Link href="#clients" className="hover:text-white transition-colors">Client Portfolio</Link></li>
-              <li><Link href="#faq" className="hover:text-white transition-colors">UAE Manpower FAQ</Link></li>
-              <li><Link href="#contact" className="hover:text-white transition-colors">Request Manpower</Link></li>
+              <li><Link href="/services" className="hover:text-white transition-colors">Manpower Services</Link></li>
+              <li><Link href="/workforce" className="hover:text-white transition-colors">Workforce Directory</Link></li>
+              <li><Link href="/industries" className="hover:text-white transition-colors">Industries Served</Link></li>
+              <li><Link href="/clients" className="hover:text-white transition-colors">Client Portfolio</Link></li>
+              <li><Link href="/quality" className="hover:text-white transition-colors">Quality &amp; Certifications</Link></li>
+              <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Request Manpower</Link></li>
             </ul>
           </div>
 
@@ -79,11 +80,12 @@ export function Footer() {
               Core Divisions
             </h3>
             <ul className="space-y-2.5 text-sm text-[#D1D5DB]">
-              <li>Onshore &amp; Offshore MEP (26 Trades)</li>
-              <li>Civil &amp; Infrastructure (36 Trades)</li>
-              <li>Oil &amp; Gas Shutdown Teams</li>
-              <li>Heavy Equipment &amp; Fleet Logistics</li>
-              <li>ADNOC &amp; CICPA Pass Mobilization</li>
+              <li><Link href="/services/manpower-supply" className="hover:text-white transition-colors">Manpower Supply Abu Dhabi</Link></li>
+              <li><Link href="/services/oil-and-gas" className="hover:text-white transition-colors">Oil &amp; Gas Manpower</Link></li>
+              <li><Link href="/services/civil-construction" className="hover:text-white transition-colors">Construction Labour Supply</Link></li>
+              <li><Link href="/services/mechanical-electrical" className="hover:text-white transition-colors">Mechanical &amp; Electrical Crews</Link></li>
+              <li><Link href="/services/workforce-support" className="hover:text-white transition-colors">Workforce Support &amp; Payroll</Link></li>
+              <li><Link href="/services/travel-transportation" className="hover:text-white transition-colors">Workforce Transportation</Link></li>
             </ul>
           </div>
 

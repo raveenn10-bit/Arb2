@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import { COMPANY } from "@/data/company";
@@ -7,7 +8,9 @@ import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { ScrollProgressBar } from "@/components/animations/ScrollProgressBar";
 import { PageAnimations } from "@/components/animations/PageAnimations";
-import { getOrganizationSchema, getLocalBusinessSchema } from "@/lib/seo";
+import { getSiteSchemaGraph } from "@/lib/seo";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -24,11 +27,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(COMPANY.domain),
   title: {
-    default: "Pak Arab Manpower Supply LLC | Industrial Manpower Supply Abu Dhabi, UAE",
-    template: "%s | Pak Arab Manpower Supply LLC",
+    default: "Manpower Supply Company in Abu Dhabi, UAE | Pak Arab Manpower",
+    template: "%s | Pak Arab Manpower",
   },
   description:
-    "Reliable industrial manpower supply in Abu Dhabi and across the UAE for Oil & Gas, Civil Construction, Mechanical, Electrical, MEP, and Workforce Support.",
+    "Skilled industrial manpower in Abu Dhabi & all 7 UAE emirates for Oil & Gas, MEP, Civil, Mechanical & Electrical projects. Mobilised in 24–72 hours.",
   keywords: [
     "Manpower Supply Company UAE",
     "Manpower Supply Abu Dhabi",
@@ -44,6 +47,33 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  applicationName: COMPANY.name,
+  authors: [{ name: COMPANY.name, url: COMPANY.domain }],
+  creator: COMPANY.name,
+  publisher: COMPANY.name,
+  category: "Manpower Supply & Staffing",
+  formatDetection: { telephone: true, email: true, address: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION }
+      : undefined,
+  },
+  other: {
+    "geo.region": "AE-AZ",
+    "geo.placename": "Abu Dhabi",
+  },
   openGraph: {
     type: "website",
     locale: "en_AE",
@@ -57,6 +87,7 @@ export const metadata: Metadata = {
         url: "/images/brand/og-cover.jpg",
         width: 1200,
         height: 630,
+        type: "image/jpeg",
         alt: "Pak Arab Manpower Supply LLC — Industrial Workforce Solutions UAE",
       },
     ],
@@ -70,12 +101,21 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-48x48.png", sizes: "48x48", type: "image/png" },
       { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#D40820",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -83,8 +123,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const orgSchema = getOrganizationSchema();
-  const localSchema = getLocalBusinessSchema();
+  const siteSchema = getSiteSchemaGraph();
 
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
@@ -97,11 +136,7 @@ export default function RootLayout({
         </a>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
         <ScrollProgressBar />
         <PageAnimations />
@@ -111,6 +146,14 @@ export default function RootLayout({
         </main>
         <Footer />
         <FloatingWhatsApp />
+        {GA_ID && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+            <Script id="ga4" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

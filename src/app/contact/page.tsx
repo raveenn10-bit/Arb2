@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/page-meta";
 import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 import { COMPANY } from "@/data/company";
 import { PageHero } from "@/components/ui/PageHero";
 import { ManpowerRequestForm } from "@/components/forms/ManpowerRequestForm";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
+export const metadata: Metadata = pageMeta({
+  title: "Contact & Request Manpower – Abu Dhabi",
   description:
-    "Contact Pak Arab Manpower Supply LLC in Abu Dhabi, UAE — Office No. A03, Wurth Gulf Building, Plot No. 42, M14. WhatsApp +971 55 384 2555.",
-  alternates: { canonical: "/contact" },
-};
+    "Request manpower or contact Pak Arab Manpower Supply LLC, Office A03, Wurth Gulf Building, M14 Musaffah, Abu Dhabi. WhatsApp +971 55 384 2555 · Tel +971 2 679 2576.",
+  path: "/contact",
+  keywords: ["request manpower Abu Dhabi", "manpower supply contact UAE"],
+});
 
 export default function ContactPage() {
   return (

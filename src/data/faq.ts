@@ -24,6 +24,30 @@ export const FAQS: FaqItem[] = [
       "Yes. Our MEP and Oil & Gas workforce division supports both onshore and offshore project requirements with technical, supervisory, welding, rigging, fabrication, electrical, and safety personnel.",
   },
   {
+    id: "faq-11",
+    question: "How quickly can Pak Arab Manpower mobilise workers in the UAE?",
+    answer:
+      "Pak Arab Manpower Supply LLC typically deploys ADNOC-compliant, CICPA-eligible Oil & Gas, MEP and Civil workforce within 24–72 hours across all 7 Emirates, depending on the trades, headcount and site access requirements of the project.",
+  },
+  {
+    id: "faq-12",
+    question: "Do you supply manpower outside Abu Dhabi?",
+    answer:
+      "Yes. Pak Arab Manpower Supply LLC is headquartered in Musaffah (M14), Abu Dhabi, and supplies skilled and unskilled manpower to projects across all seven emirates: Abu Dhabi, Dubai, Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah and Fujairah.",
+  },
+  {
+    id: "faq-13",
+    question: "Is your workforce ADNOC and CICPA compliant?",
+    answer:
+      "Yes. Our Oil & Gas, MEP and Civil workforce is ADNOC-compliant and CICPA-eligible, supporting deployment to energy-sector and restricted industrial sites in the UAE.",
+  },
+  {
+    id: "faq-14",
+    question: "What certifications does Pak Arab Manpower Supply LLC hold?",
+    answer:
+      "Pak Arab Manpower Supply LLC operates under ISO 9001 (Quality), ISO 14001 (Environmental) and ISO 45001 (Occupational Health & Safety) management frameworks, holds an IMCD ISO 9001:2015 / USCB (5169) accreditation reference, and supports the UAE In-Country Value (ICV) programme.",
+  },
+  {
     id: "faq-4",
     question: "Can clients request short-term manpower?",
     answer:

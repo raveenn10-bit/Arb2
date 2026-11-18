@@ -225,7 +225,7 @@ export function HeroSection() {
           <div className="inline-flex items-center gap-2">
             <span className="h-[2px] w-6 bg-[#D40820]" />
             <span className="hero-kicker text-[10px] font-bold uppercase tracking-[0.18em] text-white/90">
-              UAE INDUSTRIAL WORKFORCE PARTNER
+              MANPOWER SUPPLY COMPANY · ABU DHABI
             </span>
           </div>
 
@@ -304,14 +304,14 @@ export function HeroSection() {
             <div className="hero-stagger inline-flex items-center gap-3">
               <span className="h-[2px] w-10 bg-[#D40820]" />
               <span className="hero-kicker text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white/90">
-                INDUSTRIAL WORKFORCE SOLUTIONS · UAE
+                MANPOWER SUPPLY COMPANY · ABU DHABI, UAE
               </span>
             </div>
 
-            <h1 className="hero-title font-display text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.03] tracking-tight">
+            <div role="heading" aria-level={1} className="hero-title font-display text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.03] tracking-tight">
               Powering Industries.
               <span className="block mt-1 text-[#D40820]">Delivering Skilled Workforce.</span>
-            </h1>
+            </div>
 
             <p className="hero-stagger text-base sm:text-lg text-white/85 max-w-2xl leading-relaxed">
               Reliable manpower solutions for oil and gas, construction, mechanical, electrical and

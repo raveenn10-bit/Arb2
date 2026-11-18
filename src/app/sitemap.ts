@@ -2,33 +2,48 @@ import type { MetadataRoute } from "next";
 import { COMPANY } from "@/data/company";
 import { SERVICES } from "@/data/services";
 
+const abs = (path: string) => `${COMPANY.domain}${path}`;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const staticRoutes = [
-    "",
-    "/about",
-    "/services",
-    "/industries",
-    "/workforce",
-    "/quality",
-    "/clients",
-    "/careers",
-    "/contact",
-    "/privacy-policy",
+
+  const pages: { route: string; priority: number; freq: "weekly" | "monthly" | "yearly"; images?: string[] }[] = [
+    {
+      route: "",
+      priority: 1,
+      freq: "weekly",
+      images: [
+        "/images/hero/hero-main.webp",
+        "/images/team/pak-arab-crew-blue.webp",
+        "/images/team/pak-arab-crew-red.webp",
+        "/images/services/manpower-briefing.webp",
+      ],
+    },
+    { route: "/services", priority: 0.9, freq: "monthly" },
+    { route: "/workforce", priority: 0.9, freq: "monthly" },
+    { route: "/industries", priority: 0.8, freq: "monthly" },
+    { route: "/about", priority: 0.8, freq: "monthly" },
+    { route: "/clients", priority: 0.7, freq: "monthly" },
+    { route: "/quality", priority: 0.7, freq: "monthly" },
+    { route: "/careers", priority: 0.7, freq: "monthly" },
+    { route: "/contact", priority: 0.8, freq: "monthly" },
+    { route: "/privacy-policy", priority: 0.2, freq: "yearly" },
   ];
 
-  const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
-    url: `${COMPANY.domain}${route}`,
+  const staticEntries: MetadataRoute.Sitemap = pages.map((p) => ({
+    url: abs(p.route),
     lastModified: now,
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : 0.8,
+    changeFrequency: p.freq,
+    priority: p.priority,
+    ...(p.images ? { images: p.images.map(abs) } : {}),
   }));
 
   const serviceEntries: MetadataRoute.Sitemap = SERVICES.map((service) => ({
-    url: `${COMPANY.domain}/services/${service.slug}`,
+    url: abs(`/services/${service.slug}`),
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.85,
+    images: [abs(service.image)],
   }));
 
   return [...staticEntries, ...serviceEntries];

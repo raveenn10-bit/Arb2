@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/page-meta";
 import Image from "next/image";
 import { COMPANY } from "@/data/company";
 import { CERTIFICATIONS } from "@/data/certifications";
 import { PageHero } from "@/components/ui/PageHero";
 
-export const metadata: Metadata = {
-  title: "Quality & Certifications",
+export const metadata: Metadata = pageMeta({
+  title: "ISO Certified Quality & HSE Standards",
   description:
-    "Pak Arab Manpower Supply LLC Quality Management System (QMS), ISO 9001, ISO 14001, ISO 45001, IMCD/USCB, and ICV compliance standards.",
-  alternates: { canonical: "/quality" },
-};
+    "Pak Arab Manpower operates under ISO 9001, ISO 14001 and ISO 45001 frameworks with IMCD/USCB accreditation and ICV alignment for safe, compliant UAE workforce.",
+  path: "/quality",
+  keywords: ["ISO certified manpower company UAE", "HSE manpower Abu Dhabi", "ICV manpower supplier"],
+});
 
 export default function QualityPage() {
   return (

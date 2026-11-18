@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/page-meta";
 import Image from "next/image";
 import Link from "next/link";
 import { Target, Eye, Check, ArrowRight } from "lucide-react";
 import { COMPANY } from "@/data/company";
 import { PageHero } from "@/components/ui/PageHero";
 
-export const metadata: Metadata = {
-  title: "About Us",
+export const metadata: Metadata = pageMeta({
+  title: "About Our Abu Dhabi Manpower Company",
   description:
-    "Learn about Pak Arab Manpower Supply LLC in Abu Dhabi, UAE — our mission, vision, workforce sourcing approach, and operational coordination.",
-  alternates: { canonical: "/about" },
-};
+    "Pak Arab Manpower Supply LLC is an Abu Dhabi manpower supply company in Musaffah M14 delivering vetted, skilled industrial workforce across all 7 UAE emirates.",
+  path: "/about",
+  keywords: ["manpower company Abu Dhabi", "about Pak Arab Manpower", "manpower supply company Musaffah"],
+});
 
 export default function AboutPage() {
   return (
