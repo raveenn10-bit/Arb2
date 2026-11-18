@@ -145,6 +145,15 @@ export function PageAnimations() {
           }),
         );
 
+      // 5b. Trade chips — quick pop-in cascade
+      all<HTMLElement>(".trade-chips > li").forEach((el) =>
+        jobs.set(el, {
+          prep: () => gsap.set(el, { opacity: 0, y: 14, scale: 0.96 }),
+          play: (delay) =>
+            gsap.to(el, { opacity: 1, y: 0, scale: 1, duration: 0.5, delay: delay * 0.5, ease: "back.out(1.6)", clearProps: "transform" }),
+        }),
+      );
+
       // 6. Card icons — pop in
       all<HTMLElement>('[class*="rounded-lg"][class*="bg-brand/10"]').forEach((el) =>
         jobs.set(el, {

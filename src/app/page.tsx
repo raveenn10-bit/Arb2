@@ -26,6 +26,7 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
 import { CLIENTS } from "@/data/clients";
 import { TeamShowcase } from "@/components/sections/TeamShowcase";
+import { TradesShowcase } from "@/components/sections/TradesShowcase";
 import { ManpowerRequestForm } from "@/components/forms/ManpowerRequestForm";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { GsapReveal } from "@/components/animations/GsapReveal";
@@ -358,6 +359,9 @@ export default function HomePage() {
           </GsapReveal>
         </div>
       </section>
+
+      {/* 8. Trades Ready to Mobilise */}
+      <TradesShowcase />
 
       {/* 9. Why Choose Pak Arab */}
       <section className="py-16 sm:py-24 bg-mist border-y border-line">
