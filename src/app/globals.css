@@ -70,3 +70,18 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Client logo marquee — continuous right-to-left scroll on a single white band */
+@keyframes client-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.client-marquee-track {
+  animation: client-marquee 60s linear infinite;
+  will-change: transform;
+}
+
+@media (max-width: 640px) {
+  .client-marquee-track { animation-duration: 45s; }
+}
