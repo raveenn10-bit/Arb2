@@ -385,13 +385,13 @@ export default function HomePage() {
             </h2>
           </GsapReveal>
 
-          <MobileAutoTrack desktopGridClass="md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
             {COMPANY.whyChooseUs.map((item) => {
               const Icon = WHY_ICONS[item.icon] || Users;
               return (
                 <div
                   key={item.title}
-                  className="min-w-[260px] sm:min-w-[280px] md:min-w-0 shrink-0 md:shrink snap-start rounded-xl bg-white border border-[#E5E7EB] p-6 hover:border-[#D40820]/60 transition-colors"
+                  className="rounded-xl bg-white border border-[#E5E7EB] p-6 hover:border-[#D40820]/60 transition-colors"
                 >
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-[#D40820]/10 text-[#D40820] mb-4">
                     <Icon className="h-5 w-5" aria-hidden="true" />
@@ -405,7 +405,7 @@ export default function HomePage() {
                 </div>
               );
             })}
-          </MobileAutoTrack>
+          </div>
         </div>
       </section>
 
