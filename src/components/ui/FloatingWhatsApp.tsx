@@ -10,7 +10,7 @@ export function FloatingWhatsApp() {
 
   return (
     <a
-      href={`${COMPANY.contact.whatsappUrl}?text=${defaultMsg}`}
+      href={`${COMPANY.whatsapp.url}?text=${defaultMsg}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Pak Arab Manpower on WhatsApp (+971 55 384 2555)"

@@ -48,13 +48,13 @@ export function Footer() {
             </div>
 
             <a
-              href={COMPANY.contact.whatsappUrl}
+              href={COMPANY.whatsapp.url}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md bg-[#25D366] hover:bg-[#1ebe5d] px-4 py-2.5 text-xs font-bold text-[#0A0B0D] transition-colors"
             >
               <MessageCircle className="h-4 w-4" />
-              WhatsApp Desk: {COMPANY.contact.whatsappDisplay}
+              WhatsApp Desk: {COMPANY.whatsapp.display}
             </a>
           </div>
 
@@ -96,9 +96,9 @@ export function Footer() {
               <div className="flex items-start gap-2.5">
                 <MapPin className="h-4 w-4 text-[#D40820] shrink-0 mt-1" />
                 <div>
-                  <p className="leading-snug">{COMPANY.address.full}</p>
+                  <p className="leading-snug">{COMPANY.office.address}</p>
                   <a
-                    href={COMPANY.address.mapsUrl}
+                    href={COMPANY.office.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-[#D40820] hover:underline"
@@ -110,34 +110,34 @@ export function Footer() {
               </div>
 
               <a
-                href={`tel:${COMPANY.contact.landline.replace(/\s+/g, "")}`}
+                href={COMPANY.telephone.tel}
                 className="flex items-center gap-2.5 hover:text-white transition-colors"
               >
                 <Phone className="h-4 w-4 text-[#9CA3AF] shrink-0" />
-                <span>{COMPANY.contact.landline}</span>
+                <span>{COMPANY.telephone.display}</span>
               </a>
 
               <a
-                href={`tel:${COMPANY.contact.secondaryMobile.replace(/\s+/g, "")}`}
+                href={COMPANY.additionalMobile.tel}
                 className="flex items-center gap-2.5 hover:text-white transition-colors"
               >
                 <Phone className="h-4 w-4 text-[#9CA3AF] shrink-0" />
-                <span>{COMPANY.contact.secondaryMobile}</span>
+                <span>{COMPANY.additionalMobile.display}</span>
               </a>
 
               <a
-                href={`mailto:${COMPANY.contact.email}`}
+                href={`mailto:${COMPANY.email}`}
                 className="flex items-center gap-2.5 hover:text-white transition-colors"
               >
                 <Mail className="h-4 w-4 text-[#9CA3AF] shrink-0" />
-                <span>{COMPANY.contact.email}</span>
+                <span>{COMPANY.email}</span>
               </a>
             </div>
           </div>
         </div>
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9CA3AF]">
-          <p>© {new Date().getFullYear()} {COMPANY.legalName}. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {COMPANY.name}. All rights reserved.</p>
           <p>Abu Dhabi, United Arab Emirates · 24–72h Rapid Mobilization</p>
         </div>
       </div>
