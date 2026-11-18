@@ -93,7 +93,7 @@ export function CareersForm() {
             value={form.fullName}
             onChange={(e) => update("fullName", e.target.value)}
             placeholder="Your full name"
-            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[2.75rem]"
           />
           {errors.fullName && (
             <p className="mt-1 text-xs text-brand flex items-center gap-1">
@@ -112,7 +112,7 @@ export function CareersForm() {
             value={form.phone}
             onChange={(e) => update("phone", e.target.value)}
             placeholder="+971 5X XXX XXXX"
-            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[2.75rem]"
           />
           {errors.phone && (
             <p className="mt-1 text-xs text-brand flex items-center gap-1">
@@ -131,7 +131,7 @@ export function CareersForm() {
             value={form.email}
             onChange={(e) => update("email", e.target.value)}
             placeholder="you@example.com"
-            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[2.75rem]"
           />
           {errors.email && (
             <p className="mt-1 text-xs text-brand flex items-center gap-1">
@@ -150,7 +150,7 @@ export function CareersForm() {
             value={form.profession}
             onChange={(e) => update("profession", e.target.value)}
             placeholder="e.g. GTAW Welder, Pipe Fitter, Mason"
-            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[2.75rem]"
           />
           {errors.profession && (
             <p className="mt-1 text-xs text-brand flex items-center gap-1">
@@ -169,7 +169,7 @@ export function CareersForm() {
             value={form.experience}
             onChange={(e) => update("experience", e.target.value)}
             placeholder="e.g. 5 Years (UAE / GCC)"
-            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[2.75rem]"
           />
           {errors.experience && (
             <p className="mt-1 text-xs text-brand flex items-center gap-1">
@@ -188,7 +188,7 @@ export function CareersForm() {
             value={form.currentLocation}
             onChange={(e) => update("currentLocation", e.target.value)}
             placeholder="e.g. Abu Dhabi, UAE"
-            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[2.75rem]"
           />
           {errors.currentLocation && (
             <p className="mt-1 text-xs text-brand flex items-center gap-1">
@@ -206,7 +206,7 @@ export function CareersForm() {
           id="car-cat"
           value={form.preferredCategory}
           onChange={(e) => update("preferredCategory", e.target.value)}
-          className="w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-sm min-h-[44px]"
+          className="w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-sm min-h-[2.75rem]"
         >
           <option>Onshore / Offshore MEP</option>
           <option>Civil &amp; Construction</option>
@@ -231,7 +231,7 @@ export function CareersForm() {
 
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-6 py-3.5 text-sm font-bold text-navy-900 hover:bg-[#1fb858] transition-colors min-h-[48px] cursor-pointer"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-6 py-3.5 text-sm font-bold text-navy-900 hover:bg-[#1fb858] transition-colors min-h-[3rem] cursor-pointer"
       >
         <MessageCircle className="h-5 w-5" aria-hidden="true" />
         <span>Continue to WhatsApp &amp; Attach CV ({COMPANY.whatsapp.display})</span>

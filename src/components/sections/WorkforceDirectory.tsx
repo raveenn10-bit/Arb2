@@ -81,7 +81,7 @@ export function WorkforceDirectory() {
             role="tab"
             aria-selected={division === "all"}
             onClick={() => handleDivisionChange("all")}
-            className={`px-4 py-2.5 rounded-md text-sm font-semibold transition-colors min-h-[44px] ${
+            className={`px-4 py-2.5 rounded-md text-sm font-semibold transition-colors min-h-[2.75rem] ${
               division === "all"
                 ? "bg-navy-900 text-white"
                 : "bg-white text-navy-900 border border-line hover:border-navy-900"
@@ -94,7 +94,7 @@ export function WorkforceDirectory() {
             role="tab"
             aria-selected={division === "mep"}
             onClick={() => handleDivisionChange("mep")}
-            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-semibold transition-colors min-h-[44px] ${
+            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-semibold transition-colors min-h-[2.75rem] ${
               division === "mep"
                 ? "bg-brand text-white"
                 : "bg-white text-navy-900 border border-line hover:border-brand"
@@ -108,7 +108,7 @@ export function WorkforceDirectory() {
             role="tab"
             aria-selected={division === "civil"}
             onClick={() => handleDivisionChange("civil")}
-            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-semibold transition-colors min-h-[44px] ${
+            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-semibold transition-colors min-h-[2.75rem] ${
               division === "civil"
                 ? "bg-brand text-white"
                 : "bg-white text-navy-900 border border-line hover:border-brand"
@@ -134,7 +134,7 @@ export function WorkforceDirectory() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search role (e.g. Welder, Mason, HVAC)..."
-            className="w-full rounded-md border border-line bg-white pl-10 pr-10 py-2.5 text-sm text-navy-900 placeholder:text-slate focus:border-brand focus:outline-none min-h-[44px]"
+            className="w-full rounded-md border border-line bg-white pl-10 pr-10 py-2.5 text-sm text-navy-900 placeholder:text-slate focus:border-brand focus:outline-none min-h-[2.75rem]"
           />
           {searchQuery && (
             <button
@@ -156,7 +156,7 @@ export function WorkforceDirectory() {
             key={cat}
             type="button"
             onClick={() => setSelectedCategory(cat)}
-            className={`px-3.5 py-2 rounded-full text-xs font-semibold transition-colors min-h-[36px] ${
+            className={`px-3.5 py-2 rounded-full text-xs font-semibold transition-colors min-h-[2.25rem] ${
               selectedCategory === cat
                 ? "bg-navy-900 text-white"
                 : "bg-mist text-slate hover:text-navy-900 border border-line"
@@ -197,7 +197,7 @@ export function WorkforceDirectory() {
             <button
               type="button"
               onClick={clearFilters}
-              className="rounded-md bg-navy-900 px-4 py-2.5 text-sm font-semibold text-white min-h-[44px]"
+              className="rounded-md bg-navy-900 px-4 py-2.5 text-sm font-semibold text-white min-h-[2.75rem]"
             >
               Clear Search
             </button>
@@ -207,7 +207,7 @@ export function WorkforceDirectory() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-navy-900 min-h-[44px]"
+              className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-navy-900 min-h-[2.75rem]"
             >
               <MessageCircle className="h-4 w-4" />
               <span>Ask via WhatsApp</span>
@@ -227,7 +227,7 @@ export function WorkforceDirectory() {
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-2">
                       <span
-                        className={`text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
+                        className={`text-[0.6875rem] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
                           role.division === "mep"
                             ? "bg-brand/10 text-brand-dark"
                             : "bg-navy-900/10 text-navy-900"
@@ -265,7 +265,7 @@ export function WorkforceDirectory() {
                         [catName]: !prev[catName],
                       }))
                     }
-                    className="flex w-full items-center justify-between px-4 py-3.5 text-left font-bold text-sm text-navy-900 bg-mist min-h-[48px]"
+                    className="flex w-full items-center justify-between px-4 py-3.5 text-left font-bold text-sm text-navy-900 bg-mist min-h-[3rem]"
                   >
                     <span>
                       {catName} ({roles.length})
@@ -306,7 +306,7 @@ export function WorkforceDirectory() {
               <button
                 type="button"
                 onClick={() => setShowAll((prev) => !prev)}
-                className="inline-flex items-center gap-2 rounded-md border border-navy-900 bg-white px-6 py-3 text-sm font-bold text-navy-900 hover:bg-brand hover:border-brand hover:text-white transition-all duration-200 min-h-[44px] cursor-pointer"
+                className="inline-flex items-center gap-2 rounded-md border border-navy-900 bg-white px-6 py-3 text-sm font-bold text-navy-900 hover:bg-brand hover:border-brand hover:text-white transition-all duration-200 min-h-[2.75rem] cursor-pointer"
               >
                 <span>
                   {showAll

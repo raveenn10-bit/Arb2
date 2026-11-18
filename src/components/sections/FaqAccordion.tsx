@@ -20,7 +20,7 @@ export function FaqAccordion() {
               onClick={() => setOpenId(isOpen ? null : item.id)}
               aria-expanded={isOpen}
               aria-controls={`${item.id}-panel`}
-              className="flex w-full items-center justify-between gap-4 py-5 text-left min-h-[56px] group cursor-pointer"
+              className="flex w-full items-center justify-between gap-4 py-5 text-left min-h-[3.5rem] group cursor-pointer"
             >
               <span className="flex items-baseline gap-4">
                 <span className="text-xs font-bold text-brand tabular-nums">

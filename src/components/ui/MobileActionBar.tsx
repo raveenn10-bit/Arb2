@@ -11,7 +11,7 @@ const WA_TEXT = encodeURIComponent("Hello Pak Arab Manpower Supply LLC, we would
  */
 export function MobileActionBar() {
   const item =
-    "flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 text-[11px] font-semibold tracking-wide transition-colors";
+    "flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 text-[0.6875rem] font-semibold tracking-wide transition-colors";
   return (
     <nav
       aria-label="Quick actions"

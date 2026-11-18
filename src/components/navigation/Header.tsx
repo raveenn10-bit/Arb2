@@ -84,7 +84,7 @@ export function Header() {
           scrolled ? "shadow-md" : ""
         }`}
       >
-        <div className="container-wide flex h-16 lg:h-[74px] items-center justify-between gap-4">
+        <div className="container-wide flex h-16 lg:h-[4.625rem] items-center justify-between gap-4">
           {/* Brand Logo — Left */}
           <Link
             href="/"
@@ -104,7 +104,7 @@ export function Header() {
               <span className="font-bold tracking-tight text-sm sm:text-base text-navy-900 group-hover:text-brand transition-colors">
                 PAK ARAB MANPOWER
               </span>
-              <span className="text-[11px] font-semibold tracking-wider uppercase text-slate">
+              <span className="text-[0.6875rem] font-semibold tracking-wider uppercase text-slate">
                 Supply LLC · Abu Dhabi
               </span>
             </div>
@@ -126,7 +126,7 @@ export function Header() {
                       onClick={() => setServicesOpen((prev) => !prev)}
                       aria-expanded={servicesOpen}
                       aria-haspopup="true"
-                      className={`inline-flex items-center gap-1 px-3.5 py-2 text-sm font-medium rounded-md transition-colors min-h-[44px] ${
+                      className={`inline-flex items-center gap-1 px-3.5 py-2 text-sm font-medium rounded-md transition-colors min-h-[2.75rem] ${
                         isActive
                           ? "text-brand bg-mist"
                           : "text-navy-900 hover:text-brand hover:bg-mist"
@@ -184,7 +184,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3.5 py-2 text-sm font-medium rounded-md transition-colors min-h-[44px] inline-flex items-center ${
+                  className={`px-3.5 py-2 text-sm font-medium rounded-md transition-colors min-h-[2.75rem] inline-flex items-center ${
                     isActive
                       ? "text-brand bg-mist"
                       : "text-navy-900 hover:text-brand hover:bg-mist"
@@ -200,7 +200,7 @@ export function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/#manpower-request"
-              className="hidden md:inline-flex items-center gap-2 rounded-md bg-brand px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors min-h-[44px]"
+              className="hidden md:inline-flex items-center gap-2 rounded-md bg-brand px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors min-h-[2.75rem]"
             >
               <span>Request Manpower</span>
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -211,7 +211,7 @@ export function Header() {
               onClick={() => setMobileOpen((prev) => !prev)}
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
-              className="xl:hidden inline-flex items-center justify-center rounded-md border border-line p-2.5 text-navy-900 hover:bg-mist min-h-[44px] min-w-[44px]"
+              className="xl:hidden inline-flex items-center justify-center rounded-md border border-line p-2.5 text-navy-900 hover:bg-mist min-h-[2.75rem] min-w-[2.75rem]"
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -222,7 +222,7 @@ export function Header() {
       {/* Mobile Drawer */}
       {mobileOpen && (
         <div
-          className="xl:hidden fixed inset-0 top-16 lg:top-[74px] z-40 bg-white overflow-y-auto border-t border-line"
+          className="xl:hidden fixed inset-0 top-16 lg:top-[4.625rem] z-40 bg-white overflow-y-auto border-t border-line"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"
@@ -235,7 +235,7 @@ export function Header() {
                     <button
                       type="button"
                       onClick={() => setMobileServicesOpen((prev) => !prev)}
-                      className="flex w-full items-center justify-between py-3 text-base font-semibold text-navy-900 min-h-[44px]"
+                      className="flex w-full items-center justify-between py-3 text-base font-semibold text-navy-900 min-h-[2.75rem]"
                     >
                       <span>{item.label}</span>
                       <ChevronDown
@@ -271,7 +271,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="py-3 text-base font-semibold text-navy-900 border-b border-line min-h-[44px] flex items-center"
+                  className="py-3 text-base font-semibold text-navy-900 border-b border-line min-h-[2.75rem] flex items-center"
                 >
                   {item.label}
                 </Link>
@@ -280,13 +280,13 @@ export function Header() {
 
             <Link
               href="/quality"
-              className="py-3 text-base font-semibold text-navy-900 border-b border-line min-h-[44px] flex items-center"
+              className="py-3 text-base font-semibold text-navy-900 border-b border-line min-h-[2.75rem] flex items-center"
             >
               Quality &amp; Certifications
             </Link>
             <Link
               href="/careers"
-              className="py-3 text-base font-semibold text-navy-900 border-b border-line min-h-[44px] flex items-center"
+              className="py-3 text-base font-semibold text-navy-900 border-b border-line min-h-[2.75rem] flex items-center"
             >
               Careers &amp; Job Enquiries
             </Link>
@@ -294,7 +294,7 @@ export function Header() {
             <div className="mt-4 flex flex-col gap-3">
               <Link
                 href="/#manpower-request"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand px-5 py-3.5 text-sm font-semibold text-white min-h-[48px]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand px-5 py-3.5 text-sm font-semibold text-white min-h-[3rem]"
               >
                 <span>Request Manpower</span>
                 <ArrowUpRight className="h-4 w-4" />
@@ -303,7 +303,7 @@ export function Header() {
                 href={buildQuickEnquiryUrl("Manpower Supply Enquiry")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-5 py-3.5 text-sm font-semibold text-navy-900 min-h-[48px]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-5 py-3.5 text-sm font-semibold text-navy-900 min-h-[3rem]"
               >
                 <MessageCircle className="h-4 w-4" />
                 <span>WhatsApp {COMPANY.whatsapp.display}</span>

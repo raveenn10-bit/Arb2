@@ -193,14 +193,14 @@ export function HeroSection() {
       {/* =========================================================
           MOBILE-ONLY 9:16 VERTICAL HERO DESIGN (md:hidden)
          ========================================================= */}
-      <div className="md:hidden relative w-full aspect-[9/16] max-h-[92vh] min-h-[620px] flex flex-col justify-between overflow-hidden bg-navy-950">
+      <div className="md:hidden relative w-full aspect-[9/16] max-h-[calc(100svh-4rem-3.5rem-env(safe-area-inset-bottom))] min-h-[32rem] flex flex-col justify-between overflow-hidden bg-navy-950">
         <div className="absolute inset-0 overflow-hidden">
           <div
             className="flex w-full h-full transition-transform duration-700 ease-out will-change-transform"
             style={{ transform: `translateX(-${activeSlide * 100}%)` }}
           >
             {HERO_SLIDES.map((slide, idx) => (
-              <div key={slide.mobileSrc} className="min-w-full h-full relative shrink-0 select-none">
+              <div key={slide.mobileSrc} className="min-w-full h-full relative shrink-0 select-none overflow-hidden">
                 <Image
                   src={slide.mobileSrc}
                   alt={slide.alt}
@@ -217,9 +217,9 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-45% to-navy-950/95 pointer-events-none" />
 
         <div className="relative z-10 px-4 pt-4 flex items-center justify-between gap-2">
-          <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-white bg-black/55 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-full shadow-sm">
+          <span className="inline-flex items-center gap-1.5 text-[0.625rem] font-bold uppercase tracking-[0.12em] text-white bg-black/55 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-full shadow-sm">
             <span className="h-2 w-2 rounded-full bg-brand animate-pulse" />
-            <span>{HERO_SLIDES[activeSlide].caption}</span>
+            <span className="truncate max-w-[11rem] min-[375px]:max-w-none">{HERO_SLIDES[activeSlide].caption}</span>
           </span>
           <div className="flex items-center gap-0.5 bg-black/45 backdrop-blur-md px-1.5 py-0.5 rounded-full border border-white/15">
             {HERO_SLIDES.map((slide, idx) => (
@@ -241,15 +241,15 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="hero-m hero-content relative z-10 px-4 pb-5 pt-10 space-y-3.5">
+        <div className="hero-m hero-content relative z-10 px-4 pb-5 pt-6 min-[375px]:pt-10 space-y-3 min-[375px]:space-y-3.5">
           <div className="inline-flex items-center gap-2">
             <span className="h-[2px] w-6 bg-brand" />
-            <span className="hero-kicker text-[10px] font-bold uppercase tracking-[0.18em] text-white/90">
-              MANPOWER SUPPLY COMPANY · ABU DHABI
+            <span className="hero-kicker whitespace-nowrap text-[0.625rem] font-bold uppercase tracking-[0.12em] min-[375px]:tracking-[0.18em] text-white/90">
+              MANPOWER SUPPLY · ABU DHABI
             </span>
           </div>
 
-          <h1 className="hero-title font-display text-3xl font-bold leading-[1.06] tracking-tight text-white drop-shadow-sm">
+          <h1 className="hero-title font-display text-[1.75rem] min-[375px]:text-3xl font-bold leading-[1.06] tracking-tight text-white drop-shadow-sm">
             Powering Industries.
             <span className="block text-brand mt-0.5">Delivering Skilled Workforce.</span>
           </h1>
@@ -276,7 +276,7 @@ export function HeroSection() {
             </a>
           </div>
 
-          <div className="pt-2.5 border-t border-white/15 grid grid-cols-2 gap-y-1.5 gap-x-3 text-[11px] font-medium text-white/90">
+          <div className="pt-2.5 border-t border-white/15 grid grid-cols-2 gap-y-1.5 gap-x-3 text-[0.6875rem] font-medium text-white/90">
             <div className="flex items-center gap-1.5">
               <span className="text-brand">●</span> Skilled Workforce
             </div>
@@ -303,7 +303,7 @@ export function HeroSection() {
             style={{ transform: `translateX(-${activeSlide * 100}%)` }}
           >
             {HERO_SLIDES.map((slide, idx) => (
-              <div key={slide.desktopSrc} className="min-w-full h-full relative shrink-0 select-none">
+              <div key={slide.desktopSrc} className="min-w-full h-full relative shrink-0 select-none overflow-hidden">
                 <Image
                   src={slide.desktopSrc}
                   alt={slide.alt}
@@ -328,7 +328,7 @@ export function HeroSection() {
               </span>
             </div>
 
-            <div role="heading" aria-level={1} className="hero-title font-display text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.03] tracking-tight">
+            <div role="heading" aria-level={1} className="hero-title font-display text-4xl sm:text-5xl lg:text-[4rem] font-bold leading-[1.03] tracking-tight">
               Powering Industries.
               <span className="block mt-1 text-brand">Delivering Skilled Workforce.</span>
             </div>

@@ -75,7 +75,7 @@ export default function ServicesPage() {
                 <div className="flex flex-wrap gap-3 pt-3">
                   <Link
                     href={`/services/${service.slug}`}
-                    className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[44px]"
+                    className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[2.75rem]"
                   >
                     <span>View Service Details</span>
                     <ArrowRight className="h-4 w-4" />
@@ -84,7 +84,7 @@ export default function ServicesPage() {
                     href={buildQuickEnquiryUrl(service.waTopic)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-semibold text-navy-900 hover:bg-[#1fb858] transition-colors min-h-[44px]"
+                    className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-semibold text-navy-900 hover:bg-[#1fb858] transition-colors min-h-[2.75rem]"
                   >
                     <MessageCircle className="h-4 w-4" />
                     <span>Request via WhatsApp</span>

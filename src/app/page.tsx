@@ -99,7 +99,7 @@ export default function HomePage() {
             <div className="pt-2">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[2.75rem]"
               >
                 <span>Explore Our Company</span>
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -198,7 +198,7 @@ export default function HomePage() {
             {SERVICES.map((service) => (
               <div
                 key={service.slug}
-                className="group min-w-[290px] sm:min-w-[320px] md:min-w-0 shrink-0 md:shrink snap-start flex flex-col rounded-xl border border-line bg-white overflow-hidden hover:border-brand/60 hover:shadow-lg transition-all duration-200"
+                className="group min-w-[18.125rem] sm:min-w-[20rem] md:min-w-0 shrink-0 md:shrink snap-start flex flex-col rounded-xl border border-line bg-white overflow-hidden hover:border-brand/60 hover:shadow-lg transition-all duration-200"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-navy-900">
                   <Image
@@ -226,7 +226,7 @@ export default function HomePage() {
                   <div className="pt-4 border-t border-line flex items-center justify-between gap-3">
                     <Link
                       href={`/services/${service.slug}`}
-                      className="inline-flex items-center gap-1.5 text-sm font-bold text-navy-900 hover:text-brand min-h-[40px]"
+                      className="inline-flex items-center gap-1.5 text-sm font-bold text-navy-900 hover:text-brand min-h-[2.5rem]"
                     >
                       <span>Explore Service</span>
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -235,7 +235,7 @@ export default function HomePage() {
                       href={buildQuickEnquiryUrl(service.waTopic)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-md bg-mist hover:bg-[#25D366] px-3 py-2 text-xs font-semibold text-navy-900 transition-colors min-h-[40px]"
+                      className="inline-flex items-center gap-1.5 rounded-md bg-mist hover:bg-[#25D366] px-3 py-2 text-xs font-semibold text-navy-900 transition-colors min-h-[2.5rem]"
                     >
                       <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
                       <span>Enquire</span>
@@ -277,7 +277,7 @@ export default function HomePage() {
             {INDUSTRIES.map((industry) => (
               <div
                 key={industry.id}
-                className="group relative min-w-[270px] sm:min-w-[300px] md:min-w-0 shrink-0 md:shrink snap-start aspect-[4/5] md:aspect-[4/3] rounded-xl overflow-hidden border border-white/10"
+                className="group relative min-w-[16.875rem] sm:min-w-[18.75rem] md:min-w-0 shrink-0 md:shrink snap-start aspect-[4/5] md:aspect-[4/3] rounded-xl overflow-hidden border border-white/10"
               >
                 <Image
                   src={industry.image}
@@ -288,7 +288,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/55 to-transparent" />
                 <div className="absolute inset-0 p-5 flex flex-col justify-end">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-brand">
+                  <p className="text-[0.6875rem] font-bold uppercase tracking-wider text-brand">
                     {industry.subtitle}
                   </p>
                   <h3 className="text-lg font-extrabold text-white mt-0.5">
@@ -339,7 +339,7 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
                 href="/services/travel-transportation"
-                className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[2.75rem]"
               >
                 <span>Explore Travel &amp; Transportation</span>
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -348,7 +348,7 @@ export default function HomePage() {
                 href={buildQuickEnquiryUrl("Workforce Travel & Transportation Support")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-semibold text-navy-900 hover:bg-[#1fb858] transition-colors min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-semibold text-navy-900 hover:bg-[#1fb858] transition-colors min-h-[2.75rem]"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
                 <span>Request Logistics Support</span>
@@ -634,27 +634,27 @@ export default function HomePage() {
                 href={COMPANY.office.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[2.75rem]"
               >
                 <MapPin className="h-4 w-4" aria-hidden="true" />
                 <span>Get Directions</span>
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-semibold text-navy-900 hover:border-navy-900 min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-semibold text-navy-900 hover:border-navy-900 min-h-[2.75rem]"
               >
                 <span>Contact Page</span>
               </Link>
             </div>
           </div>
 
-          <div className="lg:col-span-7 rounded-xl overflow-hidden border border-line bg-white min-h-[340px]">
+          <div className="lg:col-span-7 rounded-xl overflow-hidden border border-line bg-white min-h-[21.25rem]">
             <iframe
               title="Pak Arab Manpower Supply LLC Office Location Map"
               src="https://maps.google.com/maps?q=Wurth+Gulf+Building+Plot+42+M14+Musaffah+Abu+Dhabi+UAE&t=&z=15&ie=UTF8&iwloc=&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-full min-h-[340px] border-0"
+              className="w-full h-full min-h-[21.25rem] border-0"
             />
           </div>
         </div>

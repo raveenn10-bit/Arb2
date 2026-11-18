@@ -24,7 +24,7 @@ export function Footer() {
                 <p className="text-base font-extrabold tracking-tight leading-tight">
                   PAK ARAB MANPOWER
                 </p>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-steel">
+                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-steel">
                   Supply LLC · Abu Dhabi, UAE
                 </p>
               </div>
@@ -35,14 +35,14 @@ export function Footer() {
             </p>
 
             <div className="flex flex-wrap gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white/90">
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-[0.6875rem] font-semibold text-white/90">
                 <ShieldCheck className="h-3.5 w-3.5 text-brand-light" />
                 ICV Certified
               </span>
-              <span className="inline-flex items-center rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white/90">
+              <span className="inline-flex items-center rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-[0.6875rem] font-semibold text-white/90">
                 ISO 9001 · 14001 · 45001
               </span>
-              <span className="inline-flex items-center rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white/90">
+              <span className="inline-flex items-center rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-[0.6875rem] font-semibold text-white/90">
                 MOHRE &amp; WPS
               </span>
             </div>

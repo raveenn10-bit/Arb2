@@ -38,7 +38,7 @@ export function TeamShowcase() {
           </div>
           <Link
             href="/#manpower-request"
-            className="inline-flex items-center gap-2 self-start lg:self-auto rounded-md bg-brand px-5 py-3 text-sm font-bold text-white hover:bg-brand-dark transition-colors min-h-[44px] shrink-0"
+            className="inline-flex items-center gap-2 self-start lg:self-auto rounded-md bg-brand px-5 py-3 text-sm font-bold text-white hover:bg-brand-dark transition-colors min-h-[2.75rem] shrink-0"
           >
             <span>Request a Crew</span>
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -47,7 +47,7 @@ export function TeamShowcase() {
 
         {/* Photo composition */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
-          <figure className="lg:col-span-7 relative aspect-[16/10] lg:aspect-auto lg:min-h-[480px] overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+          <figure className="lg:col-span-7 relative aspect-[16/10] lg:aspect-auto lg:min-h-[30rem] overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
             <Image
               src="/images/team/pak-arab-crew-blue.webp"
               alt="Pak Arab Manpower Supply crew in branded blue coveralls and hard hats at a UAE oil and gas facility"
@@ -57,7 +57,7 @@ export function TeamShowcase() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent pointer-events-none" />
             <figcaption className="absolute bottom-0 left-0 right-0 p-5 sm:p-7">
-              <span className="inline-block rounded-full bg-brand px-3 py-1 text-[11px] font-bold uppercase tracking-wider">
+              <span className="inline-block rounded-full bg-brand px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-wider">
                 Onshore Operations
               </span>
               <p className="mt-2 text-lg sm:text-2xl font-extrabold leading-tight">
@@ -67,7 +67,7 @@ export function TeamShowcase() {
           </figure>
 
           <div className="lg:col-span-5 flex flex-col gap-5 lg:gap-6">
-            <figure className="relative aspect-[16/10] lg:aspect-auto lg:flex-1 lg:min-h-[280px] overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+            <figure className="relative aspect-[16/10] lg:aspect-auto lg:flex-1 lg:min-h-[17.5rem] overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
               <Image
                 src="/images/team/pak-arab-crew-red.webp"
                 alt="Pak Arab Manpower Supply supervisors in red coveralls reviewing work plans at a refinery at sunset"
@@ -77,7 +77,7 @@ export function TeamShowcase() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent pointer-events-none" />
               <figcaption className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
-                <span className="inline-block rounded-full bg-white/15 backdrop-blur-md border border-white/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider">
+                <span className="inline-block rounded-full bg-white/15 backdrop-blur-md border border-white/20 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-wider">
                   Site Supervision
                 </span>
                 <p className="mt-2 text-lg sm:text-xl font-extrabold leading-tight">

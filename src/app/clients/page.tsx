@@ -41,7 +41,7 @@ export default function ClientsPage() {
             </div>
             <Link
               href="/#manpower-request"
-              className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-sm font-semibold text-white hover:bg-brand-dark transition-colors shrink-0 min-h-[44px]"
+              className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-sm font-semibold text-white hover:bg-brand-dark transition-colors shrink-0 min-h-[2.75rem]"
             >
               <span>Request Manpower</span>
               <ArrowRight className="h-4 w-4" />

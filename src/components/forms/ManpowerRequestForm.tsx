@@ -51,7 +51,7 @@ const INDUSTRIES = [
 const DURATIONS = ["Short-Term (1–3 Months)", "Medium-Term (3–6 Months)", "Long-Term (6+ Months)", "Shutdown / Turnaround"];
 
 const FIELD =
-  "w-full min-h-[44px] rounded-md border bg-white px-3.5 py-2.5 text-sm text-navy-900 placeholder:text-slate/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/40";
+  "w-full min-h-[2.75rem] rounded-md border bg-white px-3.5 py-2.5 text-sm text-navy-900 placeholder:text-slate/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/40";
 
 export function ManpowerRequestForm() {
   const uid = useId();
@@ -287,7 +287,7 @@ export function ManpowerRequestForm() {
       <button
         ref={submitRef}
         type="submit"
-        className="inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-md bg-whatsapp px-6 py-3.5 text-base font-bold text-navy-950 transition-[filter] hover:brightness-95"
+        className="inline-flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-md bg-whatsapp px-6 py-3.5 text-base font-bold text-navy-950 transition-[filter] hover:brightness-95"
       >
         <MessageCircle className="h-5 w-5" aria-hidden="true" />
         Review &amp; send via WhatsApp

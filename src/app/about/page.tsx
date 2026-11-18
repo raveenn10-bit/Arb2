@@ -97,14 +97,14 @@ export default function AboutPage() {
         <div className="container-wide mt-10 flex flex-wrap gap-4">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-sm font-semibold text-white hover:bg-brand-dark transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-sm font-semibold text-white hover:bg-brand-dark transition-colors min-h-[2.75rem]"
           >
             <span>Explore Our Services</span>
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             href="/workforce"
-            className="inline-flex items-center gap-2 rounded-md border border-navy-900 px-5 py-3 text-sm font-semibold text-navy-900 hover:bg-navy-900 hover:text-white transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-2 rounded-md border border-navy-900 px-5 py-3 text-sm font-semibold text-navy-900 hover:bg-navy-900 hover:text-white transition-colors min-h-[2.75rem]"
           >
             <span>Browse Workforce Directory</span>
           </Link>

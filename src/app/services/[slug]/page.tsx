@@ -142,14 +142,14 @@ export default async function ServiceDetailPage({
                 href={buildQuickEnquiryUrl(service.waTopic)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-bold text-navy-900 hover:bg-[#1fb858] transition-colors min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-bold text-navy-900 hover:bg-[#1fb858] transition-colors min-h-[2.75rem]"
               >
                 <MessageCircle className="h-4 w-4" />
                 <span>Direct WhatsApp Enquiry</span>
               </a>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-semibold text-navy-900 hover:border-navy-900 min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-semibold text-navy-900 hover:border-navy-900 min-h-[2.75rem]"
               >
                 <ArrowLeft className="h-4 w-4" />
                 <span>All Services</span>

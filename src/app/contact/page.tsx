@@ -89,7 +89,7 @@ export default function ContactPage() {
                 href={COMPANY.office.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[44px]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[2.75rem]"
               >
                 <MapPin className="h-4 w-4" />
                 <span>Open in Google Maps</span>
