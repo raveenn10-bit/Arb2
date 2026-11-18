@@ -15,12 +15,16 @@ export function PageHero({ eyebrow, title, description, breadcrumbs }: PageHeroP
   );
 
   return (
-    <section className="bg-[#111315] text-white border-b border-white/10 py-14 sm:py-20">
+    <section data-page-hero className="relative overflow-hidden bg-[#111315] text-white border-b border-white/10 py-14 sm:py-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <div className="container-wide space-y-4">
+      <div
+        aria-hidden="true"
+        className="page-hero-glow pointer-events-none absolute -top-1/2 -right-1/4 h-[140%] w-[70%] rounded-full bg-[#D40820]/15 blur-3xl"
+      />
+      <div className="container-wide relative space-y-4">
         <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-white/65">
           {breadcrumbs.map((crumb, idx) => {
             const isLast = idx === breadcrumbs.length - 1;

@@ -6,6 +6,7 @@ import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { ScrollProgressBar } from "@/components/animations/ScrollProgressBar";
+import { PageAnimations } from "@/components/animations/PageAnimations";
 import { getOrganizationSchema, getLocalBusinessSchema } from "@/lib/seo";
 
 const manrope = Manrope({
@@ -103,6 +104,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localSchema) }}
         />
         <ScrollProgressBar />
+        <PageAnimations />
         <Header />
         <main id="main-content" className="flex-1">
           {children}

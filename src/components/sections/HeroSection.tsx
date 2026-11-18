@@ -5,9 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { ArrowRight, ShieldCheck, Layers, CheckCircle2, Globe } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const HERO_SLIDES = [
   {
@@ -61,18 +62,75 @@ export function HeroSection() {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) return;
 
+    const splits: SplitText[] = [];
     const ctx = gsap.context(() => {
+      // Headline: character-by-character masked rise
+      section.querySelectorAll<HTMLElement>(".hero-title").forEach((title) => {
+        const split = SplitText.create(title, {
+          type: "words,chars",
+          mask: "words",
+          autoSplit: true,
+          onSplit(self) {
+            return gsap.from(self.chars, {
+              yPercent: 120,
+              opacity: 0,
+              rotate: 6,
+              duration: 0.9,
+              stagger: 0.022,
+              ease: "expo.out",
+              delay: 0.25,
+            });
+          },
+        });
+        splits.push(split);
+      });
+
+      // Desktop supporting content
       gsap.from(".hero-stagger", {
         y: 28,
         opacity: 0,
         duration: 0.75,
         stagger: 0.1,
+        delay: 0.6,
         ease: "power3.out",
         clearProps: "transform,opacity",
       });
+
+      // Mobile supporting content
+      gsap.from(".hero-m > *:not(h1)", {
+        y: 24,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.09,
+        delay: 0.5,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
+
+      // Slide-progress pills breathe in
+      gsap.from(".hero-pill", {
+        scale: 0.6,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.06,
+        delay: 0.9,
+        ease: "back.out(2)",
+        clearProps: "transform,opacity",
+      });
+
+      // Hero content drifts up & fades as you scroll past
+      gsap.to(".hero-content", {
+        yPercent: -18,
+        opacity: 0.2,
+        ease: "none",
+        scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: true },
+      });
     }, section);
 
-    return () => ctx.revert();
+    return () => {
+      splits.forEach((s) => s.revert());
+      ctx.revert();
+    };
   }, []);
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -118,7 +176,7 @@ export function HeroSection() {
                   fill
                   priority={idx === 0}
                   sizes="100vw"
-                  className="object-cover object-top"
+                  className={`object-cover object-top transition-transform duration-[4500ms] ease-out ${activeSlide === idx ? "scale-100" : "scale-110"}`}
                 />
               </div>
             ))}
@@ -139,7 +197,7 @@ export function HeroSection() {
                 type="button"
                 onClick={() => setActiveSlide(idx)}
                 aria-label={`Mobile Slide ${idx + 1}: ${slide.caption}`}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`hero-pill h-2 rounded-full transition-all duration-300 ${
                   activeSlide === idx ? "w-7 bg-[#D40820]" : "w-2 bg-white/45"
                 }`}
               />
@@ -147,7 +205,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="relative z-10 px-4 pb-5 pt-10 space-y-3.5">
+        <div className="hero-m hero-content relative z-10 px-4 pb-5 pt-10 space-y-3.5">
           <div className="inline-flex items-center gap-2">
             <span className="h-[2px] w-6 bg-[#D40820]" />
             <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/90">
@@ -155,7 +213,7 @@ export function HeroSection() {
             </span>
           </div>
 
-          <h1 className="font-display text-3xl font-bold leading-[1.06] tracking-tight text-white drop-shadow-sm">
+          <h1 className="hero-title font-display text-3xl font-bold leading-[1.06] tracking-tight text-white drop-shadow-sm">
             Powering Industries.
             <span className="block text-[#D40820] mt-0.5">Delivering Skilled Workforce.</span>
           </h1>
@@ -216,7 +274,7 @@ export function HeroSection() {
                   fill
                   priority={idx === 0}
                   sizes="100vw"
-                  className="object-cover object-center"
+                  className={`object-cover object-center transition-transform duration-[4500ms] ease-out ${activeSlide === idx ? "scale-100" : "scale-110"}`}
                 />
               </div>
             ))}
@@ -226,7 +284,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#111315]/95 via-[#111315]/80 to-[#111315]/45 pointer-events-none" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 py-20 w-full">
-          <div className="max-w-3xl space-y-6">
+          <div className="hero-content max-w-3xl space-y-6">
             <div className="hero-stagger inline-flex items-center gap-3">
               <span className="h-[2px] w-10 bg-[#D40820]" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white/90">
@@ -234,7 +292,7 @@ export function HeroSection() {
               </span>
             </div>
 
-            <h1 className="hero-stagger font-display text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.03] tracking-tight">
+            <h1 className="hero-title font-display text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.03] tracking-tight">
               Powering Industries.
               <span className="block mt-1 text-[#D40820]">Delivering Skilled Workforce.</span>
             </h1>
@@ -268,7 +326,7 @@ export function HeroSection() {
                     type="button"
                     onClick={() => setActiveSlide(idx)}
                     aria-label={`Slide ${idx + 1}: ${slide.caption}`}
-                    className={`h-2 rounded-full transition-all duration-300 ${
+                    className={`hero-pill h-2 rounded-full transition-all duration-300 ${
                       activeSlide === idx ? "w-8 bg-[#D40820]" : "w-2.5 bg-white/40 hover:bg-white/70"
                     }`}
                   />
