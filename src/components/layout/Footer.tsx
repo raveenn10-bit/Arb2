@@ -6,7 +6,7 @@ import { COMPANY } from "@/data/company";
 export function Footer() {
   return (
     <footer className="bg-navy-950 text-white border-t border-white/10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 pb-10">
+      <div className="container-wide pt-14 pb-10">
         <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-8 pb-10 border-b border-white/10">
           {/* Col 1: Brand & Accreditations */}
           <div className="col-span-2 lg:col-span-4 space-y-4">
@@ -140,7 +140,7 @@ export function Footer() {
 
         <div className="pt-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 text-sm text-steel">
           <p>© {new Date().getFullYear()} {COMPANY.name}. All rights reserved.</p>
-          <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-6 gap-y-2 md:pr-20">
             <Link href="/privacy-policy" className="inline-flex min-h-11 items-center hover:text-white transition-colors">
               Privacy Policy
             </Link>

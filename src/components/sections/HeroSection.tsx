@@ -319,7 +319,7 @@ export function HeroSection() {
 
         <div className="absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-900/80 to-navy-900/45 pointer-events-none" />
 
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 py-20 w-full">
+        <div className="container-wide relative z-10 py-20">
           <div className="hero-content max-w-3xl space-y-6">
             <div className="hero-stagger inline-flex items-center gap-3">
               <span className="h-[2px] w-10 bg-brand" />
