@@ -23,7 +23,6 @@ import { COMPANY } from "@/data/company";
 import { SERVICES, INDUSTRIES } from "@/data/services";
 import { CERTIFICATIONS } from "@/data/certifications";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { WorkforceDirectory } from "@/components/sections/WorkforceDirectory";
 import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
 import { TeamShowcase } from "@/components/sections/TeamShowcase";
 import { ManpowerRequestForm } from "@/components/forms/ManpowerRequestForm";
@@ -356,35 +355,6 @@ export default function HomePage() {
               </a>
             </div>
           </GsapReveal>
-        </div>
-      </section>
-
-      {/* 8. Interactive Workforce Directory */}
-      <section id="workforce-directory" className="py-16 sm:py-24 bg-white">
-        <div className="container-wide space-y-10">
-          <GsapReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="max-w-2xl space-y-3">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
-                Workforce Categories
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">
-                Interactive Workforce Directory
-              </h2>
-              <p className="text-base text-slate">
-                Browse our Onshore &amp; Offshore MEP and Civil &amp; Construction supply
-                categories, select quantities, and enquire directly via WhatsApp.
-              </p>
-            </div>
-            <Link
-              href="/workforce"
-              className="inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-brand-dark shrink-0"
-            >
-              <span>Open Full Directory Page</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </GsapReveal>
-
-          <WorkforceDirectory />
         </div>
       </section>
 
