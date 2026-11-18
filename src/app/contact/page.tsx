@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MapFrame } from "@/components/sections/LocationSection";
 import { pageMeta } from "@/lib/page-meta";
 import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 import { COMPANY } from "@/data/company";
@@ -97,13 +98,7 @@ export default function ContactPage() {
             </div>
 
             <div className="rounded-xl overflow-hidden border border-line h-72">
-              <iframe
-                title="Pak Arab Manpower Supply LLC Abu Dhabi Location"
-                src="https://maps.google.com/maps?q=Wurth+Gulf+Building+Plot+42+M14+Musaffah+Abu+Dhabi+UAE&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full border-0"
-              />
+              <MapFrame tone="dark" />
             </div>
           </div>
 

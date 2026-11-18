@@ -8,8 +8,8 @@ const HIGHLIGHTS = [
   { icon: Users, label: "Supervised site teams" },
 ];
 
-const BLUE = "/images/team/pak-arab-crew-blue.webp";
-const RED = "/images/team/pak-arab-crew-red.webp";
+const BLUE = "/images/team/pak-arab-crew-blue-hd.webp";
+const RED = "/images/team/pak-arab-crew-red-hd.webp";
 const BLUE_ALT = "Pak Arab Manpower Supply crew in branded blue coveralls and hard hats at a UAE oil and gas facility";
 const RED_ALT = "Pak Arab Manpower Supply supervisors in red coveralls reviewing work plans at a refinery at sunset";
 
@@ -53,7 +53,7 @@ export function TeamShowcase() {
               }`}
             >
               <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105">
-                <Image src={p.src} alt={p.alt} fill sizes="(max-width:1024px) 100vw, 62vw" className="object-cover" />
+                <Image src={p.src} alt={p.alt} fill quality={90} sizes="(max-width:1024px) 100vw, 62vw" className="object-cover" />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
               <figcaption className="absolute inset-x-0 bottom-0 p-6 sm:p-8">

@@ -41,8 +41,8 @@ export function getSiteSchemaGraph() {
         },
         image: [
           `${COMPANY.domain}/images/brand/og-cover.jpg`,
-          `${COMPANY.domain}/images/team/pak-arab-crew-blue.webp`,
-          `${COMPANY.domain}/images/team/pak-arab-crew-red.webp`,
+          `${COMPANY.domain}/images/team/pak-arab-crew-blue-hd.webp`,
+          `${COMPANY.domain}/images/team/pak-arab-crew-red-hd.webp`,
         ],
         email: COMPANY.email,
         telephone: COMPANY.telephone.display,

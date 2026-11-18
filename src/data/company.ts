@@ -26,6 +26,8 @@ export const COMPANY = {
     district: "Musaffah M14",
     country: "United Arab Emirates",
     mapsUrl: "https://maps.app.goo.gl/kf37HP9V3XnApEXy6?g_st=aw",
+    /** Search text used to place the pin on the embedded Google map (change here to move the pin site-wide) */
+    mapsEmbedQuery: "Pak Arab Manpower Supply LLC, Wurth Gulf Building, Plot No. 42, M14, Musaffah, Abu Dhabi, UAE",
   },
   // Stored per client record; not publicly listed as a branch office pending client confirmation
   provisionalHistoricalAddress: {

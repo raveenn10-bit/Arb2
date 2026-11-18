@@ -12,9 +12,6 @@ import {
   Clock,
   ClipboardCheck,
   Layers,
-  MapPin,
-  Phone,
-  Mail,
   MessageCircle,
   Bus,
   Check,
@@ -27,6 +24,7 @@ import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
 import { CLIENTS } from "@/data/clients";
 import { TeamShowcase } from "@/components/sections/TeamShowcase";
 import { TradesShowcase } from "@/components/sections/TradesShowcase";
+import { LocationSection } from "@/components/sections/LocationSection";
 import { ManpowerRequestForm } from "@/components/forms/ManpowerRequestForm";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { GsapReveal } from "@/components/animations/GsapReveal";
@@ -575,95 +573,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 15. Contact & Google Maps */}
-      <section className="py-16 sm:py-20 bg-mist border-t border-line">
-        <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          <div className="lg:col-span-5 rounded-xl bg-white border border-line p-7 sm:p-8 flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
-                Visit Our Office
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900">
-                Abu Dhabi Head Office
-              </h2>
-              <div className="space-y-4 pt-2 text-sm text-slate">
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-brand shrink-0 mt-0.5" />
-                  <span className="text-navy-900 font-medium">
-                    {COMPANY.office.address}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MessageCircle className="h-5 w-5 text-[#25D366] shrink-0" />
-                  <a
-                    href={COMPANY.whatsapp.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-navy-900 hover:text-brand"
-                  >
-                    WhatsApp: {COMPANY.whatsapp.display}
-                  </a>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-brand shrink-0" />
-                  <a
-                    href={COMPANY.telephone.tel}
-                    className="font-medium text-navy-900 hover:text-brand"
-                  >
-                    Tel: {COMPANY.telephone.display}
-                  </a>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-brand shrink-0" />
-                  <a
-                    href={COMPANY.additionalMobile.tel}
-                    className="font-medium text-navy-900 hover:text-brand"
-                  >
-                    Mobile: {COMPANY.additionalMobile.display}
-                  </a>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Mail className="h-5 w-5 text-brand shrink-0" />
-                  <a
-                    href={`mailto:${COMPANY.email}`}
-                    className="font-medium text-navy-900 hover:text-brand"
-                  >
-                    {COMPANY.email}
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-3 pt-2">
-              <a
-                href={COMPANY.office.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[2.75rem]"
-              >
-                <MapPin className="h-4 w-4" aria-hidden="true" />
-                <span>Get Directions</span>
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-semibold text-navy-900 hover:border-navy-900 min-h-[2.75rem]"
-              >
-                <span>Contact Page</span>
-              </Link>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 rounded-xl overflow-hidden border border-line bg-white min-h-[21.25rem]">
-            <iframe
-              title="Pak Arab Manpower Supply LLC Office Location Map"
-              src="https://maps.google.com/maps?q=Wurth+Gulf+Building+Plot+42+M14+Musaffah+Abu+Dhabi+UAE&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-full min-h-[21.25rem] border-0"
-            />
-          </div>
-        </div>
-      </section>
+      {/* 15. Office Location & Google Map */}
+      <LocationSection />
     </>
   );
 }
