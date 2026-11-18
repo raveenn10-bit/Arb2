@@ -13,16 +13,16 @@ gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
 
 const HERO_SLIDES = [
   {
-    desktopSrc: "/images/hero/hero-main.webp",
-    mobileSrc: "/images/hero/hero-mobile-1.jpg",
-    alt: "UAE industrial engineering workforce at sunset",
+    desktopSrc: "/images/hero/hero-desktop-crew-blue.webp",
+    mobileSrc: "/images/hero/hero-mobile-crew-blue.webp",
+    alt: "Pak Arab Manpower Supply crew in branded blue coveralls and hard hats at a UAE oil and gas facility",
     caption: "ADNOC & CICPA Compliant Workforce · UAE",
   },
   {
-    desktopSrc: "/images/hero/hero-oil-gas-mep.jpg",
-    mobileSrc: "/images/hero/hero-mobile-2.jpg",
-    alt: "Oil & Gas MEP & Pipefitting Crew in Abu Dhabi",
-    caption: "Oil & Gas MEP & Pipefitting Crew · Abu Dhabi",
+    desktopSrc: "/images/hero/hero-desktop-crew-red.webp",
+    mobileSrc: "/images/hero/hero-mobile-crew-red.webp",
+    alt: "Pak Arab Manpower Supply site supervisors in red coveralls reviewing work plans at a refinery at sunset",
+    caption: "Oil & Gas Site Supervision & Work Planning · UAE",
   },
   {
     desktopSrc: "/images/hero/hero-civil-construction.jpg",

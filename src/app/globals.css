@@ -146,7 +146,7 @@
     justify-content: center;
     row-gap: 1.5rem;
   }
-  .client-marquee-dup,
+  .client-marquee-dup { display: none; }
 }
 
 /* Micro-interaction: arrow icons nudge forward on link/button hover */

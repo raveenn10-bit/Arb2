@@ -13,7 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       freq: "weekly",
       images: [
-        "/images/hero/hero-main.webp",
+        "/images/hero/hero-desktop-crew-blue.webp",
+        "/images/hero/hero-desktop-crew-red.webp",
         "/images/team/pak-arab-crew-blue.webp",
         "/images/team/pak-arab-crew-red.webp",
         "/images/services/manpower-briefing.webp",
