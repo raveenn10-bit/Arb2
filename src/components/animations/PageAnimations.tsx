@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
 
 /**
  * Site-wide scroll animations applied to every page's <main> content.
@@ -43,11 +44,19 @@ export function PageAnimations() {
         const h1 = pageHero.querySelector<HTMLElement>("h1");
         const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
         tl.from(pageHero.querySelectorAll("nav > span"), { opacity: 0, x: -12, duration: 0.6, stagger: 0.06 })
-          .from(pageHero.querySelector("p"), { opacity: 0, letterSpacing: "0.5em", duration: 0.9 }, "<0.1");
+          .to(pageHero.querySelector("p"), {
+            duration: 1.1,
+            scrambleText: {
+              text: pageHero.querySelector("p")?.textContent?.trim() ?? "",
+              chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+              speed: 0.6,
+              revealDelay: 0.25,
+            },
+          }, "<0.1");
         if (h1) {
-          const split = SplitText.create(h1, { type: "words", mask: "words" });
+          const split = SplitText.create(h1, { type: "words,chars", mask: "words" });
           splits.push(split);
-          tl.from(split.words, { yPercent: 110, duration: 1, stagger: 0.06 }, "<0.1");
+          tl.from(split.chars, { yPercent: 115, opacity: 0, rotate: 8, duration: 0.9, stagger: 0.02 }, "<0.1");
         }
         tl.from(pageHero.querySelectorAll("h1 ~ p"), { opacity: 0, y: 20, duration: 0.8 }, "<0.3")
           .from(pageHero.querySelector(".page-hero-glow"), { opacity: 0, scale: 0.6, duration: 1.6, ease: "power2.out" }, 0);
@@ -64,14 +73,16 @@ export function PageAnimations() {
       // 1. Headings — masked line reveal
       all<HTMLElement>("h2").forEach((h) => {
         const split = SplitText.create(h, {
-          type: "lines",
+          type: "lines,words,chars",
           mask: "lines",
           autoSplit: true,
           onSplit(self) {
-            return gsap.from(self.lines, {
+            return gsap.from(self.chars, {
               yPercent: 110,
-              duration: 0.9,
-              stagger: 0.12,
+              opacity: 0,
+              rotate: 4,
+              duration: 0.8,
+              stagger: { each: 0.016, from: "start" },
               ease: "expo.out",
               scrollTrigger: { trigger: h, start: "top 88%", once: true },
             });
@@ -81,14 +92,42 @@ export function PageAnimations() {
       });
 
       // 2. Eyebrow labels (small red uppercase kickers)
-      all<HTMLElement>('[class*="tracking-[0.18em]"], [class*="tracking-[0.2em]"]').forEach((el) => {
-        gsap.from(el, {
-          opacity: 0,
-          letterSpacing: "0.5em",
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 92%", once: true },
+      all<HTMLElement>('[class*="tracking-[0.18em]"], [class*="tracking-[0.2em]"]')
+        .filter((el) => el.children.length === 0 && (el.textContent ?? "").trim().length > 0)
+        .forEach((el) => {
+          const finalText = (el.textContent ?? "").trim();
+          // lock width so the line doesn't jump while letters decode
+          el.style.minWidth = `${el.offsetWidth}px`;
+          gsap.to(el, {
+            duration: 1.2,
+            scrambleText: {
+              text: finalText,
+              chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+              speed: 0.5,
+              revealDelay: 0.15,
+            },
+            scrollTrigger: { trigger: el, start: "top 92%", once: true },
+            onComplete: () => {
+              el.textContent = finalText;
+              el.style.minWidth = "";
+            },
+          });
         });
+
+      // 1b. Card titles — light word-by-word reveal
+      all<HTMLElement>("h3").forEach((h) => {
+        const split = SplitText.create(h, { type: "words", mask: "words", autoSplit: true,
+          onSplit(self) {
+            return gsap.from(self.words, {
+              yPercent: 100,
+              duration: 0.7,
+              stagger: 0.05,
+              ease: "power3.out",
+              scrollTrigger: { trigger: h, start: "top 92%", once: true },
+            });
+          },
+        });
+        splits.push(split);
       });
 
       // 3. Accent rules

@@ -6,9 +6,10 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { ArrowRight, ShieldCheck, Layers, CheckCircle2, Globe } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
 
 const HERO_SLIDES = [
   {
@@ -83,6 +84,21 @@ export function HeroSection() {
           },
         });
         splits.push(split);
+      });
+
+      // Kicker labels decode in
+      section.querySelectorAll<HTMLElement>(".hero-kicker").forEach((el) => {
+        el.style.minWidth = `${el.offsetWidth}px`;
+        gsap.to(el, {
+          duration: 1.3,
+          delay: 0.4,
+          scrambleText: {
+            text: (el.textContent ?? "").trim(),
+            chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            speed: 0.5,
+            revealDelay: 0.3,
+          },
+        });
       });
 
       // Desktop supporting content
@@ -208,7 +224,7 @@ export function HeroSection() {
         <div className="hero-m hero-content relative z-10 px-4 pb-5 pt-10 space-y-3.5">
           <div className="inline-flex items-center gap-2">
             <span className="h-[2px] w-6 bg-[#D40820]" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/90">
+            <span className="hero-kicker text-[10px] font-bold uppercase tracking-[0.18em] text-white/90">
               UAE INDUSTRIAL WORKFORCE PARTNER
             </span>
           </div>
@@ -287,7 +303,7 @@ export function HeroSection() {
           <div className="hero-content max-w-3xl space-y-6">
             <div className="hero-stagger inline-flex items-center gap-3">
               <span className="h-[2px] w-10 bg-[#D40820]" />
-              <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white/90">
+              <span className="hero-kicker text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white/90">
                 INDUSTRIAL WORKFORCE SOLUTIONS · UAE
               </span>
             </div>
