@@ -1,16 +1,47 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Design tokens — Pak Arab corporate system
+   Deep corporate navy surfaces, industrial blue secondary accent,
+   official brand red for actions and emphasis.
+   ------------------------------------------------------------------ */
+@theme {
+  --color-brand: #d40820;
+  --color-brand-dark: #a40e21;
+  /* Brand red for text on navy backgrounds (≥5:1 contrast on all navy shades) */
+  --color-brand-light: #ff6f79;
+  --color-navy-950: #071526;
+  --color-navy-900: #0b1f33;
+  --color-navy-800: #132e4c;
+  --color-navy-700: #1b3d63;
+  --color-industrial: #1f5fa8;
+  --color-industrial-light: #e8f0fa;
+  --color-amber: #f2a900;
+  --color-mist: #f4f6f9;
+  --color-line: #e3e7ee;
+  --color-line-strong: #cfd6e0;
+  --color-slate: #5a6677;
+  --color-steel: #9aa5b4;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #128c7e;
+
+  --font-display: var(--font-manrope), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 :root {
-  --brand-red: #D40820;
-  --brand-red-deep: #A40E21;
-  --industrial-black: #111315;
-  --dark-charcoal: #1C2025;
-  --bg-white: #FFFFFF;
-  --bg-light: #F5F6F8;
-  --text-primary: #111315;
-  --text-secondary: #667085;
-  --border-subtle: #E5E7EB;
-  --whatsapp-green: #25D366;
+  --brand-red: #d40820;
+  --brand-red-deep: #a40e21;
+  --industrial-black: #0b1f33;
+  --dark-charcoal: #132e4c;
+  --bg-white: #ffffff;
+  --bg-light: #f4f6f9;
+  --text-primary: #0b1f33;
+  --text-secondary: #5a6677;
+  --border-subtle: #e3e7ee;
+  --whatsapp-green: #25d366;
 }
 
 @layer base {
@@ -84,6 +115,21 @@
 
 @media (max-width: 640px) {
   .client-marquee-track { animation-duration: 45s; }
+}
+
+.client-marquee[data-paused] .client-marquee-track { animation-play-state: paused; }
+
+/* Reduced motion: no scrolling; show every logo in a static, wrapping row instead */
+@media (prefers-reduced-motion: reduce) {
+  .client-marquee-track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 1.5rem;
+  }
+  .client-marquee-dup,
+  .client-marquee-control { display: none; }
 }
 
 /* Micro-interaction: arrow icons nudge forward on link/button hover */

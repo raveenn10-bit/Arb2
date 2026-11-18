@@ -1,27 +1,34 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Manrope, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { COMPANY } from "@/data/company";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
+import { MobileActionBar } from "@/components/ui/MobileActionBar";
+import { SelectionTray } from "@/components/workforce/SelectionTray";
 import { ScrollProgressBar } from "@/components/animations/ScrollProgressBar";
 import { PageAnimations } from "@/components/animations/PageAnimations";
 import { getSiteSchemaGraph } from "@/lib/seo";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
-const manrope = Manrope({
-  subsets: ["latin"],
+// Self-hosted variable fonts: no request to Google Fonts, faster first paint, CSP-friendly.
+const manrope = localFont({
+  src: "./fonts/manrope-latin-wght-normal.woff2",
+  weight: "200 800",
   variable: "--font-manrope",
   display: "swap",
+  fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
 });
 
-const inter = Inter({
-  subsets: ["latin"],
+const inter = localFont({
+  src: "./fonts/inter-latin-wght-normal.woff2",
+  weight: "100 900",
   variable: "--font-inter",
   display: "swap",
+  fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -31,7 +38,7 @@ export const metadata: Metadata = {
     template: "%s | Pak Arab Manpower",
   },
   description:
-    "Skilled industrial manpower in Abu Dhabi & all 7 UAE emirates for Oil & Gas, MEP, Civil, Mechanical & Electrical projects. Mobilised in 24–72 hours.",
+    "Skilled industrial manpower in Abu Dhabi & all 7 UAE emirates for Oil & Gas, MEP, Civil, Mechanical & Electrical projects. Short- and long-term contracts.",
   keywords: [
     "Manpower Supply Company UAE",
     "Manpower Supply Abu Dhabi",
@@ -113,7 +120,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#D40820",
+  themeColor: "#0b1f33",
   width: "device-width",
   initialScale: 1,
 };
@@ -126,17 +133,17 @@ export default function RootLayout({
   const siteSchema = getSiteSchemaGraph();
 
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
-      <body className="min-h-screen flex flex-col bg-white text-[#111315] antialiased">
+    <html lang="en" id="top" className={`${manrope.variable} ${inter.variable}`}>
+      <body className="min-h-screen flex flex-col bg-white text-navy-900 antialiased pb-[calc(3.5rem+env(safe-area-inset-bottom))] md:pb-0">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-md focus:bg-[#D40820] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
         >
           Skip to main content
         </a>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema).replace(/</g, "\\u003c") }}
         />
         <ScrollProgressBar />
         <PageAnimations />
@@ -146,6 +153,8 @@ export default function RootLayout({
         </main>
         <Footer />
         <FloatingWhatsApp />
+        <SelectionTray />
+        <MobileActionBar />
         {GA_ID && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />

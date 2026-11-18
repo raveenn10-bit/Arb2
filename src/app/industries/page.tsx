@@ -32,7 +32,7 @@ export default function IndustriesPage() {
           {INDUSTRIES.map((industry) => (
             <div
               key={industry.id}
-              className="rounded-xl border border-[#E5E7EB] bg-white overflow-hidden flex flex-col"
+              className="rounded-xl border border-line bg-white overflow-hidden flex flex-col"
             >
               <div className="relative aspect-[4/3] w-full">
                 <Image
@@ -45,20 +45,20 @@ export default function IndustriesPage() {
               </div>
               <div className="p-6 space-y-2 flex-1 flex flex-col justify-between">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#D40820]">
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand">
                     {industry.subtitle}
                   </span>
-                  <h2 className="text-xl font-extrabold text-[#111315] mt-1">
+                  <h2 className="text-xl font-extrabold text-navy-900 mt-1">
                     {industry.title}
                   </h2>
-                  <p className="text-sm text-[#667085] leading-relaxed mt-2">
+                  <p className="text-sm text-slate leading-relaxed mt-2">
                     {industry.description}
                   </p>
                 </div>
                 <div className="pt-4">
                   <Link
                     href="/workforce"
-                    className="inline-flex items-center gap-1.5 text-sm font-bold text-[#111315] hover:text-[#D40820]"
+                    className="inline-flex items-center gap-1.5 text-sm font-bold text-navy-900 hover:text-brand"
                   >
                     <span>View Related Trades</span>
                     <ArrowRight className="h-4 w-4" />

@@ -10,11 +10,11 @@ const HIGHLIGHTS = [
 
 export function TeamShowcase() {
   return (
-    <section className="relative overflow-hidden bg-[#111315] py-16 sm:py-24 text-white">
+    <section className="relative overflow-hidden bg-navy-900 py-16 sm:py-24 text-white">
       {/* subtle brand glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-1/4 top-0 h-full w-2/3 rounded-full bg-[#D40820]/10 blur-3xl"
+        className="pointer-events-none absolute -left-1/4 top-0 h-full w-2/3 rounded-full bg-brand/10 blur-3xl"
       />
 
       <div className="container-wide relative space-y-10 lg:space-y-14">
@@ -22,8 +22,8 @@ export function TeamShowcase() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-2xl space-y-3">
             <div className="inline-flex items-center gap-2.5">
-              <span className="h-[2px] w-8 bg-[#D40820]" />
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+              <span className="h-[2px] w-8 bg-brand" />
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-light">
                 Our People On Site
               </span>
             </div>
@@ -38,7 +38,7 @@ export function TeamShowcase() {
           </div>
           <Link
             href="/#manpower-request"
-            className="inline-flex items-center gap-2 self-start lg:self-auto rounded-md bg-[#D40820] px-5 py-3 text-sm font-bold text-white hover:bg-[#A40E21] transition-colors min-h-[44px] shrink-0"
+            className="inline-flex items-center gap-2 self-start lg:self-auto rounded-md bg-brand px-5 py-3 text-sm font-bold text-white hover:bg-brand-dark transition-colors min-h-[44px] shrink-0"
           >
             <span>Request a Crew</span>
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -57,7 +57,7 @@ export function TeamShowcase() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent pointer-events-none" />
             <figcaption className="absolute bottom-0 left-0 right-0 p-5 sm:p-7">
-              <span className="inline-block rounded-full bg-[#D40820] px-3 py-1 text-[11px] font-bold uppercase tracking-wider">
+              <span className="inline-block rounded-full bg-brand px-3 py-1 text-[11px] font-bold uppercase tracking-wider">
                 Onshore Operations
               </span>
               <p className="mt-2 text-lg sm:text-2xl font-extrabold leading-tight">
@@ -92,7 +92,7 @@ export function TeamShowcase() {
                   key={label}
                   className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5"
                 >
-                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#D40820]/10 text-[#D40820]">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand">
                     <Icon className="h-4.5 w-4.5" aria-hidden="true" />
                   </span>
                   <span className="text-sm font-semibold text-white/90">{label}</span>

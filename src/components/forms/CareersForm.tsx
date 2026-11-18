@@ -80,12 +80,12 @@ export function CareersForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-sm space-y-5"
+      className="rounded-xl border border-line bg-white p-6 sm:p-8 shadow-sm space-y-5"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="car-name" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Full Name <span className="text-[#D40820]">*</span>
+          <label htmlFor="car-name" className="block text-xs font-semibold text-navy-900 mb-1.5">
+            Full Name <span className="text-brand">*</span>
           </label>
           <input
             id="car-name"
@@ -93,18 +93,18 @@ export function CareersForm() {
             value={form.fullName}
             onChange={(e) => update("fullName", e.target.value)}
             placeholder="Your full name"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
           />
           {errors.fullName && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
+            <p className="mt-1 text-xs text-brand flex items-center gap-1">
               <AlertCircle className="h-3.5 w-3.5" /> {errors.fullName}
             </p>
           )}
         </div>
 
         <div>
-          <label htmlFor="car-phone" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Phone Number <span className="text-[#D40820]">*</span>
+          <label htmlFor="car-phone" className="block text-xs font-semibold text-navy-900 mb-1.5">
+            Phone Number <span className="text-brand">*</span>
           </label>
           <input
             id="car-phone"
@@ -112,18 +112,18 @@ export function CareersForm() {
             value={form.phone}
             onChange={(e) => update("phone", e.target.value)}
             placeholder="+971 5X XXX XXXX"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
           />
           {errors.phone && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
+            <p className="mt-1 text-xs text-brand flex items-center gap-1">
               <AlertCircle className="h-3.5 w-3.5" /> {errors.phone}
             </p>
           )}
         </div>
 
         <div>
-          <label htmlFor="car-email" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Email Address <span className="text-[#D40820]">*</span>
+          <label htmlFor="car-email" className="block text-xs font-semibold text-navy-900 mb-1.5">
+            Email Address <span className="text-brand">*</span>
           </label>
           <input
             id="car-email"
@@ -131,18 +131,18 @@ export function CareersForm() {
             value={form.email}
             onChange={(e) => update("email", e.target.value)}
             placeholder="you@example.com"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
           />
           {errors.email && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
+            <p className="mt-1 text-xs text-brand flex items-center gap-1">
               <AlertCircle className="h-3.5 w-3.5" /> {errors.email}
             </p>
           )}
         </div>
 
         <div>
-          <label htmlFor="car-prof" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Profession / Trade <span className="text-[#D40820]">*</span>
+          <label htmlFor="car-prof" className="block text-xs font-semibold text-navy-900 mb-1.5">
+            Profession / Trade <span className="text-brand">*</span>
           </label>
           <input
             id="car-prof"
@@ -150,18 +150,18 @@ export function CareersForm() {
             value={form.profession}
             onChange={(e) => update("profession", e.target.value)}
             placeholder="e.g. GTAW Welder, Pipe Fitter, Mason"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
           />
           {errors.profession && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
+            <p className="mt-1 text-xs text-brand flex items-center gap-1">
               <AlertCircle className="h-3.5 w-3.5" /> {errors.profession}
             </p>
           )}
         </div>
 
         <div>
-          <label htmlFor="car-exp" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Years of Experience <span className="text-[#D40820]">*</span>
+          <label htmlFor="car-exp" className="block text-xs font-semibold text-navy-900 mb-1.5">
+            Years of Experience <span className="text-brand">*</span>
           </label>
           <input
             id="car-exp"
@@ -169,18 +169,18 @@ export function CareersForm() {
             value={form.experience}
             onChange={(e) => update("experience", e.target.value)}
             placeholder="e.g. 5 Years (UAE / GCC)"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
           />
           {errors.experience && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
+            <p className="mt-1 text-xs text-brand flex items-center gap-1">
               <AlertCircle className="h-3.5 w-3.5" /> {errors.experience}
             </p>
           )}
         </div>
 
         <div>
-          <label htmlFor="car-loc" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Current Location <span className="text-[#D40820]">*</span>
+          <label htmlFor="car-loc" className="block text-xs font-semibold text-navy-900 mb-1.5">
+            Current Location <span className="text-brand">*</span>
           </label>
           <input
             id="car-loc"
@@ -188,10 +188,10 @@ export function CareersForm() {
             value={form.currentLocation}
             onChange={(e) => update("currentLocation", e.target.value)}
             placeholder="e.g. Abu Dhabi, UAE"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm min-h-[44px]"
+            className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm min-h-[44px]"
           />
           {errors.currentLocation && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
+            <p className="mt-1 text-xs text-brand flex items-center gap-1">
               <AlertCircle className="h-3.5 w-3.5" /> {errors.currentLocation}
             </p>
           )}
@@ -199,14 +199,14 @@ export function CareersForm() {
       </div>
 
       <div>
-        <label htmlFor="car-cat" className="block text-xs font-semibold text-[#111315] mb-1.5">
+        <label htmlFor="car-cat" className="block text-xs font-semibold text-navy-900 mb-1.5">
           Preferred Category
         </label>
         <select
           id="car-cat"
           value={form.preferredCategory}
           onChange={(e) => update("preferredCategory", e.target.value)}
-          className="w-full rounded-md border border-[#E5E7EB] bg-white px-3.5 py-2.5 text-sm min-h-[44px]"
+          className="w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-sm min-h-[44px]"
         >
           <option>Onshore / Offshore MEP</option>
           <option>Civil &amp; Construction</option>
@@ -216,7 +216,7 @@ export function CareersForm() {
       </div>
 
       <div>
-        <label htmlFor="car-info" className="block text-xs font-semibold text-[#111315] mb-1.5">
+        <label htmlFor="car-info" className="block text-xs font-semibold text-navy-900 mb-1.5">
           Additional Information
         </label>
         <textarea
@@ -225,20 +225,20 @@ export function CareersForm() {
           value={form.additionalInfo}
           onChange={(e) => update("additionalInfo", e.target.value)}
           placeholder="Trade certificates, availability, or project background (do not include passport or Emirates ID numbers here)."
-          className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm"
+          className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm"
         />
       </div>
 
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-6 py-3.5 text-sm font-bold text-[#111315] hover:bg-[#1fb858] transition-colors min-h-[48px] cursor-pointer"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-6 py-3.5 text-sm font-bold text-navy-900 hover:bg-[#1fb858] transition-colors min-h-[48px] cursor-pointer"
       >
         <MessageCircle className="h-5 w-5" aria-hidden="true" />
         <span>Continue to WhatsApp &amp; Attach CV ({COMPANY.whatsapp.display})</span>
       </button>
 
       {preparedUrl && (
-        <div className="rounded-md bg-[#F5F6F8] border border-[#E5E7EB] p-3.5 text-xs text-[#111315] flex items-start gap-2">
+        <div className="rounded-md bg-mist border border-line p-3.5 text-xs text-navy-900 flex items-start gap-2">
           <CheckCircle2 className="h-4 w-4 text-[#25D366] shrink-0 mt-0.5" />
           <div>
             WhatsApp has been opened with your enquiry details. Please send the message and
@@ -247,7 +247,7 @@ export function CareersForm() {
               href={preparedUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-[#D40820] underline"
+              className="font-semibold text-brand underline"
             >
               Re-open WhatsApp
             </a>

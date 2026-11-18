@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import { Pause, Play } from "lucide-react";
 import { CLIENTS, type ClientLogo } from "@/data/clients";
 
 interface ClientLogoGridProps {
@@ -6,16 +10,24 @@ interface ClientLogoGridProps {
   variant?: "marquee" | "wall";
 }
 
-function Logo({ client, decorative = false }: { client: ClientLogo; decorative?: boolean }) {
+/**
+ * Logos are the client-supplied originals. next/image serves them resized for each tile
+ * (up to 2x the displayed size, quality 90) so they stay crisp without shipping ~4.6 MB of source files.
+ */
+function Logo({ client, decorative = false, fluid = false }: { client: ClientLogo; decorative?: boolean; fluid?: boolean }) {
   return (
-    <div className="relative h-16 w-40 sm:h-20 sm:w-52 lg:h-24 lg:w-60 shrink-0">
+    <div
+      className={`relative shrink-0 transition-transform duration-300 ease-out hover:scale-[1.04] ${
+        fluid ? "h-16 w-full max-w-60 sm:h-20 lg:h-24" : "h-16 w-40 sm:h-20 sm:w-52 lg:h-24 lg:w-60"
+      }`}
+    >
       <Image
         src={client.logo}
         alt={decorative ? "" : `${client.name} logo`}
         aria-hidden={decorative || undefined}
         fill
+        quality={90}
         sizes="(max-width: 640px) 160px, (max-width: 1024px) 208px, 240px"
-        unoptimized /* serve the original full-resolution logo files as supplied */
         className="object-contain"
       />
     </div>
@@ -23,33 +35,55 @@ function Logo({ client, decorative = false }: { client: ClientLogo; decorative?:
 }
 
 export function ClientLogoGrid({ variant = "marquee" }: ClientLogoGridProps) {
+  const [paused, setPaused] = useState(false);
+
   if (variant === "wall") {
     return (
-      <div className="bg-white grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-8 gap-y-10 place-items-center">
+      <ul className="grid grid-cols-2 place-items-center gap-x-6 gap-y-10 bg-white sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {CLIENTS.map((client) => (
-          <Logo key={client.id} client={client} />
+          <li key={client.id} className="flex w-full justify-center">
+            <Logo client={client} fluid />
+          </li>
         ))}
-      </div>
+      </ul>
     );
   }
 
   return (
-    <div
-      className="client-marquee group relative w-full overflow-hidden bg-white py-4"
-      aria-label="Our clients"
-    >
-      {/* soft white fade on both edges */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent" />
+    <div className="space-y-4">
+      <div
+        className="client-marquee group relative w-full overflow-hidden bg-white py-4"
+        role="region"
+        aria-label="Client logos"
+        data-paused={paused || undefined}
+      >
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent sm:w-24" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent sm:w-24" />
 
-      <div className="client-marquee-track flex w-max items-center group-hover:[animation-play-state:paused]">
-        {CLIENTS.map((client) => (
-          <div key={client.id} className="pr-10 sm:pr-16"><Logo client={client} /></div>
-        ))}
-        {/* duplicate set for a seamless loop */}
-        {CLIENTS.map((client) => (
-          <div key={`${client.id}-dup`} className="pr-10 sm:pr-16"><Logo client={client} decorative /></div>
-        ))}
+        <ul className="client-marquee-track flex w-max items-center group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]">
+          {CLIENTS.map((client) => (
+            <li key={client.id} className="pr-10 sm:pr-16">
+              <Logo client={client} />
+            </li>
+          ))}
+          {/* duplicate set for a seamless loop (hidden from assistive tech) */}
+          {CLIENTS.map((client) => (
+            <li key={`${client.id}-dup`} className="client-marquee-dup pr-10 sm:pr-16" aria-hidden="true">
+              <Logo client={client} decorative />
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="client-marquee-control flex justify-center">
+        <button
+          type="button"
+          onClick={() => setPaused((p) => !p)}
+          aria-pressed={paused}
+          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-sm font-semibold text-navy-900 hover:border-navy-900"
+        >
+          {paused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
+          {paused ? "Play logos" : "Pause logos"}
+        </button>
       </div>
     </div>
   );

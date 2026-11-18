@@ -68,15 +68,15 @@ export default function HomePage() {
         <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <GsapReveal className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2.5">
-              <span className="h-[2px] w-8 bg-[#D40820]" />
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+              <span className="h-[2px] w-8 bg-brand" />
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
                 About Pak Arab Manpower Supply LLC
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111315]">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">
               {COMPANY.about.heading}
             </h2>
-            <div className="space-y-4 text-base leading-relaxed text-[#667085]">
+            <div className="space-y-4 text-base leading-relaxed text-slate">
               {COMPANY.about.paragraphs.map((p, idx) => (
                 <p key={idx}>{p}</p>
               ))}
@@ -86,12 +86,12 @@ export default function HomePage() {
               {COMPANY.about.pillars.map((pillar) => (
                 <div
                   key={pillar.title}
-                  className="flex items-start gap-2.5 rounded-lg border border-[#E5E7EB] bg-[#F5F6F8] p-3.5"
+                  className="flex items-start gap-2.5 rounded-lg border border-line bg-mist p-3.5"
                 >
-                  <Check className="h-4 w-4 text-[#D40820] shrink-0 mt-1" aria-hidden="true" />
+                  <Check className="h-4 w-4 text-brand shrink-0 mt-1" aria-hidden="true" />
                   <div>
-                    <div className="text-sm font-bold text-[#111315]">{pillar.title}</div>
-                    <div className="text-xs text-[#667085] mt-0.5">{pillar.description}</div>
+                    <div className="text-sm font-bold text-navy-900">{pillar.title}</div>
+                    <div className="text-xs text-slate mt-0.5">{pillar.description}</div>
                   </div>
                 </div>
               ))}
@@ -100,7 +100,7 @@ export default function HomePage() {
             <div className="pt-2">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 rounded-md bg-[#111315] px-5 py-3 text-sm font-semibold text-white hover:bg-[#D40820] transition-colors min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[44px]"
               >
                 <span>Explore Our Company</span>
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -109,7 +109,7 @@ export default function HomePage() {
           </GsapReveal>
 
           <GsapReveal delay={0.12} className="lg:col-span-6">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#E5E7EB] shadow-lg">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-line shadow-lg">
               <Image
                 src="/images/services/manpower-briefing.webp"
                 alt="Pak Arab workforce coordination briefing at an Abu Dhabi industrial site"
@@ -126,34 +126,34 @@ export default function HomePage() {
       <TeamShowcase />
 
       {/* 4. Mission & Vision (Upper-section priority per client request) */}
-      <section className="py-16 sm:py-20 bg-[#F5F6F8] border-y border-[#E5E7EB]">
+      <section className="py-16 sm:py-20 bg-mist border-y border-line">
         <div className="container-wide space-y-10">
           <GsapReveal className="max-w-2xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
               Core Values &amp; Direction
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111315]">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">
               Our Mission &amp; Vision
             </h2>
           </GsapReveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            <GsapReveal className="rounded-xl bg-white border border-[#E5E7EB] p-7 sm:p-9 relative overflow-hidden">
-              <div className="absolute top-0 left-0 h-1.5 w-full bg-[#D40820]" />
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#D40820]/10 text-[#D40820] mb-5">
+            <GsapReveal className="rounded-xl bg-white border border-line p-7 sm:p-9 relative overflow-hidden">
+              <div className="absolute top-0 left-0 h-1.5 w-full bg-brand" />
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand mb-5">
                 <Target className="h-6 w-6" aria-hidden="true" />
               </div>
-              <h3 className="text-2xl font-extrabold text-[#111315] mb-3">
+              <h3 className="text-2xl font-extrabold text-navy-900 mb-3">
                 {COMPANY.mission.title}
               </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-[#667085]">
+              <p className="text-sm sm:text-base leading-relaxed text-slate">
                 {COMPANY.mission.text}
               </p>
             </GsapReveal>
 
             <GsapReveal
               delay={0.1}
-              className="rounded-xl bg-[#1C2025] text-white border border-white/10 p-7 sm:p-9 relative overflow-hidden"
+              className="rounded-xl bg-navy-800 text-white border border-white/10 p-7 sm:p-9 relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 h-1.5 w-full bg-white/30" />
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-white mb-5">
@@ -175,20 +175,20 @@ export default function HomePage() {
         <div className="container-wide space-y-12">
           <GsapReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl space-y-3">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
                 What We Deliver
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111315]">
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">
                 Comprehensive Manpower Services
               </h2>
-              <p className="text-base text-[#667085]">
+              <p className="text-base text-slate">
                 Structured workforce solutions tailored to UAE industrial, energy, civil,
                 and engineering projects.
               </p>
             </div>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#D40820] hover:text-[#A40E21] shrink-0"
+              className="inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-brand-dark shrink-0"
             >
               <span>View All Service Details</span>
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -199,9 +199,9 @@ export default function HomePage() {
             {SERVICES.map((service) => (
               <div
                 key={service.slug}
-                className="group min-w-[290px] sm:min-w-[320px] md:min-w-0 shrink-0 md:shrink snap-start flex flex-col rounded-xl border border-[#E5E7EB] bg-white overflow-hidden hover:border-[#D40820]/60 hover:shadow-lg transition-all duration-200"
+                className="group min-w-[290px] sm:min-w-[320px] md:min-w-0 shrink-0 md:shrink snap-start flex flex-col rounded-xl border border-line bg-white overflow-hidden hover:border-brand/60 hover:shadow-lg transition-all duration-200"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#111315]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-navy-900">
                   <Image
                     src={service.image}
                     alt={service.imageAlt}
@@ -209,25 +209,25 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute top-3 left-3 rounded bg-[#111315]/90 px-2.5 py-1 text-xs font-bold text-white">
+                  <div className="absolute top-3 left-3 rounded bg-navy-900/90 px-2.5 py-1 text-xs font-bold text-white">
                     {service.number}
                   </div>
                 </div>
 
                 <div className="flex flex-1 flex-col justify-between p-6 space-y-4">
                   <div className="space-y-2">
-                    <h3 className="text-xl font-extrabold text-[#111315] group-hover:text-[#D40820] transition-colors">
+                    <h3 className="text-xl font-extrabold text-navy-900 group-hover:text-brand transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-[#667085]">
+                    <p className="text-sm leading-relaxed text-slate">
                       {service.shortDescription}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-[#E5E7EB] flex items-center justify-between gap-3">
+                  <div className="pt-4 border-t border-line flex items-center justify-between gap-3">
                     <Link
                       href={`/services/${service.slug}`}
-                      className="inline-flex items-center gap-1.5 text-sm font-bold text-[#111315] hover:text-[#D40820] min-h-[40px]"
+                      className="inline-flex items-center gap-1.5 text-sm font-bold text-navy-900 hover:text-brand min-h-[40px]"
                     >
                       <span>Explore Service</span>
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -236,7 +236,7 @@ export default function HomePage() {
                       href={buildQuickEnquiryUrl(service.waTopic)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-md bg-[#F5F6F8] hover:bg-[#25D366] px-3 py-2 text-xs font-semibold text-[#111315] transition-colors min-h-[40px]"
+                      className="inline-flex items-center gap-1.5 rounded-md bg-mist hover:bg-[#25D366] px-3 py-2 text-xs font-semibold text-navy-900 transition-colors min-h-[40px]"
                     >
                       <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
                       <span>Enquire</span>
@@ -250,11 +250,11 @@ export default function HomePage() {
       </section>
 
       {/* 6. Industries We Serve */}
-      <section className="py-16 sm:py-24 bg-[#111315] text-white">
+      <section className="py-16 sm:py-24 bg-navy-900 text-white">
         <div className="container-wide space-y-12">
           <GsapReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl space-y-3">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-light">
                 Sectors We Support
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
@@ -267,7 +267,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/industries"
-              className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#D40820] transition-colors shrink-0"
+              className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-brand transition-colors shrink-0"
             >
               <span>Explore Industries</span>
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -287,9 +287,9 @@ export default function HomePage() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111315] via-[#111315]/55 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/55 to-transparent" />
                 <div className="absolute inset-0 p-5 flex flex-col justify-end">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#D40820]">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-brand">
                     {industry.subtitle}
                   </p>
                   <h3 className="text-lg font-extrabold text-white mt-0.5">
@@ -306,9 +306,9 @@ export default function HomePage() {
       </section>
 
       {/* 7. Travel & Transportation (Dedicated Client-Requested Section) */}
-      <section className="py-16 sm:py-20 bg-[#F5F6F8] border-b border-[#E5E7EB]">
+      <section className="py-16 sm:py-20 bg-mist border-b border-line">
         <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <GsapReveal className="lg:col-span-6 relative aspect-[4/3] overflow-hidden rounded-xl border border-[#E5E7EB]">
+          <GsapReveal className="lg:col-span-6 relative aspect-[4/3] overflow-hidden rounded-xl border border-line">
             <Image
               src={travelService.image}
               alt={travelService.imageAlt}
@@ -319,20 +319,20 @@ export default function HomePage() {
           </GsapReveal>
 
           <GsapReveal delay={0.1} className="lg:col-span-6 space-y-5">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white border border-[#E5E7EB] px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#111315]">
-              <Bus className="h-4 w-4 text-[#D40820]" aria-hidden="true" />
+            <div className="inline-flex items-center gap-2 rounded-full bg-white border border-line px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-navy-900">
+              <Bus className="h-4 w-4 text-brand" aria-hidden="true" />
               <span>Workforce Logistics</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111315]">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">
               Travel &amp; Transportation Support
             </h2>
-            <p className="text-base leading-relaxed text-[#667085]">
+            <p className="text-base leading-relaxed text-slate">
               {travelService.fullDescription}
             </p>
             <ul className="space-y-2.5">
               {travelService.highlights.map((h) => (
-                <li key={h} className="flex items-center gap-2.5 text-sm font-medium text-[#111315]">
-                  <Check className="h-4 w-4 text-[#D40820] shrink-0" aria-hidden="true" />
+                <li key={h} className="flex items-center gap-2.5 text-sm font-medium text-navy-900">
+                  <Check className="h-4 w-4 text-brand shrink-0" aria-hidden="true" />
                   <span>{h}</span>
                 </li>
               ))}
@@ -340,7 +340,7 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
                 href="/services/travel-transportation"
-                className="inline-flex items-center gap-2 rounded-md bg-[#111315] px-5 py-3 text-sm font-semibold text-white hover:bg-[#D40820] transition-colors min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[44px]"
               >
                 <span>Explore Travel &amp; Transportation</span>
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -349,7 +349,7 @@ export default function HomePage() {
                 href={buildQuickEnquiryUrl("Workforce Travel & Transportation Support")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-semibold text-[#111315] hover:bg-[#1fb858] transition-colors min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-semibold text-navy-900 hover:bg-[#1fb858] transition-colors min-h-[44px]"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
                 <span>Request Logistics Support</span>
@@ -364,20 +364,20 @@ export default function HomePage() {
         <div className="container-wide space-y-10">
           <GsapReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl space-y-3">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
                 Workforce Categories
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111315]">
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">
                 Interactive Workforce Directory
               </h2>
-              <p className="text-base text-[#667085]">
+              <p className="text-base text-slate">
                 Browse our Onshore &amp; Offshore MEP and Civil &amp; Construction supply
                 categories, select quantities, and enquire directly via WhatsApp.
               </p>
             </div>
             <Link
               href="/workforce"
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#D40820] hover:text-[#A40E21] shrink-0"
+              className="inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-brand-dark shrink-0"
             >
               <span>Open Full Directory Page</span>
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -389,13 +389,13 @@ export default function HomePage() {
       </section>
 
       {/* 9. Why Choose Pak Arab */}
-      <section className="py-16 sm:py-24 bg-[#F5F6F8] border-y border-[#E5E7EB]">
+      <section className="py-16 sm:py-24 bg-mist border-y border-line">
         <div className="container-wide space-y-12">
           <GsapReveal className="max-w-2xl space-y-3">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
               Operational Standards
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111315]">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">
               Why Choose Pak Arab Manpower Supply LLC
             </h2>
           </GsapReveal>
@@ -406,15 +406,15 @@ export default function HomePage() {
               return (
                 <div
                   key={item.title}
-                  className="rounded-xl bg-white border border-[#E5E7EB] p-6 hover:border-[#D40820]/60 transition-colors"
+                  className="rounded-xl bg-white border border-line p-6 hover:border-brand/60 transition-colors"
                 >
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-[#D40820]/10 text-[#D40820] mb-4">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand/10 text-brand mb-4">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
-                  <h3 className="text-base font-extrabold text-[#111315] mb-2">
+                  <h3 className="text-base font-extrabold text-navy-900 mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-[#667085] leading-relaxed">
+                  <p className="text-sm text-slate leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -428,26 +428,26 @@ export default function HomePage() {
       <section className="py-16 sm:py-24 bg-white">
         <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <GsapReveal className="lg:col-span-6 space-y-6">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
               Quality Assurance &amp; HSE
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111315]">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">
               {COMPANY.qms.title}
             </h2>
-            <p className="text-base leading-relaxed text-[#667085]">
+            <p className="text-base leading-relaxed text-slate">
               {COMPANY.qms.intro}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {COMPANY.qms.pillars.map((pillar) => (
                 <div
                   key={pillar.step}
-                  className="rounded-lg border border-[#E5E7EB] bg-[#F5F6F8] p-4 space-y-1.5"
+                  className="rounded-lg border border-line bg-mist p-4 space-y-1.5"
                 >
-                  <span className="text-xs font-extrabold text-[#D40820]">
+                  <span className="text-xs font-extrabold text-brand">
                     {pillar.step}
                   </span>
-                  <h3 className="text-sm font-bold text-[#111315]">{pillar.title}</h3>
-                  <p className="text-xs text-[#667085] leading-relaxed">
+                  <h3 className="text-sm font-bold text-navy-900">{pillar.title}</h3>
+                  <p className="text-xs text-slate leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>
@@ -456,7 +456,7 @@ export default function HomePage() {
             <div>
               <Link
                 href="/quality"
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#D40820] hover:text-[#A40E21]"
+                className="inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-brand-dark"
               >
                 <span>View Quality &amp; Accreditations</span>
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -465,7 +465,7 @@ export default function HomePage() {
           </GsapReveal>
 
           <GsapReveal delay={0.12} className="lg:col-span-6">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#E5E7EB]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-line">
               <Image
                 src="/images/services/quality-hse-inspection.webp"
                 alt="HSE safety officer and quality engineer inspecting industrial site compliance"
@@ -479,20 +479,20 @@ export default function HomePage() {
       </section>
 
       {/* 11. Compact Certifications & Accreditations */}
-      <section className="py-12 sm:py-16 bg-[#F5F6F8] border-y border-[#E5E7EB]">
+      <section className="py-12 sm:py-16 bg-mist border-y border-line">
         <div className="container-wide space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
                 Standards &amp; Compliance
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111315] mt-1">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 mt-1">
                 Certifications &amp; Accreditations
               </h2>
             </div>
             <Link
               href="/quality"
-              className="text-sm font-semibold text-[#111315] hover:text-[#D40820]"
+              className="text-sm font-semibold text-navy-900 hover:text-brand"
             >
               Details &amp; Documentation →
             </Link>
@@ -502,7 +502,7 @@ export default function HomePage() {
             {CERTIFICATIONS.map((cert) => (
               <div
                 key={cert.id}
-                className="flex items-center gap-4 rounded-xl bg-white border border-[#E5E7EB] p-5"
+                className="flex items-center gap-4 rounded-xl bg-white border border-line p-5"
               >
                 <div className="relative h-16 w-24 shrink-0">
                   <Image
@@ -514,8 +514,8 @@ export default function HomePage() {
                   />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-sm font-bold text-[#111315]">{cert.name}</h3>
-                  <p className="text-xs text-[#667085] mt-1">{cert.subtitle}</p>
+                  <h3 className="text-sm font-bold text-navy-900">{cert.name}</h3>
+                  <p className="text-xs text-slate mt-1">{cert.subtitle}</p>
                 </div>
               </div>
             ))}
@@ -528,20 +528,20 @@ export default function HomePage() {
         <div className="container-wide space-y-10">
           <GsapReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl space-y-3">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
                 Client Portfolio
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111315]">
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">
                 Companies We Have Supplied Manpower To
               </h2>
-              <p className="text-base text-[#667085]">
+              <p className="text-base text-slate">
                 Supporting major UAE energy, EPC, infrastructure, and industrial
                 organizations with skilled technical and civil personnel.
               </p>
             </div>
             <Link
               href="/clients"
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#D40820] hover:text-[#A40E21] shrink-0"
+              className="inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-brand-dark shrink-0"
             >
               <span>View All 26 Clients</span>
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -555,12 +555,12 @@ export default function HomePage() {
       {/* 13. Manpower Request CTA (with Vanta.js NET dark industrial backdrop) */}
       <section
         id="manpower-request"
-        className="relative py-16 sm:py-24 bg-[#111315] overflow-hidden"
+        className="relative py-16 sm:py-24 bg-navy-900 overflow-hidden"
       >
         <VantaNetBackground />
         <div className="container-wide relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           <div className="lg:col-span-5 text-white space-y-5">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-light">
               Direct WhatsApp Coordination
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
@@ -589,10 +589,10 @@ export default function HomePage() {
       <section className="py-16 sm:py-24 bg-white">
         <div className="container-wide space-y-10">
           <GsapReveal className="max-w-2xl space-y-3">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
               Frequently Asked Questions
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111315]">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">
               Answers for Project &amp; HR Teams
             </h2>
           </GsapReveal>
@@ -601,20 +601,20 @@ export default function HomePage() {
       </section>
 
       {/* 15. Contact & Google Maps */}
-      <section className="py-16 sm:py-20 bg-[#F5F6F8] border-t border-[#E5E7EB]">
+      <section className="py-16 sm:py-20 bg-mist border-t border-line">
         <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          <div className="lg:col-span-5 rounded-xl bg-white border border-[#E5E7EB] p-7 sm:p-8 flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-5 rounded-xl bg-white border border-line p-7 sm:p-8 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#D40820]">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
                 Visit Our Office
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111315]">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900">
                 Abu Dhabi Head Office
               </h2>
-              <div className="space-y-4 pt-2 text-sm text-[#667085]">
+              <div className="space-y-4 pt-2 text-sm text-slate">
                 <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-[#D40820] shrink-0 mt-0.5" />
-                  <span className="text-[#111315] font-medium">
+                  <MapPin className="h-5 w-5 text-brand shrink-0 mt-0.5" />
+                  <span className="text-navy-900 font-medium">
                     {COMPANY.office.address}
                   </span>
                 </div>
@@ -624,34 +624,34 @@ export default function HomePage() {
                     href={COMPANY.whatsapp.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-[#111315] hover:text-[#D40820]"
+                    className="font-semibold text-navy-900 hover:text-brand"
                   >
                     WhatsApp: {COMPANY.whatsapp.display}
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-[#D40820] shrink-0" />
+                  <Phone className="h-5 w-5 text-brand shrink-0" />
                   <a
                     href={COMPANY.telephone.tel}
-                    className="font-medium text-[#111315] hover:text-[#D40820]"
+                    className="font-medium text-navy-900 hover:text-brand"
                   >
                     Tel: {COMPANY.telephone.display}
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-[#D40820] shrink-0" />
+                  <Phone className="h-5 w-5 text-brand shrink-0" />
                   <a
                     href={COMPANY.additionalMobile.tel}
-                    className="font-medium text-[#111315] hover:text-[#D40820]"
+                    className="font-medium text-navy-900 hover:text-brand"
                   >
                     Mobile: {COMPANY.additionalMobile.display}
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail className="h-5 w-5 text-[#D40820] shrink-0" />
+                  <Mail className="h-5 w-5 text-brand shrink-0" />
                   <a
                     href={`mailto:${COMPANY.email}`}
-                    className="font-medium text-[#111315] hover:text-[#D40820]"
+                    className="font-medium text-navy-900 hover:text-brand"
                   >
                     {COMPANY.email}
                   </a>
@@ -664,21 +664,21 @@ export default function HomePage() {
                 href={COMPANY.office.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#111315] px-5 py-3 text-sm font-semibold text-white hover:bg-[#D40820] transition-colors min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md bg-navy-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand transition-colors min-h-[44px]"
               >
                 <MapPin className="h-4 w-4" aria-hidden="true" />
                 <span>Get Directions</span>
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-md border border-[#E5E7EB] px-5 py-3 text-sm font-semibold text-[#111315] hover:border-[#111315] min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-semibold text-navy-900 hover:border-navy-900 min-h-[44px]"
               >
                 <span>Contact Page</span>
               </Link>
             </div>
           </div>
 
-          <div className="lg:col-span-7 rounded-xl overflow-hidden border border-[#E5E7EB] bg-white min-h-[340px]">
+          <div className="lg:col-span-7 rounded-xl overflow-hidden border border-line bg-white min-h-[340px]">
             <iframe
               title="Pak Arab Manpower Supply LLC Office Location Map"
               src="https://maps.google.com/maps?q=Wurth+Gulf+Building+Plot+42+M14+Musaffah+Abu+Dhabi+UAE&t=&z=15&ie=UTF8&iwloc=&output=embed"

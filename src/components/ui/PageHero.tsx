@@ -15,14 +15,14 @@ export function PageHero({ eyebrow, title, description, breadcrumbs }: PageHeroP
   );
 
   return (
-    <section data-page-hero className="relative overflow-hidden bg-[#111315] text-white border-b border-white/10 py-14 sm:py-20">
+    <section data-page-hero className="relative overflow-hidden bg-navy-900 text-white border-b border-white/10 py-14 sm:py-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <div
         aria-hidden="true"
-        className="page-hero-glow pointer-events-none absolute -top-1/2 -right-1/4 h-[140%] w-[70%] rounded-full bg-[#D40820]/15 blur-3xl"
+        className="page-hero-glow pointer-events-none absolute -top-1/2 -right-1/4 h-[140%] w-[70%] rounded-full bg-brand/15 blur-3xl"
       />
       <div className="container-wide relative space-y-4">
         <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-white/65">
@@ -44,7 +44,7 @@ export function PageHero({ eyebrow, title, description, breadcrumbs }: PageHeroP
         </nav>
 
         <div className="max-w-3xl space-y-3 pt-2">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#D40820]">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-light">
             {eyebrow}
           </p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">

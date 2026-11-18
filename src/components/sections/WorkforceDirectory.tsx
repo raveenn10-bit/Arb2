@@ -4,12 +4,12 @@ import { useState, useMemo } from "react";
 import { Search, X, MessageCircle, ChevronDown, HardHat, Wrench } from "lucide-react";
 import { WORKFORCE_ROLES, type WorkforceDivision } from "@/data/workforce";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { RoleControl } from "@/components/workforce/RoleControl";
 
 export function WorkforceDirectory() {
   const [division, setDivision] = useState<"all" | WorkforceDivision>("all");
   const [selectedCategory, setSelectedCategory] = useState<string>("All Categories");
   const [searchQuery, setSearchQuery] = useState("");
-  const [quantities, setQuantities] = useState<Record<string, number>>({});
   const [showAll, setShowAll] = useState(false);
   const [openMobileGroups, setOpenMobileGroups] = useState<Record<string, boolean>>({
     "Engineering & Coordination": true,
@@ -61,10 +61,7 @@ export function WorkforceDirectory() {
     setShowAll(false);
   };
 
-  const getQty = (id: string) => quantities[id] ?? 1;
-  const setQty = (id: string, val: number) => {
-    setQuantities((prev) => ({ ...prev, [id]: Math.max(1, Math.min(500, val || 1)) }));
-  };
+
 
   const clearFilters = () => {
     setSearchQuery("");
@@ -76,7 +73,7 @@ export function WorkforceDirectory() {
   return (
     <div className="space-y-6">
       {/* Division Tabs & Search Bar */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-[#F5F6F8] p-4 sm:p-5 rounded-xl border border-[#E5E7EB]">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-mist p-4 sm:p-5 rounded-xl border border-line">
         {/* Division Tabs */}
         <div className="flex flex-wrap gap-2" role="tablist" aria-label="Workforce Divisions">
           <button
@@ -86,8 +83,8 @@ export function WorkforceDirectory() {
             onClick={() => handleDivisionChange("all")}
             className={`px-4 py-2.5 rounded-md text-sm font-semibold transition-colors min-h-[44px] ${
               division === "all"
-                ? "bg-[#111315] text-white"
-                : "bg-white text-[#111315] border border-[#E5E7EB] hover:border-[#111315]"
+                ? "bg-navy-900 text-white"
+                : "bg-white text-navy-900 border border-line hover:border-navy-900"
             }`}
           >
             All Categories ({WORKFORCE_ROLES.length})
@@ -99,8 +96,8 @@ export function WorkforceDirectory() {
             onClick={() => handleDivisionChange("mep")}
             className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-semibold transition-colors min-h-[44px] ${
               division === "mep"
-                ? "bg-[#D40820] text-white"
-                : "bg-white text-[#111315] border border-[#E5E7EB] hover:border-[#D40820]"
+                ? "bg-brand text-white"
+                : "bg-white text-navy-900 border border-line hover:border-brand"
             }`}
           >
             <Wrench className="h-4 w-4" aria-hidden="true" />
@@ -113,8 +110,8 @@ export function WorkforceDirectory() {
             onClick={() => handleDivisionChange("civil")}
             className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-semibold transition-colors min-h-[44px] ${
               division === "civil"
-                ? "bg-[#D40820] text-white"
-                : "bg-white text-[#111315] border border-[#E5E7EB] hover:border-[#D40820]"
+                ? "bg-brand text-white"
+                : "bg-white text-navy-900 border border-line hover:border-brand"
             }`}
           >
             <HardHat className="h-4 w-4" aria-hidden="true" />
@@ -128,7 +125,7 @@ export function WorkforceDirectory() {
             Search workforce roles
           </label>
           <Search
-            className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#667085]"
+            className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate"
             aria-hidden="true"
           />
           <input
@@ -137,14 +134,14 @@ export function WorkforceDirectory() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search role (e.g. Welder, Mason, HVAC)..."
-            className="w-full rounded-md border border-[#E5E7EB] bg-white pl-10 pr-10 py-2.5 text-sm text-[#111315] placeholder:text-[#667085] focus:border-[#D40820] focus:outline-none min-h-[44px]"
+            className="w-full rounded-md border border-line bg-white pl-10 pr-10 py-2.5 text-sm text-navy-900 placeholder:text-slate focus:border-brand focus:outline-none min-h-[44px]"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery("")}
               aria-label="Clear search"
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-[#667085] hover:text-[#111315]"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-slate hover:text-navy-900"
             >
               <X className="h-4 w-4" />
             </button>
@@ -161,8 +158,8 @@ export function WorkforceDirectory() {
             onClick={() => setSelectedCategory(cat)}
             className={`px-3.5 py-2 rounded-full text-xs font-semibold transition-colors min-h-[36px] ${
               selectedCategory === cat
-                ? "bg-[#111315] text-white"
-                : "bg-[#F5F6F8] text-[#667085] hover:text-[#111315] border border-[#E5E7EB]"
+                ? "bg-navy-900 text-white"
+                : "bg-mist text-slate hover:text-navy-900 border border-line"
             }`}
           >
             {cat}
@@ -171,16 +168,16 @@ export function WorkforceDirectory() {
       </div>
 
       {/* Results Count */}
-      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-[#667085]">
+      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate">
         <p>
-          Showing <strong className="text-[#111315]">{filteredRoles.length}</strong>{" "}
+          Showing <strong className="text-navy-900">{filteredRoles.length}</strong>{" "}
           workforce supply categories (manpower supply categories, not active job vacancies).
         </p>
         {(searchQuery || division !== "all" || selectedCategory !== "All Categories") && (
           <button
             type="button"
             onClick={clearFilters}
-            className="font-semibold text-[#D40820] hover:underline"
+            className="font-semibold text-brand hover:underline"
           >
             Reset all filters
           </button>
@@ -189,18 +186,18 @@ export function WorkforceDirectory() {
 
       {/* Empty State */}
       {filteredRoles.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-[#E5E7EB] bg-[#F5F6F8] p-10 text-center space-y-3">
-          <p className="text-base font-semibold text-[#111315]">
+        <div className="rounded-xl border border-dashed border-line bg-mist p-10 text-center space-y-3">
+          <p className="text-base font-semibold text-navy-900">
             No workforce categories matched &ldquo;{searchQuery}&rdquo;.
           </p>
-          <p className="text-sm text-[#667085]">
+          <p className="text-sm text-slate">
             Try a different trade keyword or contact our team on WhatsApp for custom staffing requirements.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <button
               type="button"
               onClick={clearFilters}
-              className="rounded-md bg-[#111315] px-4 py-2.5 text-sm font-semibold text-white min-h-[44px]"
+              className="rounded-md bg-navy-900 px-4 py-2.5 text-sm font-semibold text-white min-h-[44px]"
             >
               Clear Search
             </button>
@@ -210,7 +207,7 @@ export function WorkforceDirectory() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-[#111315] min-h-[44px]"
+              className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-navy-900 min-h-[44px]"
             >
               <MessageCircle className="h-4 w-4" />
               <span>Ask via WhatsApp</span>
@@ -222,56 +219,29 @@ export function WorkforceDirectory() {
           {/* Desktop / Tablet Grid */}
           <div className="hidden md:grid md:grid-cols-2 xl:grid-cols-3 gap-4">
             {visibleRoles.map((role) => {
-              const qty = getQty(role.id);
-              const waLink = buildWhatsAppUrl(
-                `Hello Pak Arab Manpower Supply LLC,\n\nWe would like to request manpower details:\n- Category: ${role.title}\n- Division: ${role.environment}\n- Estimated Quantity: ${qty} worker(s)\n\nPlease let us know availability and next steps.`
-              );
-
               return (
                 <div
                   key={role.id}
-                  className="flex flex-col justify-between rounded-lg border border-[#E5E7EB] bg-white p-4 hover:border-[#D40820]/60 transition-colors"
+                  className="flex flex-col justify-between rounded-lg border border-line bg-white p-4 hover:border-brand/60 transition-colors"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-2">
                       <span
                         className={`text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
                           role.division === "mep"
-                            ? "bg-[#D40820]/10 text-[#A40E21]"
-                            : "bg-[#111315]/10 text-[#111315]"
+                            ? "bg-brand/10 text-brand-dark"
+                            : "bg-navy-900/10 text-navy-900"
                         }`}
                       >
                         {role.environment}
                       </span>
-                      <span className="text-xs text-[#667085]">{role.category}</span>
+                      <span className="text-xs text-slate">{role.category}</span>
                     </div>
-                    <h3 className="text-base font-bold text-[#111315]">{role.title}</h3>
+                    <h3 className="text-base font-bold text-navy-900">{role.title}</h3>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-[#E5E7EB] flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2">
-                      <label htmlFor={`qty-${role.id}`} className="text-xs text-[#667085]">
-                        Qty:
-                      </label>
-                      <input
-                        id={`qty-${role.id}`}
-                        type="number"
-                        min={1}
-                        max={500}
-                        value={qty}
-                        onChange={(e) => setQty(role.id, parseInt(e.target.value, 10))}
-                        className="w-16 rounded border border-[#E5E7EB] px-2 py-1 text-xs font-semibold text-[#111315] text-center min-h-[36px]"
-                      />
-                    </div>
-                    <a
-                      href={waLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-md bg-[#F5F6F8] hover:bg-[#25D366] px-3 py-2 text-xs font-semibold text-[#111315] transition-colors min-h-[36px]"
-                    >
-                      <MessageCircle className="h-3.5 w-3.5 text-[#25D366] group-hover:text-[#111315]" />
-                      <span>Enquire</span>
-                    </a>
+                  <div className="mt-4 pt-3 border-t border-line">
+                    <RoleControl role={role} />
                   </div>
                 </div>
               );
@@ -285,7 +255,7 @@ export function WorkforceDirectory() {
               return (
                 <div
                   key={catName}
-                  className="rounded-lg border border-[#E5E7EB] bg-white overflow-hidden"
+                  className="rounded-lg border border-line bg-white overflow-hidden"
                 >
                   <button
                     type="button"
@@ -295,7 +265,7 @@ export function WorkforceDirectory() {
                         [catName]: !prev[catName],
                       }))
                     }
-                    className="flex w-full items-center justify-between px-4 py-3.5 text-left font-bold text-sm text-[#111315] bg-[#F5F6F8] min-h-[48px]"
+                    className="flex w-full items-center justify-between px-4 py-3.5 text-left font-bold text-sm text-navy-900 bg-mist min-h-[48px]"
                   >
                     <span>
                       {catName} ({roles.length})
@@ -307,32 +277,15 @@ export function WorkforceDirectory() {
                     />
                   </button>
                   {isOpen && (
-                    <div className="divide-y divide-[#E5E7EB]">
+                    <div className="divide-y divide-line">
                       {roles.map((role) => {
-                        const qty = getQty(role.id);
-                        const waLink = buildWhatsAppUrl(
-                          `Hello Pak Arab Manpower Supply LLC,\n\nWe would like to request manpower details:\n- Category: ${role.title}\n- Division: ${role.environment}\n- Estimated Quantity: ${qty} worker(s)`
-                        );
                         return (
-                          <div
-                            key={role.id}
-                            className="p-4 flex items-center justify-between gap-3"
-                          >
+                          <div key={role.id} className="p-4 space-y-3">
                             <div>
-                              <div className="text-sm font-semibold text-[#111315]">
-                                {role.title}
-                              </div>
-                              <div className="text-xs text-[#667085]">{role.environment}</div>
+                              <div className="text-sm font-semibold text-navy-900">{role.title}</div>
+                              <div className="text-xs text-slate">{role.environment}</div>
                             </div>
-                            <a
-                              href={waLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 rounded-md bg-[#25D366] px-3 py-2 text-xs font-semibold text-[#111315] shrink-0 min-h-[44px]"
-                            >
-                              <MessageCircle className="h-3.5 w-3.5" />
-                              <span>Request</span>
-                            </a>
+                            <RoleControl role={role} idPrefix="mqty" />
                           </div>
                         );
                       })}
@@ -353,7 +306,7 @@ export function WorkforceDirectory() {
               <button
                 type="button"
                 onClick={() => setShowAll((prev) => !prev)}
-                className="inline-flex items-center gap-2 rounded-md border border-[#111315] bg-white px-6 py-3 text-sm font-bold text-[#111315] hover:bg-[#D40820] hover:border-[#D40820] hover:text-white transition-all duration-200 min-h-[44px] cursor-pointer"
+                className="inline-flex items-center gap-2 rounded-md border border-navy-900 bg-white px-6 py-3 text-sm font-bold text-navy-900 hover:bg-brand hover:border-brand hover:text-white transition-all duration-200 min-h-[44px] cursor-pointer"
               >
                 <span>
                   {showAll

@@ -1,9 +1,13 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { MessageCircle, CheckCircle2, AlertCircle } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AlertCircle, ExternalLink, Info, MessageCircle, Pencil, Trash2, Users } from "lucide-react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { COMPANY } from "@/data/company";
+import { QtyStepper } from "@/components/workforce/QtyStepper";
+import { selection, selectionLines, totalWorkers, useWorkforceSelection } from "@/lib/workforce-selection";
 
 interface FormState {
   fullName: string;
@@ -19,6 +23,8 @@ interface FormState {
   additionalRequirements: string;
 }
 
+type Errors = Partial<Record<keyof FormState, string>>;
+
 const INITIAL_STATE: FormState = {
   fullName: "",
   companyName: "",
@@ -33,322 +39,324 @@ const INITIAL_STATE: FormState = {
   additionalRequirements: "",
 };
 
+const INDUSTRIES = [
+  "Oil & Gas",
+  "Civil & Construction",
+  "Mechanical Engineering",
+  "Electrical Engineering",
+  "Industrial & MEP",
+  "Onshore Operations",
+  "Offshore Operations",
+];
+const DURATIONS = ["Short-Term (1–3 Months)", "Medium-Term (3–6 Months)", "Long-Term (6+ Months)", "Shutdown / Turnaround"];
+
+const FIELD =
+  "w-full min-h-[44px] rounded-md border bg-white px-3.5 py-2.5 text-sm text-navy-900 placeholder:text-slate/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/40";
+
 export function ManpowerRequestForm() {
+  const uid = useId();
+  const reduce = useReducedMotion();
+  const roles = useWorkforceSelection();
+  const total = totalWorkers(roles);
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
-  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
-  const [preparedUrl, setPreparedUrl] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Errors>({});
+  const [preview, setPreview] = useState<string | null>(null);
+  const [opened, setOpened] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
 
-  const validate = (): boolean => {
-    const nextErrors: Partial<Record<keyof FormState, string>> = {};
-    if (!form.fullName.trim()) nextErrors.fullName = "Full name is required.";
-    if (!form.companyName.trim()) nextErrors.companyName = "Company name is required.";
-    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      nextErrors.email = "Enter a valid work email address.";
-    if (!form.phone.trim() || form.phone.trim().length < 7)
-      nextErrors.phone = "Enter a valid phone or WhatsApp number.";
-    if (!form.workforceCategory.trim())
-      nextErrors.workforceCategory = "Specify the required trade or workforce category.";
-    if (!form.workersCount.trim() || Number(form.workersCount) < 1)
-      nextErrors.workersCount = "Enter the number of workers (minimum 1).";
-    if (!form.projectLocation.trim())
-      nextErrors.projectLocation = "Project location is required.";
+  const hasRoles = roles.length > 0;
 
-    setErrors(nextErrors);
-    return Object.keys(nextErrors).length === 0;
+  const validate = (f: FormState): Errors => {
+    const e: Errors = {};
+    if (f.fullName.trim().length < 2) e.fullName = "Enter your full name.";
+    if (f.companyName.trim().length < 2) e.companyName = "Enter your company name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) e.email = "Enter a valid work email address.";
+    const digits = f.phone.replace(/\D/g, "");
+    if (digits.length < 7 || digits.length > 15) e.phone = "Enter a valid phone or WhatsApp number, e.g. +971 50 123 4567.";
+    if (!hasRoles && !f.workforceCategory.trim())
+      e.workforceCategory = "Add roles from the workforce directory, or type the trades you need.";
+    if (!hasRoles) {
+      const n = Number(f.workersCount);
+      if (!Number.isInteger(n) || n < 1) e.workersCount = "Enter the number of workers (minimum 1).";
+    }
+    if (!f.projectLocation.trim()) e.projectLocation = "Enter the project location.";
+    return e;
+  };
+
+  const buildMessage = (f: FormState) => {
+    const lines = [
+      "*MANPOWER REQUEST — Pak Arab Manpower Supply LLC*",
+      "",
+      `*Name:* ${f.fullName.trim()}`,
+      `*Company:* ${f.companyName.trim()}`,
+      `*Email:* ${f.email.trim()}`,
+      `*Phone / WhatsApp:* ${f.phone.trim()}`,
+      "",
+      `*Industry:* ${f.industry}`,
+    ];
+    if (hasRoles) {
+      lines.push(`*Selected workforce (${roles.length} roles, ${total} workers):*`, ...selectionLines(roles));
+      if (f.workforceCategory.trim()) lines.push(`*Other trades:* ${f.workforceCategory.trim()}`);
+    } else {
+      lines.push(`*Workforce required:* ${f.workforceCategory.trim()}`, `*Number of workers:* ${f.workersCount}`);
+    }
+    lines.push(
+      `*Project location:* ${f.projectLocation.trim()}`,
+      `*Contract duration:* ${f.projectDuration}`,
+      `*Required mobilisation date:* ${f.expectedStartDate || "To be discussed"}`,
+    );
+    if (f.additionalRequirements.trim()) lines.push("", `*Additional requirements:* ${f.additionalRequirements.trim()}`);
+    return lines.join("\n");
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
-
-    const message = [
-      "MANPOWER REQUEST — PAK ARAB MANPOWER SUPPLY LLC",
-      "----------------------------------------",
-      `Full Name: ${form.fullName}`,
-      `Company Name: ${form.companyName}`,
-      `Email: ${form.email}`,
-      `Phone / WhatsApp: ${form.phone}`,
-      `Industry: ${form.industry}`,
-      `Workforce Category: ${form.workforceCategory}`,
-      `Number of Workers: ${form.workersCount}`,
-      `Project Location: ${form.projectLocation}`,
-      `Project Duration: ${form.projectDuration}`,
-      `Expected Start Date: ${form.expectedStartDate || "To be discussed"}`,
-      `Additional Requirements: ${form.additionalRequirements || "None specified"}`,
-    ].join("\n");
-
-    const url = buildWhatsAppUrl(message);
-    setPreparedUrl(url);
-    window.open(url, "_blank", "noopener,noreferrer");
+    const next = validate(form);
+    setErrors(next);
+    const first = Object.keys(next)[0];
+    if (first) {
+      formRef.current?.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
+      return;
+    }
+    setOpened(false);
+    setPreview(buildMessage(form));
   };
+
+  // Preview dialog: focus, Escape to close, focus returns to the submit button
+  useEffect(() => {
+    if (!preview) return;
+    dialogRef.current?.querySelector<HTMLElement>("a, button")?.focus();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setPreview(null);
+    window.addEventListener("keydown", onKey);
+    const submit = submitRef.current;
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      submit?.focus();
+    };
+  }, [preview]);
 
   const update = (field: keyof FormState, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: undefined }));
-    }
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
+
+  const a11y = (k: keyof FormState) => ({
+    id: `${uid}-${k}`,
+    name: k,
+    "aria-invalid": errors[k] ? true : undefined,
+    "aria-describedby": errors[k] ? `${uid}-${k}-err` : undefined,
+    className: `${FIELD} ${errors[k] ? "border-brand" : "border-line focus:border-navy-900"}`,
+  });
+
+  const Field = ({ k, label, required, children, span }: { k: keyof FormState; label: string; required?: boolean; children: ReactNode; span?: boolean }) => (
+    <div className={span ? "sm:col-span-2" : ""}>
+      <label htmlFor={`${uid}-${k}`} className="mb-1.5 block text-sm font-semibold text-navy-900">
+        {label}{" "}
+        {required ? (
+          <span className="text-brand" aria-hidden="true">*</span>
+        ) : (
+          <span className="font-normal text-slate">(optional)</span>
+        )}
+      </label>
+      {children}
+      {errors[k] && (
+        <p id={`${uid}-${k}-err`} className="mt-1.5 flex items-start gap-1.5 text-sm font-medium text-brand-dark">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" /> {errors[k]}
+        </p>
+      )}
+    </div>
+  );
+
+  const waUrl = preview ? buildWhatsAppUrl(preview) : "";
 
   return (
     <form
+      id="request-form"
+      ref={formRef}
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-sm space-y-5"
+      aria-label="Manpower request"
+      className="scroll-mt-28 space-y-5 rounded-xl border border-line bg-white p-5 shadow-sm sm:p-8"
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {/* Full Name */}
-        <div>
-          <label htmlFor="mr-fullName" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Full Name <span className="text-[#D40820]">*</span>
-          </label>
-          <input
-            id="mr-fullName"
-            type="text"
-            required
-            value={form.fullName}
-            onChange={(e) => update("fullName", e.target.value)}
-            placeholder="Your full name"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm text-[#111315] focus:border-[#D40820] focus:outline-none min-h-[44px]"
-          />
-          {errors.fullName && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
-              <AlertCircle className="h-3.5 w-3.5" /> {errors.fullName}
-            </p>
+      <p className="text-sm text-slate">
+        Fields marked <span className="text-brand">*</span> are required.
+      </p>
+
+      {/* Selected workforce from the directory */}
+      <div className="rounded-lg border border-line bg-mist p-4">
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <p className="flex items-center gap-2 text-sm font-bold text-navy-900">
+            <Users className="h-4 w-4 text-brand" aria-hidden="true" />
+            Selected workforce
+          </p>
+          {hasRoles && (
+            <button type="button" onClick={() => selection.clear()} className="min-h-11 px-2 text-sm font-semibold text-slate hover:text-brand-dark">
+              Clear all
+            </button>
           )}
         </div>
-
-        {/* Company Name */}
-        <div>
-          <label htmlFor="mr-companyName" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Company Name <span className="text-[#D40820]">*</span>
-          </label>
-          <input
-            id="mr-companyName"
-            type="text"
-            required
-            value={form.companyName}
-            onChange={(e) => update("companyName", e.target.value)}
-            placeholder="Organization or contractor name"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm text-[#111315] focus:border-[#D40820] focus:outline-none min-h-[44px]"
-          />
-          {errors.companyName && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
-              <AlertCircle className="h-3.5 w-3.5" /> {errors.companyName}
+        {hasRoles ? (
+          <>
+            <ul className="divide-y divide-line" aria-live="polite">
+              {roles.map((r) => (
+                <li key={r.id} className="flex flex-wrap items-center justify-between gap-2 py-2.5">
+                  <span className="min-w-0">
+                    <span className="block text-sm font-semibold text-navy-900">{r.title}</span>
+                    <span className="block text-xs text-slate">{r.environment}</span>
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <QtyStepper id={`${uid}-sel-${r.id}`} value={r.qty} onChange={(n) => selection.setQty(r.id, n)} label={r.title} />
+                    <button
+                      type="button"
+                      onClick={() => selection.remove(r.id)}
+                      aria-label={`Remove ${r.title}`}
+                      className="inline-flex size-11 items-center justify-center rounded-md text-slate hover:bg-brand/10 hover:text-brand-dark"
+                    >
+                      <Trash2 className="h-4 w-4" aria-hidden="true" />
+                    </button>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-sm font-semibold text-navy-900">
+              Total: {total} worker{total > 1 ? "s" : ""} across {roles.length} role{roles.length > 1 ? "s" : ""}
             </p>
-          )}
-        </div>
-
-        {/* Email Address */}
-        <div>
-          <label htmlFor="mr-email" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Email Address <span className="text-[#D40820]">*</span>
-          </label>
-          <input
-            id="mr-email"
-            type="email"
-            required
-            value={form.email}
-            onChange={(e) => update("email", e.target.value)}
-            placeholder="name@company.ae"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm text-[#111315] focus:border-[#D40820] focus:outline-none min-h-[44px]"
-          />
-          {errors.email && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
-              <AlertCircle className="h-3.5 w-3.5" /> {errors.email}
-            </p>
-          )}
-        </div>
-
-        {/* Phone / WhatsApp */}
-        <div>
-          <label htmlFor="mr-phone" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Phone / WhatsApp Number <span className="text-[#D40820]">*</span>
-          </label>
-          <input
-            id="mr-phone"
-            type="tel"
-            required
-            value={form.phone}
-            onChange={(e) => update("phone", e.target.value)}
-            placeholder="+971 5X XXX XXXX"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm text-[#111315] focus:border-[#D40820] focus:outline-none min-h-[44px]"
-          />
-          {errors.phone && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
-              <AlertCircle className="h-3.5 w-3.5" /> {errors.phone}
-            </p>
-          )}
-        </div>
-
-        {/* Industry */}
-        <div>
-          <label htmlFor="mr-industry" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Industry <span className="text-[#D40820]">*</span>
-          </label>
-          <select
-            id="mr-industry"
-            value={form.industry}
-            onChange={(e) => update("industry", e.target.value)}
-            className="w-full rounded-md border border-[#E5E7EB] bg-white px-3.5 py-2.5 text-sm text-[#111315] focus:border-[#D40820] focus:outline-none min-h-[44px]"
-          >
-            <option>Oil &amp; Gas</option>
-            <option>Civil &amp; Construction</option>
-            <option>Mechanical Engineering</option>
-            <option>Electrical Engineering</option>
-            <option>Industrial &amp; MEP</option>
-            <option>Onshore Operations</option>
-            <option>Offshore Operations</option>
-          </select>
-        </div>
-
-        {/* Workforce Category */}
-        <div>
-          <label htmlFor="mr-category" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Workforce Category <span className="text-[#D40820]">*</span>
-          </label>
-          <input
-            id="mr-category"
-            type="text"
-            required
-            value={form.workforceCategory}
-            onChange={(e) => update("workforceCategory", e.target.value)}
-            placeholder="e.g. Multi Welders, Steel Fixers, Electricians"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm text-[#111315] focus:border-[#D40820] focus:outline-none min-h-[44px]"
-          />
-          {errors.workforceCategory && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
-              <AlertCircle className="h-3.5 w-3.5" /> {errors.workforceCategory}
-            </p>
-          )}
-        </div>
-
-        {/* Number of Workers */}
-        <div>
-          <label htmlFor="mr-count" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Number of Workers <span className="text-[#D40820]">*</span>
-          </label>
-          <input
-            id="mr-count"
-            type="number"
-            min={1}
-            required
-            value={form.workersCount}
-            onChange={(e) => update("workersCount", e.target.value)}
-            placeholder="e.g. 25"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm text-[#111315] focus:border-[#D40820] focus:outline-none min-h-[44px]"
-          />
-          {errors.workersCount && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
-              <AlertCircle className="h-3.5 w-3.5" /> {errors.workersCount}
-            </p>
-          )}
-        </div>
-
-        {/* Project Location */}
-        <div>
-          <label htmlFor="mr-location" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Project Location <span className="text-[#D40820]">*</span>
-          </label>
-          <input
-            id="mr-location"
-            type="text"
-            required
-            value={form.projectLocation}
-            onChange={(e) => update("projectLocation", e.target.value)}
-            placeholder="e.g. Musaffah, Ruwais, Dubai"
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm text-[#111315] focus:border-[#D40820] focus:outline-none min-h-[44px]"
-          />
-          {errors.projectLocation && (
-            <p className="mt-1 text-xs text-[#D40820] flex items-center gap-1">
-              <AlertCircle className="h-3.5 w-3.5" /> {errors.projectLocation}
-            </p>
-          )}
-        </div>
-
-        {/* Project Duration */}
-        <div>
-          <label htmlFor="mr-duration" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Project Duration
-          </label>
-          <select
-            id="mr-duration"
-            value={form.projectDuration}
-            onChange={(e) => update("projectDuration", e.target.value)}
-            className="w-full rounded-md border border-[#E5E7EB] bg-white px-3.5 py-2.5 text-sm text-[#111315] focus:border-[#D40820] focus:outline-none min-h-[44px]"
-          >
-            <option>Short-Term (1–3 Months)</option>
-            <option>Medium-Term (3–6 Months)</option>
-            <option>Long-Term (6+ Months)</option>
-            <option>Shutdown / Turnaround</option>
-          </select>
-        </div>
-
-        {/* Expected Start Date */}
-        <div>
-          <label htmlFor="mr-start" className="block text-xs font-semibold text-[#111315] mb-1.5">
-            Expected Start Date
-          </label>
-          <input
-            id="mr-start"
-            type="date"
-            value={form.expectedStartDate}
-            onChange={(e) => update("expectedStartDate", e.target.value)}
-            className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm text-[#111315] focus:border-[#D40820] focus:outline-none min-h-[44px]"
-          />
-        </div>
+          </>
+        ) : (
+          <p className="text-sm text-slate">
+            No roles selected yet.{" "}
+            <Link href="/workforce" className="font-semibold text-industrial underline underline-offset-4">
+              Choose from the workforce directory
+            </Link>{" "}
+            or describe the trades you need below.
+          </p>
+        )}
       </div>
 
-      {/* Additional Requirements */}
-      <div>
-        <label htmlFor="mr-notes" className="block text-xs font-semibold text-[#111315] mb-1.5">
-          Additional Requirements
-        </label>
-        <textarea
-          id="mr-notes"
-          rows={3}
-          value={form.additionalRequirements}
-          onChange={(e) => update("additionalRequirements", e.target.value)}
-          placeholder="Shift details, onshore/offshore requirements, certifications, or transportation needs..."
-          className="w-full rounded-md border border-[#E5E7EB] px-3.5 py-2.5 text-sm text-[#111315] focus:border-[#D40820] focus:outline-none"
-        />
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {Field({ k: "fullName", label: "Full name", required: true, children: <input type="text" autoComplete="name" value={form.fullName} onChange={(e) => update("fullName", e.target.value)} {...a11y("fullName")} /> })}
+        {Field({ k: "companyName", label: "Company name", required: true, children: <input type="text" autoComplete="organization" value={form.companyName} onChange={(e) => update("companyName", e.target.value)} {...a11y("companyName")} /> })}
+        {Field({ k: "email", label: "Work email", required: true, children: <input type="email" inputMode="email" autoComplete="email" value={form.email} onChange={(e) => update("email", e.target.value)} {...a11y("email")} /> })}
+        {Field({ k: "phone", label: "Phone / WhatsApp", required: true, children: <input type="tel" inputMode="tel" autoComplete="tel" placeholder="+971 50 123 4567" value={form.phone} onChange={(e) => update("phone", e.target.value)} {...a11y("phone")} /> })}
+        {Field({
+          k: "industry",
+          label: "Industry",
+          required: true,
+          children: (
+            <select value={form.industry} onChange={(e) => update("industry", e.target.value)} {...a11y("industry")}>
+              {INDUSTRIES.map((o) => (
+                <option key={o}>{o}</option>
+              ))}
+            </select>
+          ),
+        })}
+        {Field({ k: "projectLocation", label: "Project location", required: true, children: <input type="text" value={form.projectLocation} onChange={(e) => update("projectLocation", e.target.value)} {...a11y("projectLocation")} /> })}
+        {Field({
+          k: "workforceCategory",
+          label: hasRoles ? "Other trades (not in your selection)" : "Trades / workforce required",
+          required: !hasRoles,
+          span: !hasRoles ? false : true,
+          children: <input type="text" placeholder="e.g. 10 scaffolders, 4 riggers" value={form.workforceCategory} onChange={(e) => update("workforceCategory", e.target.value)} {...a11y("workforceCategory")} />,
+        })}
+        {!hasRoles &&
+          Field({ k: "workersCount", label: "Number of workers", required: true, children: <input type="number" inputMode="numeric" min={1} value={form.workersCount} onChange={(e) => update("workersCount", e.target.value)} {...a11y("workersCount")} /> })}
+        {Field({
+          k: "projectDuration",
+          label: "Contract duration",
+          children: (
+            <select value={form.projectDuration} onChange={(e) => update("projectDuration", e.target.value)} {...a11y("projectDuration")}>
+              {DURATIONS.map((o) => (
+                <option key={o}>{o}</option>
+              ))}
+            </select>
+          ),
+        })}
+        {Field({ k: "expectedStartDate", label: "Required mobilisation date", children: <input type="date" value={form.expectedStartDate} onChange={(e) => update("expectedStartDate", e.target.value)} {...a11y("expectedStartDate")} /> })}
+        {Field({
+          k: "additionalRequirements",
+          label: "Additional requirements",
+          span: true,
+          children: (
+            <textarea rows={3} placeholder="Shift pattern, certifications, CICPA site access, transport, etc." value={form.additionalRequirements} onChange={(e) => update("additionalRequirements", e.target.value)} {...a11y("additionalRequirements")} />
+          ),
+        })}
       </div>
-
-      {/* Live Summary */}
-      {(form.companyName || form.workforceCategory || form.workersCount) && (
-        <div className="rounded-lg bg-[#F5F6F8] p-3.5 text-xs text-[#667085] border border-[#E5E7EB]">
-          <span className="font-semibold text-[#111315]">Request Summary: </span>
-          {form.workersCount ? `${form.workersCount}x ` : ""}
-          {form.workforceCategory || "Manpower"} ({form.industry}) for{" "}
-          {form.companyName || "your project"} in {form.projectLocation || "UAE"} —{" "}
-          {form.projectDuration}.
-        </div>
-      )}
 
       <button
+        ref={submitRef}
         type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-6 py-3.5 text-sm font-bold text-[#111315] hover:bg-[#1fb858] transition-colors min-h-[48px] cursor-pointer"
+        className="inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-md bg-whatsapp px-6 py-3.5 text-base font-bold text-navy-950 transition-[filter] hover:brightness-95"
       >
         <MessageCircle className="h-5 w-5" aria-hidden="true" />
-        <span>Send Request via WhatsApp ({COMPANY.whatsapp.display})</span>
+        Review &amp; send via WhatsApp
       </button>
+      <p className="flex items-start gap-2 text-xs text-slate">
+        <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+        Your details are not stored on this website. They are placed into a WhatsApp message to {COMPANY.whatsapp.display} that you review and send yourself.
+      </p>
 
-      {preparedUrl && (
-        <div className="rounded-md bg-[#F5F6F8] border border-[#E5E7EB] p-3.5 text-xs text-[#111315] flex items-start gap-2">
-          <CheckCircle2 className="h-4 w-4 text-[#25D366] shrink-0 mt-0.5" />
-          <div>
-            Your formatted WhatsApp message has been prepared. Please send the message inside
-            WhatsApp to complete your enquiry with our team.{" "}
-            <a
-              href={preparedUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-[#D40820] underline"
+      <AnimatePresence>
+        {preview && (
+          <motion.div
+            className="fixed inset-0 z-[70] flex items-end justify-center bg-navy-950/60 p-0 backdrop-blur-sm sm:items-center sm:p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={(e) => e.target === e.currentTarget && setPreview(null)}
+          >
+            <motion.div
+              ref={dialogRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={`${uid}-pv-title`}
+              initial={reduce ? { opacity: 0 } : { y: 32, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={reduce ? { opacity: 0 } : { y: 32, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="flex max-h-[88svh] w-full max-w-lg flex-col rounded-t-2xl bg-white shadow-2xl sm:rounded-2xl"
+              style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
             >
-              Open WhatsApp again
-            </a>
-          </div>
-        </div>
-      )}
+              <div className="border-b border-line px-5 py-4">
+                <h2 id={`${uid}-pv-title`} className="text-lg font-bold text-navy-900">
+                  Check your WhatsApp message
+                </h2>
+                <p className="text-sm text-slate">This exact text will open in WhatsApp, ready to send to {COMPANY.whatsapp.display}.</p>
+              </div>
+              <pre className="flex-1 overflow-y-auto whitespace-pre-wrap break-words bg-mist px-5 py-4 font-sans text-sm leading-relaxed text-navy-900">
+                {preview.replace(/\*/g, "")}
+              </pre>
+              <div className="space-y-3 border-t border-line px-5 py-4">
+                {opened && (
+                  <p role="status" className="rounded-md border-l-4 border-whatsapp bg-whatsapp/10 p-3 text-sm text-navy-900">
+                    WhatsApp has been opened. Your request is <strong>not sent yet</strong>: press <strong>Send</strong> in WhatsApp to deliver it to our team.
+                  </p>
+                )}
+                <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+                  <button
+                    type="button"
+                    onClick={() => setPreview(null)}
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-line px-4 text-sm font-semibold text-navy-900 hover:bg-mist"
+                  >
+                    <Pencil className="h-4 w-4" aria-hidden="true" /> Edit details
+                  </button>
+                  <a
+                    href={waUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpened(true)}
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-whatsapp px-5 text-sm font-bold text-navy-950 hover:brightness-95"
+                  >
+                    {opened ? "Open WhatsApp again" : "Open WhatsApp"}
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </form>
   );
 }

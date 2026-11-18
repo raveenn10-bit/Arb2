@@ -80,7 +80,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full">
       {/* Main Navigation Bar */}
       <div
-        className={`w-full bg-white/95 backdrop-blur-md transition-shadow duration-200 border-b border-[#E5E7EB] ${
+        className={`w-full bg-white/95 backdrop-blur-md transition-shadow duration-200 border-b border-line ${
           scrolled ? "shadow-md" : ""
         }`}
       >
@@ -89,12 +89,11 @@ export function Header() {
           <Link
             href="/"
             className="flex items-center gap-3 shrink-0 group"
-            aria-label={`${COMPANY.name} Home`}
           >
             <div className="relative h-10 w-10 sm:h-11 sm:w-11 shrink-0 overflow-hidden">
               <Image
                 src="/images/brand/pak-arab-mark.png"
-                alt="Pak Arab Manpower Supply LLC emblem"
+                alt=""
                 fill
                 sizes="44px"
                 className="object-contain"
@@ -102,10 +101,10 @@ export function Header() {
               />
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="font-bold tracking-tight text-sm sm:text-base text-[#111315] group-hover:text-[#D40820] transition-colors">
+              <span className="font-bold tracking-tight text-sm sm:text-base text-navy-900 group-hover:text-brand transition-colors">
                 PAK ARAB MANPOWER
               </span>
-              <span className="text-[11px] font-semibold tracking-wider uppercase text-[#667085]">
+              <span className="text-[11px] font-semibold tracking-wider uppercase text-slate">
                 Supply LLC · Abu Dhabi
               </span>
             </div>
@@ -129,8 +128,8 @@ export function Header() {
                       aria-haspopup="true"
                       className={`inline-flex items-center gap-1 px-3.5 py-2 text-sm font-medium rounded-md transition-colors min-h-[44px] ${
                         isActive
-                          ? "text-[#D40820] bg-[#F5F6F8]"
-                          : "text-[#111315] hover:text-[#D40820] hover:bg-[#F5F6F8]"
+                          ? "text-brand bg-mist"
+                          : "text-navy-900 hover:text-brand hover:bg-mist"
                       }`}
                     >
                       <span>{item.label}</span>
@@ -145,31 +144,31 @@ export function Header() {
                     {servicesOpen && (
                       <div
                         role="menu"
-                        className="absolute left-0 top-full mt-2 w-80 rounded-lg border border-[#E5E7EB] bg-white p-2 shadow-xl"
+                        className="absolute left-0 top-full mt-2 w-80 rounded-lg border border-line bg-white p-2 shadow-xl"
                       >
                         <Link
                           href="/services"
                           role="menuitem"
-                          className="block rounded-md px-3 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#D40820] hover:bg-[#F5F6F8]"
+                          className="block rounded-md px-3 py-2.5 text-xs font-semibold uppercase tracking-wider text-brand hover:bg-mist"
                         >
                           View All Services →
                         </Link>
-                        <div className="my-1 border-t border-[#E5E7EB]" />
+                        <div className="my-1 border-t border-line" />
                         {SERVICES.map((service) => (
                           <Link
                             key={service.slug}
                             href={`/services/${service.slug}`}
                             role="menuitem"
-                            className="flex items-start gap-3 rounded-md px-3 py-2.5 text-sm hover:bg-[#F5F6F8] transition-colors"
+                            className="flex items-start gap-3 rounded-md px-3 py-2.5 text-sm hover:bg-mist transition-colors"
                           >
-                            <span className="text-xs font-bold text-[#D40820] mt-0.5">
+                            <span className="text-xs font-bold text-brand mt-0.5">
                               {service.number}
                             </span>
                             <div>
-                              <div className="font-semibold text-[#111315]">
+                              <div className="font-semibold text-navy-900">
                                 {service.title}
                               </div>
-                              <div className="text-xs text-[#667085] line-clamp-1">
+                              <div className="text-xs text-slate line-clamp-1">
                                 {service.shortDescription}
                               </div>
                             </div>
@@ -187,8 +186,8 @@ export function Header() {
                   href={item.href}
                   className={`px-3.5 py-2 text-sm font-medium rounded-md transition-colors min-h-[44px] inline-flex items-center ${
                     isActive
-                      ? "text-[#D40820] bg-[#F5F6F8]"
-                      : "text-[#111315] hover:text-[#D40820] hover:bg-[#F5F6F8]"
+                      ? "text-brand bg-mist"
+                      : "text-navy-900 hover:text-brand hover:bg-mist"
                   }`}
                 >
                   {item.label}
@@ -201,7 +200,7 @@ export function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/#manpower-request"
-              className="hidden md:inline-flex items-center gap-2 rounded-md bg-[#D40820] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#A40E21] transition-colors min-h-[44px]"
+              className="hidden md:inline-flex items-center gap-2 rounded-md bg-brand px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors min-h-[44px]"
             >
               <span>Request Manpower</span>
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -212,7 +211,7 @@ export function Header() {
               onClick={() => setMobileOpen((prev) => !prev)}
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
-              className="xl:hidden inline-flex items-center justify-center rounded-md border border-[#E5E7EB] p-2.5 text-[#111315] hover:bg-[#F5F6F8] min-h-[44px] min-w-[44px]"
+              className="xl:hidden inline-flex items-center justify-center rounded-md border border-line p-2.5 text-navy-900 hover:bg-mist min-h-[44px] min-w-[44px]"
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -223,7 +222,7 @@ export function Header() {
       {/* Mobile Drawer */}
       {mobileOpen && (
         <div
-          className="xl:hidden fixed inset-0 top-16 lg:top-[74px] z-40 bg-white overflow-y-auto border-t border-[#E5E7EB]"
+          className="xl:hidden fixed inset-0 top-16 lg:top-[74px] z-40 bg-white overflow-y-auto border-t border-line"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"
@@ -232,11 +231,11 @@ export function Header() {
             {NAV_LINKS.map((item) => {
               if (item.hasDropdown) {
                 return (
-                  <div key={item.href} className="border-b border-[#E5E7EB] pb-2">
+                  <div key={item.href} className="border-b border-line pb-2">
                     <button
                       type="button"
                       onClick={() => setMobileServicesOpen((prev) => !prev)}
-                      className="flex w-full items-center justify-between py-3 text-base font-semibold text-[#111315] min-h-[44px]"
+                      className="flex w-full items-center justify-between py-3 text-base font-semibold text-navy-900 min-h-[44px]"
                     >
                       <span>{item.label}</span>
                       <ChevronDown
@@ -249,7 +248,7 @@ export function Header() {
                       <div className="pl-4 flex flex-col gap-1 pb-2">
                         <Link
                           href="/services"
-                          className="py-2 text-sm font-semibold text-[#D40820]"
+                          className="py-2 text-sm font-semibold text-brand"
                         >
                           All Services Overview
                         </Link>
@@ -257,7 +256,7 @@ export function Header() {
                           <Link
                             key={s.slug}
                             href={`/services/${s.slug}`}
-                            className="py-2 text-sm text-[#667085] hover:text-[#111315]"
+                            className="py-2 text-sm text-slate hover:text-navy-900"
                           >
                             {s.number}. {s.title}
                           </Link>
@@ -272,7 +271,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="py-3 text-base font-semibold text-[#111315] border-b border-[#E5E7EB] min-h-[44px] flex items-center"
+                  className="py-3 text-base font-semibold text-navy-900 border-b border-line min-h-[44px] flex items-center"
                 >
                   {item.label}
                 </Link>
@@ -281,13 +280,13 @@ export function Header() {
 
             <Link
               href="/quality"
-              className="py-3 text-base font-semibold text-[#111315] border-b border-[#E5E7EB] min-h-[44px] flex items-center"
+              className="py-3 text-base font-semibold text-navy-900 border-b border-line min-h-[44px] flex items-center"
             >
               Quality &amp; Certifications
             </Link>
             <Link
               href="/careers"
-              className="py-3 text-base font-semibold text-[#111315] border-b border-[#E5E7EB] min-h-[44px] flex items-center"
+              className="py-3 text-base font-semibold text-navy-900 border-b border-line min-h-[44px] flex items-center"
             >
               Careers &amp; Job Enquiries
             </Link>
@@ -295,7 +294,7 @@ export function Header() {
             <div className="mt-4 flex flex-col gap-3">
               <Link
                 href="/#manpower-request"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#D40820] px-5 py-3.5 text-sm font-semibold text-white min-h-[48px]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand px-5 py-3.5 text-sm font-semibold text-white min-h-[48px]"
               >
                 <span>Request Manpower</span>
                 <ArrowUpRight className="h-4 w-4" />
@@ -304,7 +303,7 @@ export function Header() {
                 href={buildQuickEnquiryUrl("Manpower Supply Enquiry")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-5 py-3.5 text-sm font-semibold text-[#111315] min-h-[48px]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-5 py-3.5 text-sm font-semibold text-navy-900 min-h-[48px]"
               >
                 <MessageCircle className="h-4 w-4" />
                 <span>WhatsApp {COMPANY.whatsapp.display}</span>

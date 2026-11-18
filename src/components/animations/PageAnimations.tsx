@@ -9,16 +9,26 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
 
+type Job = { prep?: () => void; play: (delay: number) => void };
+
 /**
  * Site-wide scroll animations applied to every page's <main> content.
  * Opt out on any element (and its subtree) with data-no-anim.
  *
  *  - Section headings (h2): line-by-line masked text reveal (SplitText)
- *  - Eyebrow labels: letter-spacing + fade in
+ *  - Card titles (h3): word reveal
+ *  - Eyebrow labels: scramble-decode
  *  - Red accent rules: draw in from the left
- *  - Card grids: staggered rise-in, batched per row
- *  - Content photos: clip-path wipe reveal + gentle scroll parallax
- *  - Card icons: pop in with a slight rotation
+ *  - Card grids: staggered rise-in
+ *  - Card icons: pop in
+ *  - Content photos: clip-path wipe reveal + gentle parallax (desktop)
+ *
+ * Performance & robustness:
+ *  - Nothing is split, measured or hidden up front. One IntersectionObserver prepares and plays each
+ *    effect only as its element approaches the viewport, so page load does almost no extra work.
+ *  - Anything already on screen when the page loads is left exactly as rendered (no flicker, no hiding).
+ *  - If JavaScript or GSAP fails, all content remains visible because hidden states are only applied
+ *    by script, just before an element scrolls into view.
  */
 export function PageAnimations() {
   const pathname = usePathname();
@@ -29,191 +39,189 @@ export function PageAnimations() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const skip = (el: Element) => !!el.closest("[data-no-anim]");
-    // first section on each page is the hero / page hero — leave it to its own animation
     const firstSection = main.querySelector("section");
     const inScope = (el: Element) => !skip(el) && !(firstSection && firstSection.contains(el));
-    const all = <T extends Element>(sel: string) =>
-      Array.from(main.querySelectorAll<T>(sel)).filter(inScope);
+    const all = <T extends Element>(sel: string) => Array.from(main.querySelectorAll<T>(sel)).filter(inScope);
 
     const splits: SplitText[] = [];
+    const ctx = gsap.context(() => {}, main);
+    const jobs = new Map<Element, Job>();
+    const seen = new WeakSet<Element>();
+    let io: IntersectionObserver | null = null;
+    let idleId = 0;
+    let cancelled = false;
 
-    const ctx = gsap.context(() => {
-      // 0. Inner-page hero banner — intro timeline on load
+    // Inner-page hero banner: plays immediately on load (it is the first thing visitors see)
+    ctx.add(() => {
       const pageHero = main.querySelector<HTMLElement>("[data-page-hero]");
-      if (pageHero) {
-        const h1 = pageHero.querySelector<HTMLElement>("h1");
-        const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-        tl.from(pageHero.querySelectorAll("nav > span"), { opacity: 0, x: -12, duration: 0.6, stagger: 0.06 })
-          .to(pageHero.querySelector("p"), {
+      if (!pageHero) return;
+      const h1 = pageHero.querySelector<HTMLElement>("h1");
+      const lead = pageHero.querySelector<HTMLElement>("p");
+      const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
+      tl.from(pageHero.querySelectorAll("nav > span"), { opacity: 0, x: -12, duration: 0.6, stagger: 0.06 });
+      if (lead) {
+        tl.to(
+          lead,
+          {
             duration: 1.1,
-            scrambleText: {
-              text: pageHero.querySelector("p")?.textContent?.trim() ?? "",
-              chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-              speed: 0.6,
-              revealDelay: 0.25,
-            },
-          }, "<0.1");
-        if (h1) {
-          const split = SplitText.create(h1, { type: "words,chars", mask: "words" });
-          splits.push(split);
-          tl.from(split.chars, { yPercent: 115, opacity: 0, rotate: 8, duration: 0.9, stagger: 0.02 }, "<0.1");
-        }
-        tl.from(pageHero.querySelectorAll("h1 ~ p"), { opacity: 0, y: 20, duration: 0.8 }, "<0.3")
-          .from(pageHero.querySelector(".page-hero-glow"), { opacity: 0, scale: 0.6, duration: 1.6, ease: "power2.out" }, 0);
-        gsap.to(pageHero.querySelector(".page-hero-glow"), {
-          xPercent: -15,
-          yPercent: 10,
-          duration: 6,
-          ease: "sine.inOut",
-          repeat: -1,
-          yoyo: true,
-        });
-      }
-
-      // 1. Headings — masked line reveal
-      all<HTMLElement>("h2").forEach((h) => {
-        const split = SplitText.create(h, {
-          type: "lines,words,chars",
-          mask: "lines",
-          autoSplit: true,
-          onSplit(self) {
-            return gsap.from(self.chars, {
-              yPercent: 110,
-              opacity: 0,
-              rotate: 4,
-              duration: 0.8,
-              stagger: { each: 0.016, from: "start" },
-              ease: "expo.out",
-              scrollTrigger: { trigger: h, start: "top 88%", once: true },
-            });
+            scrambleText: { text: lead.textContent?.trim() ?? "", chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", speed: 0.6, revealDelay: 0.25 },
           },
-        });
+          "<0.1",
+        );
+      }
+      if (h1) {
+        const split = SplitText.create(h1, { type: "words,chars", mask: "words" });
         splits.push(split);
-      });
+        tl.from(split.chars, { yPercent: 115, opacity: 0, rotate: 8, duration: 0.9, stagger: 0.02 }, "<0.1");
+      }
+      tl.from(pageHero.querySelectorAll("h1 ~ p"), { opacity: 0, y: 20, duration: 0.8 }, "<0.3");
+      const glow = pageHero.querySelector(".page-hero-glow");
+      if (glow) {
+        tl.from(glow, { opacity: 0, scale: 0.6, duration: 1.6, ease: "power2.out" }, 0);
+        gsap.to(glow, { xPercent: -15, yPercent: 10, duration: 6, ease: "sine.inOut", repeat: -1, yoyo: true });
+      }
+    });
 
-      // 2. Eyebrow labels (small red uppercase kickers)
+    const register = () => {
+      if (cancelled) return;
+
+      // 1. Section headings — masked line reveal
+      all<HTMLElement>("h2").forEach((h) =>
+        jobs.set(h, {
+          play: () => {
+            const split = SplitText.create(h, { type: "lines,words,chars", mask: "lines" });
+            splits.push(split);
+            gsap.from(split.chars, { yPercent: 110, opacity: 0, rotate: 4, duration: 0.8, stagger: 0.016, ease: "expo.out" });
+          },
+        }),
+      );
+
+      // 2. Card titles — word reveal
+      all<HTMLElement>("h3").forEach((h) =>
+        jobs.set(h, {
+          play: (delay) => {
+            const split = SplitText.create(h, { type: "words", mask: "words" });
+            splits.push(split);
+            gsap.from(split.words, { yPercent: 100, duration: 0.7, stagger: 0.05, delay, ease: "power3.out" });
+          },
+        }),
+      );
+
+      // 3. Eyebrow labels — scramble decode
       all<HTMLElement>('[class*="tracking-[0.18em]"], [class*="tracking-[0.2em]"]')
         .filter((el) => el.children.length === 0 && (el.textContent ?? "").trim().length > 0)
-        .forEach((el) => {
-          const finalText = (el.textContent ?? "").trim();
-          // lock width so the line doesn't jump while letters decode
-          el.style.minWidth = `${el.offsetWidth}px`;
-          gsap.to(el, {
-            duration: 1.2,
-            scrambleText: {
-              text: finalText,
-              chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-              speed: 0.5,
-              revealDelay: 0.15,
+        .forEach((el) =>
+          jobs.set(el, {
+            play: () => {
+              const finalText = (el.textContent ?? "").trim();
+              el.style.minWidth = `${el.offsetWidth}px`;
+              gsap.to(el, {
+                duration: 1.2,
+                scrambleText: { text: finalText, chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", speed: 0.5, revealDelay: 0.15 },
+                onComplete: () => {
+                  el.textContent = finalText;
+                  el.style.minWidth = "";
+                },
+              });
             },
-            scrollTrigger: { trigger: el, start: "top 92%", once: true },
-            onComplete: () => {
-              el.textContent = finalText;
-              el.style.minWidth = "";
-            },
-          });
-        });
+          }),
+        );
 
-      // 1b. Card titles — light word-by-word reveal
-      all<HTMLElement>("h3").forEach((h) => {
-        const split = SplitText.create(h, { type: "words", mask: "words", autoSplit: true,
-          onSplit(self) {
-            return gsap.from(self.words, {
-              yPercent: 100,
-              duration: 0.7,
-              stagger: 0.05,
-              ease: "power3.out",
-              scrollTrigger: { trigger: h, start: "top 92%", once: true },
-            });
-          },
-        });
-        splits.push(split);
-      });
-
-      // 3. Accent rules
-      all<HTMLElement>('span[class*="h-[2px]"]').forEach((el) => {
-        gsap.from(el, {
-          scaleX: 0,
-          transformOrigin: "left center",
-          duration: 0.8,
-          ease: "power3.inOut",
-          scrollTrigger: { trigger: el, start: "top 92%", once: true },
-        });
-      });
-
-      // 4. Card grids — staggered rise-in
-      const gridItems = all<HTMLElement>(".grid > *").filter(
-        (el) => (el.parentElement?.children.length ?? 0) >= 3
+      // 4. Accent rules
+      all<HTMLElement>('span[class*="h-[2px]"]').forEach((el) =>
+        jobs.set(el, {
+          prep: () => gsap.set(el, { scaleX: 0, transformOrigin: "left center" }),
+          play: () => gsap.to(el, { scaleX: 1, duration: 0.8, ease: "power3.inOut" }),
+        }),
       );
-      if (gridItems.length) {
-        gsap.set(gridItems, { opacity: 0, y: 40 });
-        ScrollTrigger.batch(gridItems, {
-          start: "top 92%",
-          once: true,
-          onEnter: (batch) =>
-            gsap.to(batch, {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-              stagger: 0.08,
-              ease: "power3.out",
-              clearProps: "transform",
-            }),
-        });
-      }
 
-      // 5. Card icons — pop in
-      all<HTMLElement>('[class*="rounded-lg"][class*="bg-[#D40820]/10"]').forEach((el) => {
-        gsap.from(el, {
-          scale: 0.4,
-          rotate: -15,
-          opacity: 0,
-          duration: 0.7,
-          ease: "back.out(2)",
-          scrollTrigger: { trigger: el, start: "top 90%", once: true },
-        });
-      });
+      // 5. Card grids — staggered rise-in
+      all<HTMLElement>(".grid > *")
+        .filter((el) => (el.parentElement?.children.length ?? 0) >= 3)
+        .forEach((el) =>
+          jobs.set(el, {
+            prep: () => gsap.set(el, { opacity: 0, y: 40 }),
+            play: (delay) => gsap.to(el, { opacity: 1, y: 0, duration: 0.7, delay, ease: "power3.out", clearProps: "transform" }),
+          }),
+        );
 
-      // 6. Content photos — wipe reveal + parallax
+      // 6. Card icons — pop in
+      all<HTMLElement>('[class*="rounded-lg"][class*="bg-brand/10"]').forEach((el) =>
+        jobs.set(el, {
+          prep: () => gsap.set(el, { scale: 0.4, rotate: -15, opacity: 0 }),
+          play: (delay) => gsap.to(el, { scale: 1, rotate: 0, opacity: 1, duration: 0.7, delay, ease: "back.out(2)" }),
+        }),
+      );
+
+      // 7. Content photos — wipe reveal, plus scroll parallax on larger screens only
+      const desktop = window.matchMedia("(min-width: 768px)").matches;
       all<HTMLImageElement>("section img").forEach((img) => {
         const box = img.parentElement;
         if (!box || img.classList.contains("object-contain")) return;
         if (!/(relative|absolute)/.test(box.className)) return;
-        // only larger photos (skip logos / icons)
-        if (box.getBoundingClientRect().width < 220) return;
-
-        gsap.fromTo(
-          box,
-          { clipPath: "inset(12% 8% 12% 8% round 12px)", opacity: 0.4 },
-          {
-            clipPath: "inset(0% 0% 0% 0% round 12px)",
-            opacity: 1,
-            duration: 1.2,
-            ease: "expo.out",
-            scrollTrigger: { trigger: box, start: "top 88%", once: true },
-          }
-        );
-        gsap.fromTo(
-          img,
-          { scale: 1.18, yPercent: -5 },
-          {
-            scale: 1.18,
-            yPercent: 5,
-            ease: "none",
-            scrollTrigger: { trigger: box, start: "top bottom", end: "bottom top", scrub: true },
-          }
-        );
+        jobs.set(box, {
+          prep: () => gsap.set(box, { clipPath: "inset(12% 8% 12% 8% round 12px)", opacity: 0.4 }),
+          play: () => gsap.to(box, { clipPath: "inset(0% 0% 0% 0% round 12px)", opacity: 1, duration: 1.2, ease: "expo.out" }),
+        });
+        if (desktop) {
+          ctx.add(() =>
+            gsap.fromTo(
+              img,
+              { scale: 1.18, yPercent: -5 },
+              { scale: 1.18, yPercent: 5, ease: "none", scrollTrigger: { trigger: box, start: "top bottom", end: "bottom top", scrub: true } },
+            ),
+          );
+        }
       });
-    }, main);
 
-    // recalc positions once images / fonts settle
+      io = new IntersectionObserver(
+        (entries) => {
+          let stagger = 0;
+          for (const entry of entries) {
+            const el = entry.target;
+            const job = jobs.get(el);
+            if (!job) continue;
+            if (!seen.has(el)) {
+              seen.add(el);
+              if (entry.isIntersecting) {
+                // Already visible when the page loaded: leave it exactly as rendered.
+                jobs.delete(el);
+                io?.unobserve(el);
+                continue;
+              }
+              ctx.add(() => job.prep?.());
+              continue;
+            }
+            if (entry.isIntersecting) {
+              jobs.delete(el);
+              io?.unobserve(el);
+              const delay = Math.min(stagger, 6) * 0.08;
+              stagger += 1;
+              ctx.add(() => job.play(delay));
+            }
+          }
+        },
+        // Fire a little before an element scrolls into view so it is ready before it is seen
+        { rootMargin: "0px 0px 8% 0px" },
+      );
+      jobs.forEach((_, el) => io?.observe(el));
+      ScrollTrigger.refresh();
+    };
+
+    // Register after the browser is idle so hydration and first paint are never delayed
+    const ric = window.requestIdleCallback as ((cb: () => void, o?: { timeout: number }) => number) | undefined;
+    if (ric) idleId = ric(register, { timeout: 1200 });
+    else idleId = window.setTimeout(register, 250);
+
     const refresh = () => ScrollTrigger.refresh();
     window.addEventListener("load", refresh);
-    const t = window.setTimeout(refresh, 600);
 
     return () => {
+      cancelled = true;
+      if (ric && window.cancelIdleCallback) window.cancelIdleCallback(idleId);
+      else window.clearTimeout(idleId);
       window.removeEventListener("load", refresh);
-      window.clearTimeout(t);
+      io?.disconnect();
       splits.forEach((s) => s.revert());
       ctx.revert();
     };

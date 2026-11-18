@@ -30,18 +30,18 @@ export default function ClientsPage() {
         <div className="container-wide space-y-10">
           <ClientLogoGrid variant="wall" />
 
-          <div className="rounded-xl bg-[#F5F6F8] border border-[#E5E7EB] p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="rounded-xl bg-mist border border-line p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-1.5">
-              <h2 className="text-xl font-extrabold text-[#111315]">
+              <h2 className="text-xl font-extrabold text-navy-900">
                 Need Manpower Support for Your Next UAE Project?
               </h2>
-              <p className="text-sm text-[#667085]">
+              <p className="text-sm text-slate">
                 Share your trade categories, crew size, and site location with our Abu Dhabi team.
               </p>
             </div>
             <Link
               href="/#manpower-request"
-              className="inline-flex items-center gap-2 rounded-md bg-[#D40820] px-5 py-3 text-sm font-semibold text-white hover:bg-[#A40E21] transition-colors shrink-0 min-h-[44px]"
+              className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-sm font-semibold text-white hover:bg-brand-dark transition-colors shrink-0 min-h-[44px]"
             >
               <span>Request Manpower</span>
               <ArrowRight className="h-4 w-4" />

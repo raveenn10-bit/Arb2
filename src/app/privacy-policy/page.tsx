@@ -22,9 +22,9 @@ export default function PrivacyPolicyPage() {
       />
 
       <section className="py-16 sm:py-20 bg-white">
-        <div className="container-wide max-w-4xl space-y-6 text-sm sm:text-base leading-relaxed text-[#667085]">
+        <div className="container-wide max-w-4xl space-y-6 text-sm sm:text-base leading-relaxed text-slate">
           <div className="space-y-2">
-            <h2 className="text-xl font-extrabold text-[#111315]">
+            <h2 className="text-xl font-extrabold text-navy-900">
               1. Information Handling
             </h2>
             <p>
@@ -32,12 +32,14 @@ export default function PrivacyPolicyPage() {
               {COMPANY.name}. Enquiry forms on this website format your entered project
               or career details locally in your browser and open a direct WhatsApp
               conversation with our team at {COMPANY.whatsapp.display}. No form
-              submissions are stored in a website database.
+              submissions are stored in a website database. Workforce roles you select in
+              the directory are kept only in your own browser&apos;s session storage so they
+              stay selected while you browse; they are cleared when you close the tab.
             </p>
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-xl font-extrabold text-[#111315]">
+            <h2 className="text-xl font-extrabold text-navy-900">
               2. Sensitive Documents
             </h2>
             <p>
@@ -49,7 +51,7 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-xl font-extrabold text-[#111315]">
+            <h2 className="text-xl font-extrabold text-navy-900">
               3. External Links
             </h2>
             <p>
@@ -60,7 +62,7 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-xl font-extrabold text-[#111315]">
+            <h2 className="text-xl font-extrabold text-navy-900">
               4. Contact Regarding Privacy
             </h2>
             <p>

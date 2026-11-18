@@ -27,7 +27,7 @@ export const FAQS: FaqItem[] = [
     id: "faq-11",
     question: "How quickly can Pak Arab Manpower mobilise workers in the UAE?",
     answer:
-      "Pak Arab Manpower Supply LLC typically deploys ADNOC-compliant, CICPA-eligible Oil & Gas, MEP and Civil workforce within 24–72 hours across all 7 Emirates, depending on the trades, headcount and site access requirements of the project.",
+      "Mobilisation time depends on the trades, headcount and site access requirements (for example CICPA permits) of each project. Share your requirement through the request form or WhatsApp and our Abu Dhabi team will confirm availability and a realistic mobilisation date.",
   },
   {
     id: "faq-12",

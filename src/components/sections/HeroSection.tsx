@@ -50,12 +50,17 @@ export function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(0);
   const touchStartX = useRef<number | null>(null);
 
+  const [paused, setPaused] = useState(false);
+
+  // Auto-advance every 6s; paused on hover, keyboard focus and touch, when the tab is hidden,
+  // and never for visitors who prefer reduced motion (WCAG 2.2.2).
   useEffect(() => {
+    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 3000);
+      if (!document.hidden) setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [paused]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -150,6 +155,7 @@ export function HeroSection() {
   }, []);
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    setPaused(true);
     if (e.touches.length > 0) {
       touchStartX.current = e.touches[0].clientX;
     }
@@ -166,6 +172,7 @@ export function HeroSection() {
       }
     }
     touchStartX.current = null;
+    setPaused(false);
   };
 
   return (
@@ -173,12 +180,20 @@ export function HeroSection() {
       ref={sectionRef}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="relative bg-[#111315] text-white overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) setPaused(false);
+      }}
+      aria-roledescription="carousel"
+      aria-label="Pak Arab Manpower Supply highlights"
+      className="relative bg-navy-900 text-white overflow-hidden"
     >
       {/* =========================================================
           MOBILE-ONLY 9:16 VERTICAL HERO DESIGN (md:hidden)
          ========================================================= */}
-      <div className="md:hidden relative w-full aspect-[9/16] max-h-[92vh] min-h-[620px] flex flex-col justify-between overflow-hidden bg-[#0A0B0D]">
+      <div className="md:hidden relative w-full aspect-[9/16] max-h-[92vh] min-h-[620px] flex flex-col justify-between overflow-hidden bg-navy-950">
         <div className="absolute inset-0 overflow-hidden">
           <div
             className="flex w-full h-full transition-transform duration-700 ease-out will-change-transform"
@@ -199,31 +214,36 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-45% to-[#0A0B0D]/95 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-45% to-navy-950/95 pointer-events-none" />
 
         <div className="relative z-10 px-4 pt-4 flex items-center justify-between gap-2">
           <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-white bg-black/55 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-full shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-[#D40820] animate-pulse" />
+            <span className="h-2 w-2 rounded-full bg-brand animate-pulse" />
             <span>{HERO_SLIDES[activeSlide].caption}</span>
           </span>
-          <div className="flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/15">
+          <div className="flex items-center gap-0.5 bg-black/45 backdrop-blur-md px-1.5 py-0.5 rounded-full border border-white/15">
             {HERO_SLIDES.map((slide, idx) => (
               <button
                 key={slide.mobileSrc}
                 type="button"
                 onClick={() => setActiveSlide(idx)}
                 aria-label={`Mobile Slide ${idx + 1}: ${slide.caption}`}
-                className={`hero-pill h-2 rounded-full transition-all duration-300 ${
-                  activeSlide === idx ? "w-7 bg-[#D40820]" : "w-2 bg-white/45"
+                aria-current={activeSlide === idx ? "true" : undefined}
+              className="hero-pill group inline-flex h-6 min-w-6 items-center justify-center"
+            >
+              <span
+                className={`block h-2 rounded-full transition-all duration-300 ${
+                  activeSlide === idx ? "w-7 bg-brand" : "w-2 bg-white/45 group-hover:bg-white/70"
                 }`}
               />
+            </button>
             ))}
           </div>
         </div>
 
         <div className="hero-m hero-content relative z-10 px-4 pb-5 pt-10 space-y-3.5">
           <div className="inline-flex items-center gap-2">
-            <span className="h-[2px] w-6 bg-[#D40820]" />
+            <span className="h-[2px] w-6 bg-brand" />
             <span className="hero-kicker text-[10px] font-bold uppercase tracking-[0.18em] text-white/90">
               MANPOWER SUPPLY COMPANY · ABU DHABI
             </span>
@@ -231,18 +251,18 @@ export function HeroSection() {
 
           <h1 className="hero-title font-display text-3xl font-bold leading-[1.06] tracking-tight text-white drop-shadow-sm">
             Powering Industries.
-            <span className="block text-[#D40820] mt-0.5">Delivering Skilled Workforce.</span>
+            <span className="block text-brand mt-0.5">Delivering Skilled Workforce.</span>
           </h1>
 
           <p className="text-xs text-white/85 leading-relaxed">
-            ADNOC-compliant, CICPA-eligible Oil &amp; Gas, MEP, and Civil workforce deployed within
-            24–72 hours across all 7 Emirates.
+            ICV-certified supplier of Oil &amp; Gas, MEP and Civil workforce for short- and long-term
+            projects across all 7 Emirates.
           </p>
 
           <div className="grid grid-cols-2 gap-2.5 pt-1">
             <Link
               href="/contact#request-form"
-              className="flex items-center justify-center rounded-lg bg-[#D40820] px-3.5 py-3 text-xs font-bold text-white shadow-md"
+              className="flex items-center justify-center rounded-lg bg-brand px-3.5 py-3 text-xs font-bold text-white shadow-md"
             >
               Request Manpower →
             </Link>
@@ -258,16 +278,16 @@ export function HeroSection() {
 
           <div className="pt-2.5 border-t border-white/15 grid grid-cols-2 gap-y-1.5 gap-x-3 text-[11px] font-medium text-white/90">
             <div className="flex items-center gap-1.5">
-              <span className="text-[#D40820]">●</span> Skilled Workforce
+              <span className="text-brand">●</span> Skilled Workforce
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-[#D40820]">●</span> Onshore &amp; Offshore
+              <span className="text-brand">●</span> Onshore &amp; Offshore
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-[#D40820]">●</span> ISO &amp; ICV Certified
+              <span className="text-brand">●</span> ISO &amp; ICV Certified
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-[#D40820]">●</span> 24–72h Mobilization
+              <span className="text-brand">●</span> Short &amp; Long-Term Contracts
             </div>
           </div>
         </div>
@@ -297,12 +317,12 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-[#111315]/95 via-[#111315]/80 to-[#111315]/45 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-900/80 to-navy-900/45 pointer-events-none" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 py-20 w-full">
           <div className="hero-content max-w-3xl space-y-6">
             <div className="hero-stagger inline-flex items-center gap-3">
-              <span className="h-[2px] w-10 bg-[#D40820]" />
+              <span className="h-[2px] w-10 bg-brand" />
               <span className="hero-kicker text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white/90">
                 MANPOWER SUPPLY COMPANY · ABU DHABI, UAE
               </span>
@@ -310,7 +330,7 @@ export function HeroSection() {
 
             <div role="heading" aria-level={1} className="hero-title font-display text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.03] tracking-tight">
               Powering Industries.
-              <span className="block mt-1 text-[#D40820]">Delivering Skilled Workforce.</span>
+              <span className="block mt-1 text-brand">Delivering Skilled Workforce.</span>
             </div>
 
             <p className="hero-stagger text-base sm:text-lg text-white/85 max-w-2xl leading-relaxed">
@@ -321,7 +341,7 @@ export function HeroSection() {
             <div className="hero-stagger flex flex-wrap gap-4 pt-2">
               <Link
                 href="/contact#request-form"
-                className="inline-flex items-center gap-2 rounded-md bg-[#D40820] px-6 py-3.5 text-sm sm:text-base font-bold text-white hover:bg-[#A40E21] transition-colors"
+                className="inline-flex items-center gap-2 rounded-md bg-brand px-6 py-3.5 text-sm sm:text-base font-bold text-white hover:bg-brand-dark transition-colors"
               >
                 Request Manpower
                 <ArrowRight className="h-4 w-4" />
@@ -335,17 +355,22 @@ export function HeroSection() {
             </div>
 
             <div className="hero-stagger pt-4 flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2" role="tablist" aria-label="Hero Workforce Slides">
+              <div className="flex items-center gap-2" aria-label="Choose slide">
                 {HERO_SLIDES.map((slide, idx) => (
                   <button
                     key={slide.desktopSrc}
                     type="button"
                     onClick={() => setActiveSlide(idx)}
                     aria-label={`Slide ${idx + 1}: ${slide.caption}`}
-                    className={`hero-pill h-2 rounded-full transition-all duration-300 ${
-                      activeSlide === idx ? "w-8 bg-[#D40820]" : "w-2.5 bg-white/40 hover:bg-white/70"
+                    aria-current={activeSlide === idx ? "true" : undefined}
+                  className="hero-pill group inline-flex h-6 min-w-6 items-center justify-center"
+                >
+                  <span
+                    className={`block h-2 rounded-full transition-all duration-300 ${
+                      activeSlide === idx ? "w-8 bg-brand" : "w-2.5 bg-white/40 group-hover:bg-white/70"
                     }`}
                   />
+                </button>
                 ))}
               </div>
               <span className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80 bg-black/35 backdrop-blur-sm border border-white/15 px-3 py-1 rounded-full">
@@ -356,7 +381,7 @@ export function HeroSection() {
             <div className="hero-stagger pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs sm:text-sm font-medium text-white/90">
               {TRUST_INDICATORS.map(({ label, icon: Icon }) => (
                 <div key={label} className="flex items-center gap-2">
-                  <Icon className="h-4 w-4 text-[#D40820] shrink-0" />
+                  <Icon className="h-4 w-4 text-brand shrink-0" />
                   <span>{label}</span>
                 </div>
               ))}

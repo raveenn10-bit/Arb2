@@ -30,11 +30,11 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20 bg-white">
         <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 space-y-5">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111315]">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900">
               {COMPANY.name}
             </h2>
             {COMPANY.about.paragraphs.map((p, idx) => (
-              <p key={idx} className="text-base leading-relaxed text-[#667085]">
+              <p key={idx} className="text-base leading-relaxed text-slate">
                 {p}
               </p>
             ))}
@@ -43,13 +43,13 @@ export default function AboutPage() {
               {COMPANY.about.pillars.map((pillar) => (
                 <div
                   key={pillar.title}
-                  className="rounded-lg border border-[#E5E7EB] bg-[#F5F6F8] p-4 space-y-1"
+                  className="rounded-lg border border-line bg-mist p-4 space-y-1"
                 >
-                  <div className="flex items-center gap-2 font-bold text-sm text-[#111315]">
-                    <Check className="h-4 w-4 text-[#D40820]" />
+                  <div className="flex items-center gap-2 font-bold text-sm text-navy-900">
+                    <Check className="h-4 w-4 text-brand" />
                     <span>{pillar.title}</span>
                   </div>
-                  <p className="text-xs text-[#667085] leading-relaxed">
+                  <p className="text-xs text-slate leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>
@@ -57,7 +57,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-6 relative aspect-[4/3] overflow-hidden rounded-xl border border-[#E5E7EB]">
+          <div className="lg:col-span-6 relative aspect-[4/3] overflow-hidden rounded-xl border border-line">
             <Image
               src="/images/workforce/workforce-coordination.webp"
               alt="Pak Arab Manpower Supply LLC workforce coordination team"
@@ -69,21 +69,21 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 bg-[#F5F6F8] border-t border-[#E5E7EB]">
+      <section className="py-16 sm:py-20 bg-mist border-t border-line">
         <div className="container-wide grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="rounded-xl bg-white border border-[#E5E7EB] p-8 space-y-4">
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#D40820]/10 text-[#D40820]">
+          <div className="rounded-xl bg-white border border-line p-8 space-y-4">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand">
               <Target className="h-6 w-6" />
             </div>
-            <h2 className="text-2xl font-extrabold text-[#111315]">
+            <h2 className="text-2xl font-extrabold text-navy-900">
               {COMPANY.mission.title}
             </h2>
-            <p className="text-base leading-relaxed text-[#667085]">
+            <p className="text-base leading-relaxed text-slate">
               {COMPANY.mission.text}
             </p>
           </div>
 
-          <div className="rounded-xl bg-[#1C2025] text-white p-8 space-y-4">
+          <div className="rounded-xl bg-navy-800 text-white p-8 space-y-4">
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-white">
               <Eye className="h-6 w-6" />
             </div>
@@ -97,14 +97,14 @@ export default function AboutPage() {
         <div className="container-wide mt-10 flex flex-wrap gap-4">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 rounded-md bg-[#D40820] px-5 py-3 text-sm font-semibold text-white hover:bg-[#A40E21] transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-sm font-semibold text-white hover:bg-brand-dark transition-colors min-h-[44px]"
           >
             <span>Explore Our Services</span>
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             href="/workforce"
-            className="inline-flex items-center gap-2 rounded-md border border-[#111315] px-5 py-3 text-sm font-semibold text-[#111315] hover:bg-[#111315] hover:text-white transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-2 rounded-md border border-navy-900 px-5 py-3 text-sm font-semibold text-navy-900 hover:bg-navy-900 hover:text-white transition-colors min-h-[44px]"
           >
             <span>Browse Workforce Directory</span>
           </Link>

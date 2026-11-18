@@ -38,7 +38,7 @@ export function ScrollProgressBar() {
     >
       <div
         ref={barRef}
-        className="h-full w-full origin-left scale-x-0 bg-[#D40820]"
+        className="h-full w-full origin-left scale-x-0 bg-brand"
       />
     </div>
   );

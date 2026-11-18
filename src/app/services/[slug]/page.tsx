@@ -106,7 +106,7 @@ export default async function ServiceDetailPage({
       <section className="py-16 sm:py-20 bg-white">
         <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-6 space-y-6">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-[#E5E7EB]">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-line">
               <Image
                 src={service.image}
                 alt={service.imageAlt}
@@ -118,19 +118,19 @@ export default async function ServiceDetailPage({
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-2xl font-extrabold text-[#111315]">
+              <h2 className="text-2xl font-extrabold text-navy-900">
                 Scope &amp; Operational Support
               </h2>
-              <p className="text-base leading-relaxed text-[#667085]">
+              <p className="text-base leading-relaxed text-slate">
                 {service.fullDescription}
               </p>
               <ul className="space-y-2.5 pt-2">
                 {service.highlights.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-2.5 text-sm font-medium text-[#111315]"
+                    className="flex items-start gap-2.5 text-sm font-medium text-navy-900"
                   >
-                    <Check className="h-4 w-4 text-[#D40820] shrink-0 mt-1" />
+                    <Check className="h-4 w-4 text-brand shrink-0 mt-1" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -142,14 +142,14 @@ export default async function ServiceDetailPage({
                 href={buildQuickEnquiryUrl(service.waTopic)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-bold text-[#111315] hover:bg-[#1fb858] transition-colors min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-bold text-navy-900 hover:bg-[#1fb858] transition-colors min-h-[44px]"
               >
                 <MessageCircle className="h-4 w-4" />
                 <span>Direct WhatsApp Enquiry</span>
               </a>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 rounded-md border border-[#E5E7EB] px-5 py-3 text-sm font-semibold text-[#111315] hover:border-[#111315] min-h-[44px]"
+                className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-semibold text-navy-900 hover:border-navy-900 min-h-[44px]"
               >
                 <ArrowLeft className="h-4 w-4" />
                 <span>All Services</span>
@@ -158,10 +158,10 @@ export default async function ServiceDetailPage({
           </div>
 
           <div className="lg:col-span-6 space-y-4">
-            <h2 className="text-2xl font-extrabold text-[#111315]">
+            <h2 className="text-2xl font-extrabold text-navy-900">
               Request {service.title}
             </h2>
-            <p className="text-sm text-[#667085]">
+            <p className="text-sm text-slate">
               Submit your project requirements below to open a pre-formatted enquiry
               with our Abu Dhabi team on WhatsApp.
             </p>
@@ -171,9 +171,9 @@ export default async function ServiceDetailPage({
       </section>
 
       {/* Related services — internal linking */}
-      <section className="py-14 sm:py-16 bg-[#F5F6F8] border-t border-[#E5E7EB]">
+      <section className="py-14 sm:py-16 bg-mist border-t border-line">
         <div className="container-wide space-y-6">
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#111315]">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-navy-900">
             Other Manpower Services in the UAE
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -181,14 +181,14 @@ export default async function ServiceDetailPage({
               <Link
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className="group rounded-xl border border-[#E5E7EB] bg-white p-5 hover:border-[#D40820]/60 hover:shadow-md transition-all"
+                className="group rounded-xl border border-line bg-white p-5 hover:border-brand/60 hover:shadow-md transition-all"
               >
-                <span className="text-xs font-bold text-[#D40820]">Service {s.number}</span>
-                <h3 className="mt-1 text-base font-extrabold text-[#111315] group-hover:text-[#D40820] transition-colors">
+                <span className="text-xs font-bold text-brand">Service {s.number}</span>
+                <h3 className="mt-1 text-base font-extrabold text-navy-900 group-hover:text-brand transition-colors">
                   {s.title}
                 </h3>
-                <p className="mt-2 text-sm text-[#667085] line-clamp-3">{s.shortDescription}</p>
-                <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-[#111315]">
+                <p className="mt-2 text-sm text-slate line-clamp-3">{s.shortDescription}</p>
+                <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-navy-900">
                   Learn more <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </span>
               </Link>

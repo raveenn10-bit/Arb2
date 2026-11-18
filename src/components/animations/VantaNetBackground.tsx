@@ -33,7 +33,7 @@ export function VantaNetBackground() {
           scale: 1.0,
           scaleMobile: 1.0,
           color: 0xd40820,
-          backgroundColor: 0x111315,
+          backgroundColor: 0x0B1F33,
           points: 9.0,
           maxDistance: 21.0,
           spacing: 17.0,
@@ -58,7 +58,7 @@ export function VantaNetBackground() {
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 bg-[#111315] opacity-70"
+      className="pointer-events-none absolute inset-0 bg-navy-900 opacity-70"
     />
   );
 }
