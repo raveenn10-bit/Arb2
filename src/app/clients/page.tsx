@@ -28,7 +28,7 @@ export default function ClientsPage() {
 
       <section className="py-16 sm:py-20 bg-white">
         <div className="container-wide space-y-10">
-          <ClientLogoGrid variant="wall" />
+          <ClientLogoGrid variant="rows" />
 
           <div className="rounded-xl bg-mist border border-line p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-1.5">

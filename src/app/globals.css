@@ -134,7 +134,8 @@
   .client-marquee-track { animation-duration: 45s; }
 }
 
-.client-marquee[data-paused] .client-marquee-track { animation-play-state: paused; }
+[data-paused] .client-marquee-track { animation-play-state: paused; }
+.client-marquee-reverse { animation-direction: reverse; }
 
 /* Reduced motion: no scrolling; show every logo in a static, wrapping row instead */
 @media (prefers-reduced-motion: reduce) {

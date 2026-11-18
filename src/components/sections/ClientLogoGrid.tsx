@@ -6,8 +6,12 @@ import { Pause, Play } from "lucide-react";
 import { CLIENTS, type ClientLogo } from "@/data/clients";
 
 interface ClientLogoGridProps {
-  /** "marquee" = single continuously scrolling row; "wall" = static logo wall (all logos visible). */
-  variant?: "marquee" | "wall";
+  /**
+   * "marquee" = single continuously scrolling row (home page)
+   * "rows"    = two auto-scrolling rows moving in opposite directions (clients page)
+   * "wall"    = static logo wall (all logos visible)
+   */
+  variant?: "marquee" | "rows" | "wall";
 }
 
 /**
@@ -49,30 +53,14 @@ export function ClientLogoGrid({ variant = "marquee" }: ClientLogoGridProps) {
     );
   }
 
+  const rows = variant === "rows" ? [CLIENTS.slice(0, 13), CLIENTS.slice(13)] : [CLIENTS];
+
   return (
     <div className="space-y-4">
-      <div
-        className="client-marquee group relative w-full overflow-hidden bg-white py-4"
-        role="region"
-        aria-label="Client logos"
-        data-paused={paused || undefined}
-      >
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent sm:w-24" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent sm:w-24" />
-
-        <ul className="client-marquee-track flex w-max items-center group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]">
-          {CLIENTS.map((client) => (
-            <li key={client.id} className="pr-10 sm:pr-16">
-              <Logo client={client} />
-            </li>
-          ))}
-          {/* duplicate set for a seamless loop (hidden from assistive tech) */}
-          {CLIENTS.map((client) => (
-            <li key={`${client.id}-dup`} className="client-marquee-dup pr-10 sm:pr-16" aria-hidden="true">
-              <Logo client={client} decorative />
-            </li>
-          ))}
-        </ul>
+      <div className="space-y-6 sm:space-y-8" data-paused={paused || undefined} role="region" aria-label="Client logos">
+        {rows.map((row, r) => (
+          <MarqueeRow key={r} clients={row} reverse={r === 1} />
+        ))}
       </div>
       <div className="client-marquee-control flex justify-center">
         <button
@@ -85,6 +73,33 @@ export function ClientLogoGrid({ variant = "marquee" }: ClientLogoGridProps) {
           {paused ? "Play logos" : "Pause logos"}
         </button>
       </div>
+    </div>
+  );
+}
+
+/** One seamless auto-scrolling row: the logo set is rendered twice and the track slides by half its width. */
+function MarqueeRow({ clients, reverse = false }: { clients: ClientLogo[]; reverse?: boolean }) {
+  return (
+    <div className="client-marquee group relative w-full overflow-hidden bg-white py-2 sm:py-4">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent sm:w-24" />
+      <ul
+        className={`client-marquee-track flex w-max items-center group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused] ${
+          reverse ? "client-marquee-reverse" : ""
+        }`}
+        style={{ animationDuration: `${Math.max(20, clients.length * 2.4)}s` }}
+      >
+        {clients.map((client) => (
+          <li key={client.id} className="pr-10 sm:pr-16">
+            <Logo client={client} />
+          </li>
+        ))}
+        {clients.map((client) => (
+          <li key={`${client.id}-dup`} className="client-marquee-dup pr-10 sm:pr-16" aria-hidden="true">
+            <Logo client={client} decorative />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
