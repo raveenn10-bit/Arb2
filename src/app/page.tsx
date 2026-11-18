@@ -25,6 +25,7 @@ import { CERTIFICATIONS } from "@/data/certifications";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { WorkforceDirectory } from "@/components/sections/WorkforceDirectory";
 import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
+import { TeamShowcase } from "@/components/sections/TeamShowcase";
 import { ManpowerRequestForm } from "@/components/forms/ManpowerRequestForm";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { GsapReveal } from "@/components/animations/GsapReveal";
@@ -109,6 +110,9 @@ export default function HomePage() {
           </GsapReveal>
         </div>
       </section>
+
+      {/* 3b. Our Teams On Site (client-supplied branded crew photos) */}
+      <TeamShowcase />
 
       {/* 4. Mission & Vision (Upper-section priority per client request) */}
       <section className="py-16 sm:py-20 bg-[#F5F6F8] border-y border-[#E5E7EB]">
