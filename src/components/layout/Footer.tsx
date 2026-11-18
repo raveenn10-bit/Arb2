@@ -13,7 +13,7 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <div className="bg-white rounded-md p-1.5 shadow-sm">
                 <Image
-                  src="/images/logo-pak-arab.png"
+                  src="/images/brand/pak-arab-mark.png"
                   alt="Pak Arab Manpower Supply LLC logo"
                   width={42}
                   height={42}

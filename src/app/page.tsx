@@ -97,7 +97,7 @@ export default function HomePage() {
           </GsapReveal>
 
           <GsapReveal delay={0.12} className="lg:col-span-6">
-            <div className="relative aspect-[9/16] md:aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#E5E7EB] shadow-lg">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#E5E7EB] shadow-lg">
               <Image
                 src="/images/services/manpower-briefing.webp"
                 alt="Pak Arab workforce coordination briefing at an Abu Dhabi industrial site"
@@ -186,7 +186,7 @@ export default function HomePage() {
                 key={service.slug}
                 className="group min-w-[290px] sm:min-w-[320px] md:min-w-0 shrink-0 md:shrink snap-start flex flex-col rounded-xl border border-[#E5E7EB] bg-white overflow-hidden hover:border-[#D40820]/60 hover:shadow-lg transition-all duration-200"
               >
-                <div className="relative aspect-[9/16] md:aspect-[4/3] w-full overflow-hidden bg-[#111315]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#111315]">
                   <Image
                     src={service.image}
                     alt={service.imageAlt}
@@ -263,7 +263,7 @@ export default function HomePage() {
             {INDUSTRIES.map((industry) => (
               <div
                 key={industry.id}
-                className="group relative min-w-[270px] sm:min-w-[300px] md:min-w-0 shrink-0 md:shrink snap-start aspect-[9/16] md:aspect-[4/3] rounded-xl overflow-hidden border border-white/10"
+                className="group relative min-w-[270px] sm:min-w-[300px] md:min-w-0 shrink-0 md:shrink snap-start aspect-[4/5] md:aspect-[4/3] rounded-xl overflow-hidden border border-white/10"
               >
                 <Image
                   src={industry.image}
@@ -293,7 +293,7 @@ export default function HomePage() {
       {/* 7. Travel & Transportation (Dedicated Client-Requested Section) */}
       <section className="py-16 sm:py-20 bg-[#F5F6F8] border-b border-[#E5E7EB]">
         <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <GsapReveal className="lg:col-span-6 relative aspect-[9/16] md:aspect-[4/3] overflow-hidden rounded-xl border border-[#E5E7EB]">
+          <GsapReveal className="lg:col-span-6 relative aspect-[4/3] overflow-hidden rounded-xl border border-[#E5E7EB]">
             <Image
               src={travelService.image}
               alt={travelService.imageAlt}
@@ -450,7 +450,7 @@ export default function HomePage() {
           </GsapReveal>
 
           <GsapReveal delay={0.12} className="lg:col-span-6">
-            <div className="relative aspect-[9/16] md:aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#E5E7EB]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#E5E7EB]">
               <Image
                 src="/images/services/quality-hse-inspection.webp"
                 alt="HSE safety officer and quality engineer inspecting industrial site compliance"
