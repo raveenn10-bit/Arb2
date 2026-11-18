@@ -26,8 +26,11 @@ export const COMPANY = {
     district: "Musaffah M14",
     country: "United Arab Emirates",
     mapsUrl: "https://maps.app.goo.gl/kf37HP9V3XnApEXy6?g_st=aw",
-    /** Search text used to place the pin on the embedded Google map (change here to move the pin site-wide) */
-    mapsEmbedQuery: "Pak Arab Manpower Supply LLC, Wurth Gulf Building, Plot No. 42, M14, Musaffah, Abu Dhabi, UAE",
+    /**
+     * Pin for the embedded Google map: the exact place the client's mapsUrl link opens
+     * (Google labels that pin with the neighbouring building's name). Change here to move the pin site-wide.
+     */
+    mapsEmbedQuery: "بناية الدهيمي - 55 Ar Rasi St - Mohamed Bin Zayed City - ME12 - Abu Dhabi",
   },
   // Stored per client record; not publicly listed as a branch office pending client confirmation
   provisionalHistoricalAddress: {
