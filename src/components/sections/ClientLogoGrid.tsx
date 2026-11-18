@@ -53,7 +53,8 @@ export function ClientLogoGrid({ variant = "marquee" }: ClientLogoGridProps) {
     );
   }
 
-  const rows = variant === "rows" ? [CLIENTS.slice(0, 13), CLIENTS.slice(13)] : [CLIENTS];
+  const half = Math.ceil(CLIENTS.length / 2);
+  const rows = variant === "rows" ? [CLIENTS.slice(0, half), CLIENTS.slice(half)] : [CLIENTS];
 
   return (
     <div className="space-y-4">
