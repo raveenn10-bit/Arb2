@@ -162,3 +162,37 @@ button:hover svg.lucide-arrow-right {
 a:hover svg.lucide-arrow-up-right {
   transform: translate(2px, -2px);
 }
+
+/*
+ * Premium edge fade for photos sitting on a white background: no border, corners or shadow.
+ * Two gradient masks are intersected: horizontal (stronger on the left, where the text sits)
+ * and vertical (soft top/bottom). The centre stays fully opaque and sharp; no blur is applied.
+ */
+.image-edge-fade {
+  --fade-left: 26%;
+  --fade-right: 9%;
+  --fade-top: 10%;
+  --fade-bottom: 12%;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.35) calc(var(--fade-left) * 0.45), #000 var(--fade-left), #000 calc(100% - var(--fade-right)), transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.4) calc(var(--fade-top) * 0.45), #000 var(--fade-top), #000 calc(100% - var(--fade-bottom)), transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.35) calc(var(--fade-left) * 0.45), #000 var(--fade-left), #000 calc(100% - var(--fade-right)), transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.4) calc(var(--fade-top) * 0.45), #000 var(--fade-top), #000 calc(100% - var(--fade-bottom)), transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+/* Mobile/tablet: image sits below the text, so fade evenly with gentler left/right edges */
+@media (max-width: 1023px) {
+  .image-edge-fade {
+    --fade-left: 10%;
+    --fade-right: 10%;
+    --fade-top: 12%;
+    --fade-bottom: 14%;
+  }
+}

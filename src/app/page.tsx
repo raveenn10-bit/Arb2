@@ -108,7 +108,8 @@ export default function HomePage() {
           </GsapReveal>
 
           <GsapReveal delay={0.12} className="lg:col-span-6">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-line shadow-lg">
+            {/* Borderless image that fades softly into the white section (see .image-edge-fade) */}
+            <div data-no-anim className="image-edge-fade relative aspect-[4/3] w-full">
               <Image
                 src="/images/services/manpower-briefing.webp"
                 alt="Pak Arab workforce coordination briefing at an Abu Dhabi industrial site"
