@@ -24,6 +24,7 @@ import { SERVICES, INDUSTRIES } from "@/data/services";
 import { CERTIFICATIONS } from "@/data/certifications";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
+import { CLIENTS } from "@/data/clients";
 import { TeamShowcase } from "@/components/sections/TeamShowcase";
 import { ManpowerRequestForm } from "@/components/forms/ManpowerRequestForm";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
@@ -493,7 +494,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 12. Our Valued Clients (26 Logos) */}
+      {/* 12. Our Valued Clients */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="container-wide space-y-10">
           <GsapReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -513,7 +514,7 @@ export default function HomePage() {
               href="/clients"
               className="inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-brand-dark shrink-0"
             >
-              <span>View All 26 Clients</span>
+              <span>View All {CLIENTS.length} Clients</span>
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </GsapReveal>

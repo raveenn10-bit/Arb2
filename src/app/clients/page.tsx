@@ -4,11 +4,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
 import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
+import { CLIENTS } from "@/data/clients";
 
 export const metadata: Metadata = pageMeta({
-  title: "Our Clients – 26 UAE Energy & EPC Firms",
+  title: `Our Clients – ${CLIENTS.length} UAE Energy & EPC Firms`,
   description:
-    "See the 26 UAE energy, EPC, construction and industrial companies, including ADNOC, NPCC, Lamprell and Al Jaber, that Pak Arab Manpower has supplied workforce to.",
+    `See the ${CLIENTS.length} energy, EPC, construction and industrial companies, including ADNOC, Sinopec, NPCC and Lamprell, that Pak Arab Manpower has supplied workforce to.`,
   path: "/clients",
   keywords: ["Pak Arab Manpower clients", "ADNOC manpower supplier", "EPC manpower UAE"],
 });
@@ -19,7 +20,7 @@ export default function ClientsPage() {
       <PageHero
         eyebrow="Client Portfolio"
         title="Companies We Supply Manpower To"
-        description="A portfolio of 26 leading UAE energy, construction, fabrication, and industrial companies supported by Pak Arab Manpower Supply LLC."
+        description={`A portfolio of ${CLIENTS.length} leading energy, construction, fabrication, and industrial companies supported by Pak Arab Manpower Supply LLC.`}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Our Clients", href: "/clients" },

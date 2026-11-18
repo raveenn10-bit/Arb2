@@ -32,4 +32,7 @@ export const CLIENTS: ClientLogo[] = [
   { id: "al-nasr", name: "Al Nasr", sector: "Contracting", logo: "/images/clients/alnasr.webp" },
   { id: "galva-coat", name: "Galva Coat Industries", sector: "Industrial Manufacturing", logo: "/images/clients/galva_coat.webp" },
   { id: "cpp", name: "China Petroleum Pipeline Engineering Company", sector: "Pipeline & Energy", logo: "/images/clients/cpp.webp" },
+  { id: "tecnimont", name: "Tecnimont", sector: "EPC & Petrochemicals", logo: "/images/clients/tecnimont.webp" },
+  { id: "sinopec", name: "Sinopec", sector: "Oil & Gas / Petrochemicals", logo: "/images/clients/sinopec.webp" },
+  { id: "cpecc", name: "CPECC", sector: "Oil & Gas EPC", logo: "/images/clients/cpecc.webp" },
 ];
