@@ -214,7 +214,8 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-45% to-navy-950/95 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-35% to-navy-950 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-[62%] bg-gradient-to-t from-navy-950/90 via-navy-950/60 to-transparent pointer-events-none" />
 
         <div className="relative z-10 px-4 pt-4 flex items-center justify-between gap-2">
           <span className="inline-flex items-center gap-1.5 text-[0.625rem] font-bold uppercase tracking-[0.12em] text-white bg-black/55 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-full shadow-sm">
@@ -249,7 +250,7 @@ export function HeroSection() {
             </span>
           </div>
 
-          <h1 className="hero-title font-display text-[1.75rem] min-[375px]:text-3xl font-bold leading-[1.06] tracking-tight text-white drop-shadow-sm">
+          <h1 className="hero-title font-hero-serif text-[2.125rem] min-[375px]:text-[2.375rem] leading-[1.04] text-white drop-shadow-sm">
             Powering Industries.
             <span className="block text-brand mt-0.5">Delivering Skilled Workforce.</span>
           </h1>
@@ -328,7 +329,7 @@ export function HeroSection() {
               </span>
             </div>
 
-            <div role="heading" aria-level={1} className="hero-title font-display text-4xl sm:text-5xl lg:text-[4rem] font-bold leading-[1.12] tracking-tight">
+            <div role="heading" aria-level={1} className="hero-title font-hero-serif text-5xl sm:text-6xl lg:text-[5rem] leading-[1.02]">
               Powering Industries.
               <span className="block mt-2 lg:mt-3 text-brand">Delivering Skilled Workforce.</span>
             </div>
