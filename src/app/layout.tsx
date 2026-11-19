@@ -31,17 +31,6 @@ const inter = localFont({
   fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
 });
 
-// Luxury high-contrast serif used only for the hero headline
-const cormorant = localFont({
-  src: [
-    { path: "./fonts/cormorant-garamond-latin-600-normal.woff2", weight: "600", style: "normal" },
-    { path: "./fonts/cormorant-garamond-latin-700-normal.woff2", weight: "700", style: "normal" },
-  ],
-  variable: "--font-hero-serif",
-  display: "swap",
-  fallback: ["Georgia", "Times New Roman", "serif"],
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(COMPANY.domain),
   title: {
@@ -144,7 +133,7 @@ export default function RootLayout({
   const siteSchema = getSiteSchemaGraph();
 
   return (
-    <html lang="en" id="top" className={`${manrope.variable} ${inter.variable} ${cormorant.variable}`}>
+    <html lang="en" id="top" className={`${manrope.variable} ${inter.variable}`}>
       <body className="min-h-screen flex flex-col bg-white text-navy-900 antialiased pb-[calc(3.5rem+env(safe-area-inset-bottom))] md:pb-0">
         <a
           href="#main-content"
