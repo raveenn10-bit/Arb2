@@ -320,25 +320,25 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-900/80 to-navy-900/45 pointer-events-none" />
 
         <div className="container-wide relative z-10 py-20">
-          <div className="hero-content max-w-3xl space-y-6">
-            <div className="hero-stagger inline-flex items-center gap-3">
+          <div className="hero-content max-w-3xl">
+            <div className="hero-stagger mb-7 inline-flex items-center gap-3 lg:mb-9">
               <span className="h-[2px] w-10 bg-brand" />
               <span className="hero-kicker text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white/90">
                 MANPOWER SUPPLY COMPANY · ABU DHABI, UAE
               </span>
             </div>
 
-            <div role="heading" aria-level={1} className="hero-title font-display text-4xl sm:text-5xl lg:text-[4rem] font-bold leading-[1.03] tracking-tight">
+            <div role="heading" aria-level={1} className="hero-title font-display text-4xl sm:text-5xl lg:text-[4rem] font-bold leading-[1.12] tracking-tight">
               Powering Industries.
-              <span className="block mt-1 text-brand">Delivering Skilled Workforce.</span>
+              <span className="block mt-2 lg:mt-3 text-brand">Delivering Skilled Workforce.</span>
             </div>
 
-            <p className="hero-stagger text-base sm:text-lg text-white/85 max-w-2xl leading-relaxed">
+            <p className="hero-stagger mt-7 lg:mt-9 text-base sm:text-lg text-white/85 max-w-2xl leading-[1.75]">
               Reliable manpower solutions for oil and gas, construction, mechanical, electrical and
               industrial projects across the United Arab Emirates.
             </p>
 
-            <div className="hero-stagger flex flex-wrap gap-4 pt-2">
+            <div className="hero-stagger mt-9 lg:mt-11 flex flex-wrap gap-4">
               <Link
                 href="/contact#request-form"
                 className="inline-flex items-center gap-2 rounded-md bg-brand px-6 py-3.5 text-sm sm:text-base font-bold text-white hover:bg-brand-dark transition-colors"
@@ -354,7 +354,7 @@ export function HeroSection() {
               </Link>
             </div>
 
-            <div className="hero-stagger pt-4 flex flex-wrap items-center justify-between gap-4">
+            <div className="hero-stagger mt-10 lg:mt-12 flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-2" aria-label="Choose slide">
                 {HERO_SLIDES.map((slide, idx) => (
                   <button
@@ -378,7 +378,7 @@ export function HeroSection() {
               </span>
             </div>
 
-            <div className="hero-stagger pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs sm:text-sm font-medium text-white/90">
+            <div className="hero-stagger mt-6 pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs sm:text-sm font-medium text-white/90">
               {TRUST_INDICATORS.map(({ label, icon: Icon }) => (
                 <div key={label} className="flex items-center gap-2">
                   <Icon className="h-4 w-4 text-brand shrink-0" />
