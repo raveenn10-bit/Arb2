@@ -35,4 +35,8 @@ export const CLIENTS: ClientLogo[] = [
   { id: "tecnimont", name: "Tecnimont", sector: "EPC & Petrochemicals", logo: "/images/clients/tecnimont.webp" },
   { id: "sinopec", name: "Sinopec", sector: "Oil & Gas / Petrochemicals", logo: "/images/clients/sinopec.webp" },
   { id: "cpecc", name: "CPECC", sector: "Oil & Gas EPC", logo: "/images/clients/cpecc.webp" },
+  { id: "nbtc", name: "NBTC", sector: "Industrial & Engineering Services", logo: "/images/clients/nbtc.webp" },
+  { id: "oilserv", name: "Oilserv", sector: "Oil & Gas Services", logo: "/images/clients/oilserv.webp" },
+  { id: "albaddad", name: "Al Baddad", sector: "Engineering & Contracting", logo: "/images/clients/albaddad.webp" },
+  { id: "butec", name: "Butec", sector: "EPC & Construction", logo: "/images/clients/butec.webp" },
 ];
