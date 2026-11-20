@@ -51,6 +51,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "/",
+    languages: { "en-AE": "/", "x-default": "/" },
   },
   applicationName: COMPANY.name,
   authors: [{ name: COMPANY.name, url: COMPANY.domain }],

@@ -3,8 +3,8 @@ export const COMPANY = {
   shortName: "Pak Arab Manpower",
   arabicName: "باك عرب لتوريد العمالة ذ.م.م",
   tagline: "Industrial Workforce Solutions · United Arab Emirates",
-  domain: "https://www.pakarabmps.com",
-  websiteDisplay: "www.pakarabmps.com",
+  domain: "https://pakarabmanpowersupply.ae",
+  websiteDisplay: "pakarabmanpowersupply.ae",
   email: "info@pakarabmps.com",
   whatsapp: {
     display: "+971 55 384 2555",
