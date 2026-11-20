@@ -73,8 +73,8 @@ export function TradesShowcase() {
           </h2>
 
           <p className="max-w-md text-base sm:text-lg leading-relaxed text-white/70">
-            Engineers, supervisors, welders, riggers, scaffolders, masons, carpenters,
-            electricians, operators and site support, for short- and long-term contracts
+            Welders, fitters, riggers, scaffolders, masons, carpenters, electricians,
+            operators, drivers and site support, for short- and long-term contracts
             across the UAE.
           </p>
 

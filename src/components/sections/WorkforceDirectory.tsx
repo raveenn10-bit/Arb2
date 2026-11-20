@@ -12,7 +12,7 @@ export function WorkforceDirectory() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
   const [openMobileGroups, setOpenMobileGroups] = useState<Record<string, boolean>>({
-    "Engineering & Coordination": true,
+    "Welding & Fabrication": true,
     "Structural & Carpentry": true,
   });
 
@@ -101,7 +101,7 @@ export function WorkforceDirectory() {
             }`}
           >
             <Wrench className="h-4 w-4" aria-hidden="true" />
-            <span>Onshore &amp; Offshore MEP (26)</span>
+            <span>Onshore &amp; Offshore MEP ({WORKFORCE_ROLES.filter((r) => r.division === "mep").length})</span>
           </button>
           <button
             type="button"
@@ -115,7 +115,7 @@ export function WorkforceDirectory() {
             }`}
           >
             <HardHat className="h-4 w-4" aria-hidden="true" />
-            <span>Civil &amp; Construction (36)</span>
+            <span>Civil &amp; Construction ({WORKFORCE_ROLES.filter((r) => r.division !== "mep").length})</span>
           </button>
         </div>
 

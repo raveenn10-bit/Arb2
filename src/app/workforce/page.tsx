@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/page-meta";
+import { WORKFORCE_ROLES } from "@/data/workforce";
 import { PageHero } from "@/components/ui/PageHero";
 import { WorkforceDirectory } from "@/components/sections/WorkforceDirectory";
 
 export const metadata: Metadata = pageMeta({
-  title: "62 Skilled Trades & Workforce Categories",
+  title: `${WORKFORCE_ROLES.length} Skilled Trades & Workforce Categories`,
   description:
-    "Browse 62 onshore/offshore MEP and Civil & Construction trades: welders, pipe fitters, riggers, electricians, scaffolders, masons, operators and more in the UAE.",
+    `Browse ${WORKFORCE_ROLES.length} onshore/offshore MEP and Civil & Construction trades: welders, pipe fitters, riggers, electricians, scaffolders, masons, operators and more in the UAE.`,
   path: "/workforce",
   keywords: ["welders supply UAE", "pipe fitters Abu Dhabi", "scaffolders manpower UAE", "skilled trades UAE"],
 });

@@ -17,20 +17,14 @@ export interface WorkforceRole {
  * - Performing Authority
  * - Material Coordinator
  * - Millwright Technician
+ *
+ * Removed per client request (Nov 2026): engineering, coordination and supervision roles
+ * - Mechanical Engineer, Construction Engineer, Project Coordinator
+ * - Welding Supervisors, Safety Officer, JP — Job Performer
+ * - Piping Foreman, Structural Supervisor, Structural Foreman, Rigging Supervisor, Rigging Foreman
  */
 export const WORKFORCE_ROLES: WorkforceRole[] = [
-  // Onshore & Offshore MEP (26 active roles)
-  { id: "mep-1", title: "Mechanical Engineer", division: "mep", category: "Engineering & Coordination", environment: "Onshore / Offshore" },
-  { id: "mep-2", title: "Construction Engineer", division: "mep", category: "Engineering & Coordination", environment: "Onshore / Offshore" },
-  { id: "mep-3", title: "Project Coordinator", division: "mep", category: "Engineering & Coordination", environment: "Onshore / Offshore" },
-  { id: "mep-4", title: "Welding Supervisors", division: "mep", category: "Supervision & HSE", environment: "Onshore / Offshore" },
-  { id: "mep-5", title: "Safety Officer", division: "mep", category: "Supervision & HSE", environment: "Onshore / Offshore" },
-  { id: "mep-6", title: "JP — Job Performer", division: "mep", category: "Supervision & HSE", environment: "Onshore / Offshore" },
-  { id: "mep-7", title: "Piping Foreman", division: "mep", category: "Supervision & HSE", environment: "Onshore / Offshore" },
-  { id: "mep-8", title: "Structural Supervisor", division: "mep", category: "Supervision & HSE", environment: "Onshore / Offshore" },
-  { id: "mep-9", title: "Structural Foreman", division: "mep", category: "Supervision & HSE", environment: "Onshore / Offshore" },
-  { id: "mep-10", title: "Rigging Supervisor", division: "mep", category: "Supervision & HSE", environment: "Onshore / Offshore" },
-  { id: "mep-11", title: "Rigging Foreman", division: "mep", category: "Supervision & HSE", environment: "Onshore / Offshore" },
+  // Onshore & Offshore MEP
   { id: "mep-12", title: "Multi Welder — GTAW/SMAW", division: "mep", category: "Welding & Fabrication", environment: "Onshore / Offshore" },
   { id: "mep-13", title: "Welder — SMAW", division: "mep", category: "Welding & Fabrication", environment: "Onshore / Offshore" },
   { id: "mep-14", title: "Piping & Structural Fabricator", division: "mep", category: "Welding & Fabrication", environment: "Onshore / Offshore" },

@@ -26,7 +26,7 @@ const SERVICE_SEO: Record<string, { title: string; description: string; keywords
   "oil-and-gas": {
     title: "Oil & Gas Manpower Supply in UAE",
     description:
-      "ADNOC-compliant, CICPA-eligible oil & gas manpower in the UAE: welders, pipe fitters, riggers, safety officers and shutdown crews for onshore and offshore sites.",
+      "ADNOC-compliant, CICPA-eligible oil & gas manpower in the UAE: welders, pipe fitters, riggers, scaffolders and shutdown crews for onshore and offshore sites.",
     keywords: ["oil and gas manpower UAE", "ADNOC manpower supply", "shutdown manpower Abu Dhabi", "offshore manpower UAE"],
   },
   "civil-construction": {
@@ -38,7 +38,7 @@ const SERVICE_SEO: Record<string, { title: string; description: string; keywords
   "mechanical-electrical": {
     title: "Mechanical & Electrical Manpower in UAE",
     description:
-      "Mechanical & electrical manpower supply in the UAE: fabricators, millwrights, industrial electricians, instrument technicians and MEP crews for industrial sites.",
+      "Mechanical & electrical manpower supply in the UAE: fabricators, pipe fitters, industrial electricians, instrument technicians and MEP crews for industrial sites.",
     keywords: ["electrical manpower supply UAE", "mechanical manpower UAE", "MEP manpower Abu Dhabi"],
   },
   "travel-transportation": {

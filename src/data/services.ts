@@ -61,7 +61,7 @@ export const SERVICES: ServiceItem[] = [
     highlights: [
       "Onshore and offshore project staffing",
       "Certified GTAW / SMAW welders and fabricators",
-      "Safety officers, rigging supervisors, and JPs",
+      "Riggers, scaffolders, and man-lift operators",
       "Alignment with UAE energy sector HSE standards",
     ],
     image: "/images/services/oil-and-gas.webp",
@@ -97,7 +97,7 @@ export const SERVICES: ServiceItem[] = [
     fullDescription:
       "Our Mechanical and Electrical division supplies qualified technicians, fitters, fabricators, HVAC specialists, and industrial electricians for complex industrial plants and commercial MEP installations. Every technician is selected for hands-on competence and adherence to site safety.",
     highlights: [
-      "Mechanical engineers, fitters, and fabricators",
+      "Pipe fitters, fabricators, and multi welders",
       "Industrial and domestic electricians",
       "Instrument technicians, HVAC technicians, and ductmen",
       "Plumbers, riggers, and man-lift operators",
