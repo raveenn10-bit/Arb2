@@ -1,6 +1,6 @@
 // Pings IndexNow (Bing, Yandex, Seznam, Naver; also used by ChatGPT/Copilot search via Bing)
 // with every URL in the live sitemap. Run: node scripts/indexnow.mjs
-const HOST = "pakarabmanpowersupply.ae";
+const HOST = "www.pakarabmanpowersupply.ae";
 const KEY = "4df8e47e889b7dd098328fe33dc8eba6";
 const res = await fetch(`https://${HOST}/sitemap.xml`);
 if (!res.ok) throw new Error(`sitemap ${res.status}`);

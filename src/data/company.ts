@@ -5,7 +5,7 @@ export const COMPANY = {
   siteName: "PAK ARAB MANPOWER SUPPLY LLC – ABU DHABI",
   arabicName: "باك عرب لتوريد العمالة ذ.م.م",
   tagline: "Industrial Workforce Solutions · United Arab Emirates",
-  domain: "https://pakarabmanpowersupply.ae",
+  domain: "https://www.pakarabmanpowersupply.ae",
   websiteDisplay: "pakarabmanpowersupply.ae",
   email: "info@pakarabmps.com",
   whatsapp: {
