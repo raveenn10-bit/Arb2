@@ -7,7 +7,10 @@ import { SERVICES } from "@/data/services";
 import { PageHero } from "@/components/ui/PageHero";
 import { ManpowerRequestForm } from "@/components/forms/ManpowerRequestForm";
 import { buildQuickEnquiryUrl } from "@/lib/whatsapp";
-import { getServiceSchema } from "@/lib/seo";
+import { getServiceSchema, getFaqSchema } from "@/lib/seo";
+import { SERVICE_FAQS } from "@/data/service-faqs";
+import { GUIDES } from "@/data/guides";
+import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { pageMeta } from "@/lib/page-meta";
 
 const SERVICE_SEO: Record<string, { title: string; description: string; keywords: string[] }> = {
@@ -169,6 +172,36 @@ export default async function ServiceDetailPage({
           </div>
         </div>
       </section>
+
+      {/* Service FAQs (AEO: question-led answers + FAQPage schema) */}
+      {SERVICE_FAQS[service.slug] && (
+        <section className="py-14 sm:py-16 bg-white border-t border-line">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqSchema(SERVICE_FAQS[service.slug])) }}
+          />
+          <div className="container-wide max-w-4xl space-y-6">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-navy-900">
+              {service.title} FAQs
+            </h2>
+            <FaqAccordion items={SERVICE_FAQS[service.slug]} />
+            {GUIDES.some((g) => g.relatedServices.includes(service.slug)) && (
+              <div className="pt-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate">Related guides</p>
+                <ul className="mt-2 space-y-1.5">
+                  {GUIDES.filter((g) => g.relatedServices.includes(service.slug)).map((g) => (
+                    <li key={g.slug}>
+                      <Link href={`/guides/${g.slug}`} className="text-sm font-semibold text-navy-900 underline underline-offset-4 hover:text-brand">
+                        {g.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Related services — internal linking */}
       <section className="py-14 sm:py-16 bg-mist border-t border-line">

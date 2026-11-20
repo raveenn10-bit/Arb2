@@ -6,6 +6,7 @@ import { COMPANY } from "@/data/company";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
+import { ConversionTracking } from "@/components/analytics/ConversionTracking";
 import { ScrollProgressBar } from "@/components/animations/ScrollProgressBar";
 import { PageAnimations } from "@/components/animations/PageAnimations";
 import { getSiteSchemaGraph } from "@/lib/seo";
@@ -156,6 +157,7 @@ export default function RootLayout({
         <FloatingWhatsApp />
         {GA_ID && (
           <>
+            <ConversionTracking />
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
             <Script id="ga4" strategy="afterInteractive">
               {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}

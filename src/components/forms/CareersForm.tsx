@@ -68,6 +68,7 @@ export function CareersForm() {
 
     const url = buildWhatsAppUrl(msg);
     setPreparedUrl(url);
+    window.dispatchEvent(new CustomEvent("pak:lead", { detail: "careers_form" }));
     window.open(url, "_blank", "noopener,noreferrer");
   };
 

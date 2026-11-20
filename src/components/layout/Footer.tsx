@@ -68,6 +68,7 @@ export function Footer() {
               <li><Link href="/industries" className="hover:text-white transition-colors">Industries Served</Link></li>
               <li><Link href="/clients" className="hover:text-white transition-colors">Client Portfolio</Link></li>
               <li><Link href="/quality" className="hover:text-white transition-colors">Quality &amp; Certifications</Link></li>
+              <li><Link href="/guides" className="hover:text-white transition-colors">Hiring Guides</Link></li>
               <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
               <li><Link href="/contact" className="hover:text-white transition-colors">Request Manpower</Link></li>
             </ul>

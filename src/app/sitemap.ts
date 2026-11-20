@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { COMPANY } from "@/data/company";
 import { SERVICES } from "@/data/services";
+import { GUIDES } from "@/data/guides";
 
 const abs = (path: string) => `${COMPANY.domain}${path}`;
 
@@ -27,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/quality", priority: 0.7, freq: "monthly" },
     { route: "/careers", priority: 0.7, freq: "monthly" },
     { route: "/contact", priority: 0.8, freq: "monthly" },
+    { route: "/guides", priority: 0.7, freq: "weekly" },
     { route: "/privacy-policy", priority: 0.2, freq: "yearly" },
   ];
 
@@ -46,5 +48,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     images: [abs(service.image)],
   }));
 
-  return [...staticEntries, ...serviceEntries];
+  const guideEntries: MetadataRoute.Sitemap = GUIDES.map((g) => ({
+    url: abs(`/guides/${g.slug}`),
+    lastModified: new Date(g.updated),
+    changeFrequency: "monthly",
+    priority: 0.75,
+    images: [abs(g.image)],
+  }));
+
+  return [...staticEntries, ...serviceEntries, ...guideEntries];
 }

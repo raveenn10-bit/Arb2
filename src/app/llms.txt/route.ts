@@ -4,6 +4,7 @@ import { WORKFORCE_ROLES } from "@/data/workforce";
 import { CLIENTS } from "@/data/clients";
 import { CERTIFICATIONS } from "@/data/certifications";
 import { FAQS } from "@/data/faq";
+import { GUIDES } from "@/data/guides";
 
 export const dynamic = "force-static";
 
@@ -53,6 +54,9 @@ ${CLIENTS.map((c) => `${c.name} (${c.sector})`).join("; ")}
 
 ## Frequently asked questions
 ${FAQS.map((f) => `### ${f.question}\n${f.answer}`).join("\n\n")}
+
+## Guides
+${GUIDES.map((g) => `- [${g.title}](${d}/guides/${g.slug}): ${g.summary}`).join("\n")}
 
 ## Main pages
 - [Home](${d}/)

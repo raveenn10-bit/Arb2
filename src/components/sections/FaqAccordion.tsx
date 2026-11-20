@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { motion } from "motion/react";
-import { FAQS } from "@/data/faq";
+import { FAQS, type FaqItem } from "@/data/faq";
 
-export function FaqAccordion() {
-  const [openId, setOpenId] = useState<string | null>(FAQS[0].id);
+export function FaqAccordion({ items = FAQS }: { items?: FaqItem[] }) {
+  const [openId, setOpenId] = useState<string | null>(items[0]?.id ?? null);
 
   return (
     <div className="divide-y divide-line border-y border-line">
-      {FAQS.map((item, idx) => {
+      {items.map((item, idx) => {
         const isOpen = openId === item.id;
         return (
           <div key={item.id} className="py-1">

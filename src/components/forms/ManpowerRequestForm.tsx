@@ -292,6 +292,7 @@ export function ManpowerRequestForm() {
                     href={waUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-conversion="lead"
                     onClick={() => setOpened(true)}
                     className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-whatsapp px-5 text-sm font-bold text-navy-950 hover:brightness-95"
                   >

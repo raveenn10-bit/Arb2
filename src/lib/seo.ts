@@ -114,11 +114,11 @@ export function getSiteSchemaGraph() {
   };
 }
 
-export function getFaqSchema() {
+export function getFaqSchema(items = FAQS) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
+    mainEntity: items.map((f) => ({
       "@type": "Question",
       name: f.question,
       acceptedAnswer: { "@type": "Answer", text: f.answer },
