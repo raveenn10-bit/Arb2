@@ -115,6 +115,12 @@ export const metadata: Metadata = {
       { url: "/icons/favicon-96x96.png", sizes: "96x96", type: "image/png" },
       { url: "/icons/favicon-144x144.png", sizes: "144x144", type: "image/png" },
       { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      // Browser-tab icons that follow the visitor's theme (listed last so they win over the generic ones above;
+      // the opaque icons above stay for Google Search, which shows a single favicon)
+      ...([32, 48, 96] as const).flatMap((px) => [
+        { url: `/icons/favicon-light-${px}.png`, sizes: `${px}x${px}`, type: "image/png", media: "(prefers-color-scheme: light)" },
+        { url: `/icons/favicon-dark-${px}.png`, sizes: `${px}x${px}`, type: "image/png", media: "(prefers-color-scheme: dark)" },
+      ]),
     ],
     shortcut: "/favicon.ico",
     apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
