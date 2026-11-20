@@ -196,7 +196,7 @@ export function HeroSection() {
       {/* =========================================================
           MOBILE-ONLY 9:16 VERTICAL HERO DESIGN (md:hidden)
          ========================================================= */}
-      <div className="md:hidden relative w-full aspect-[9/16] max-h-[calc(100svh-4rem-3.5rem-env(safe-area-inset-bottom))] min-h-[32rem] flex flex-col justify-between overflow-hidden bg-navy-950">
+      <div className="md:hidden relative w-full aspect-[9/16] max-h-[calc(100svh-4rem)] min-h-[32rem] flex flex-col justify-between overflow-hidden bg-navy-950">
         <div className="absolute inset-0 overflow-hidden">
           <div
             className="flex w-full h-full transition-transform duration-700 ease-out will-change-transform"

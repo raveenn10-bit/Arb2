@@ -14,7 +14,7 @@ export function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Pak Arab Manpower on WhatsApp (+971 55 384 2555)"
-      className="group fixed bottom-5 right-5 z-50 hidden md:flex h-14 w-14 items-center justify-center rounded-full shadow-[0_10px_28px_rgba(37,211,102,0.42)] transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
+      className="group fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 md:bottom-5 md:right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-[0_10px_28px_rgba(37,211,102,0.42)] transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
     >
       <span
         aria-hidden="true"

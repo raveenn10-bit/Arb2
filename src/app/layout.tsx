@@ -6,7 +6,6 @@ import { COMPANY } from "@/data/company";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
-import { MobileActionBar } from "@/components/ui/MobileActionBar";
 import { ScrollProgressBar } from "@/components/animations/ScrollProgressBar";
 import { PageAnimations } from "@/components/animations/PageAnimations";
 import { getSiteSchemaGraph } from "@/lib/seo";
@@ -133,7 +132,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" id="top" className={`${manrope.variable} ${inter.variable}`}>
-      <body className="min-h-screen flex flex-col bg-white text-navy-900 antialiased pb-[calc(3.5rem+env(safe-area-inset-bottom))] md:pb-0">
+      <body className="min-h-screen flex flex-col bg-white text-navy-900 antialiased">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
@@ -152,7 +151,6 @@ export default function RootLayout({
         </main>
         <Footer />
         <FloatingWhatsApp />
-        <MobileActionBar />
         {GA_ID && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
