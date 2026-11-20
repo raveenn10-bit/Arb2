@@ -105,15 +105,17 @@ export const metadata: Metadata = {
       "Industrial manpower supply for Oil & Gas, Construction, Mechanical, and Electrical projects across the UAE.",
     images: ["/images/brand/og-cover.jpg"],
   },
+  // Favicons: src/app/icon.png + apple-icon.png are injected automatically by Next.js;
+  // these add the classic .ico and the sizes Google Search prefers (multiples of 48px).
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "48x48" },
-      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
       { url: "/icons/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icons/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icons/favicon-144x144.png", sizes: "144x144", type: "image/png" },
       { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
+    shortcut: "/favicon.ico",
     apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
   },
 };
