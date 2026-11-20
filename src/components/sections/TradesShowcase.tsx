@@ -4,11 +4,6 @@ import { WORKFORCE_ROLES } from "@/data/workforce";
 
 // Curated, high-demand trades shown on the home page (all exist in the workforce directory)
 const FEATURED = [
-  "Mechanical Engineer",
-  "Construction Engineer",
-  "Project Coordinator",
-  "Welding Supervisors",
-  "Safety Officer",
   "Piping Foreman",
   "Structural Supervisor",
   "Rigging Supervisor",
