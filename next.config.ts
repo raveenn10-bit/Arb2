@@ -64,6 +64,16 @@ const nextConfig: NextConfig = {
         headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }],
       },
       {
+        // machine files (robots.txt, sitemap, llms.txt, IndexNow key, security.txt) must never appear as Google results.
+        // Crawlers still read them normally; noindex only keeps the file itself out of search listings.
+        source: "/:file(robots\\.txt|sitemap\\.xml|llms\\.txt|4df8e47e889b7dd098328fe33dc8eba6\\.txt)",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
+      {
+        source: "/.well-known/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
+      {
         // favicons: cache 1 day (stable URLs for Google's favicon crawler, still updatable)
         source: "/:file(favicon.ico|icon.png|apple-icon.png)",
         headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
