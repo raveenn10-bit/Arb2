@@ -25,10 +25,13 @@ const HERO_SLIDES = [
     caption: "Oil & Gas Site Supervision & Work Planning · UAE",
   },
   {
-    desktopSrc: "/images/hero/hero-civil-construction.jpg",
+    desktopSrc: "/images/hero/hero-desktop-scaffold-weld.webp",
     mobileSrc: "/images/hero/hero-mobile-3.jpg",
     alt: "Civil & Structural Steel Engineering Crew in the UAE",
     caption: "Civil & Structural Steel Engineering · UAE",
+    // desktop shows a different photo from mobile on this slide
+    desktopAlt: "Pak Arab Manpower Supply scaffolder in a safety harness and welder at work on a UAE refinery site",
+    desktopCaption: "Scaffolding & Welding Crews · UAE",
   },
   {
     desktopSrc: "/images/hero/hero-offshore-shutdown.jpg",
@@ -306,9 +309,10 @@ export function HeroSection() {
               <div key={slide.desktopSrc} className="min-w-full h-full relative shrink-0 select-none overflow-hidden">
                 <Image
                   src={slide.desktopSrc}
-                  alt={slide.alt}
+                  alt={("desktopAlt" in slide && slide.desktopAlt) || slide.alt}
                   fill
                   priority={idx === 0}
+                  quality={90}
                   sizes="100vw"
                   className={`object-cover object-center transition-transform duration-[4500ms] ease-out ${activeSlide === idx ? "scale-100" : "scale-110"}`}
                 />
@@ -374,7 +378,10 @@ export function HeroSection() {
                 ))}
               </div>
               <span className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80 bg-black/35 backdrop-blur-sm border border-white/15 px-3 py-1 rounded-full">
-                {HERO_SLIDES[activeSlide].caption}
+                {(() => {
+                  const sl = HERO_SLIDES[activeSlide];
+                  return ("desktopCaption" in sl && sl.desktopCaption) || sl.caption;
+                })()}
               </span>
             </div>
 
