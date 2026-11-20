@@ -1,26 +1,8 @@
 import { MapPin, Phone, Mail, MessageCircle, Navigation, ArrowUpRight } from "lucide-react";
 import { COMPANY } from "@/data/company";
+import { MapFrame } from "@/components/ui/MapFrame";
 
-const EMBED = `https://maps.google.com/maps?q=${encodeURIComponent(COMPANY.office.mapsEmbedQuery)}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
-
-/** Live Google map. `tone` restyles the map to match the brand. */
-export function MapFrame({ tone = "mono", className = "" }: { tone?: "mono" | "dark" | "none"; className?: string }) {
-  const filter =
-    tone === "mono"
-      ? "[filter:grayscale(1)_contrast(1.05)_brightness(1.02)]"
-      : tone === "dark"
-        ? "[filter:invert(0.92)_hue-rotate(180deg)_grayscale(0.6)_contrast(0.95)]"
-        : "";
-  return (
-    <iframe
-      title="Pak Arab Manpower Supply LLC office location, Shabiya-12, Mussafah, Abu Dhabi"
-      src={EMBED}
-      loading="lazy"
-      referrerPolicy="no-referrer-when-downgrade"
-      className={`h-full w-full border-0 ${filter} ${className}`}
-    />
-  );
-}
+export { MapFrame };
 
 const CONTACTS = [
   { icon: MessageCircle, label: "WhatsApp", value: COMPANY.whatsapp.display, href: COMPANY.whatsapp.url, ext: true, color: "text-[#25D366]" },
