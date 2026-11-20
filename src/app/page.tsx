@@ -140,7 +140,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             <GsapReveal className="rounded-xl bg-white border border-line p-7 sm:p-9 relative overflow-hidden">
               <div className="absolute top-0 left-0 h-1.5 w-full bg-brand" />
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand mb-5">
+              <div className="icon-pulse relative inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand mb-5">
                 <Target className="h-6 w-6" aria-hidden="true" />
               </div>
               <h3 className="text-2xl font-extrabold text-navy-900 mb-3">
@@ -156,7 +156,7 @@ export default function HomePage() {
               className="rounded-xl bg-navy-800 text-white border border-white/10 p-7 sm:p-9 relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 h-1.5 w-full bg-white/30" />
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-white mb-5">
+              <div className="icon-pulse relative inline-flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-white mb-5">
                 <Eye className="h-6 w-6" aria-hidden="true" />
               </div>
               <h3 className="text-2xl font-extrabold text-white mb-3">

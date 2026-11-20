@@ -76,7 +76,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full">
+    <header className="site-header sticky top-0 z-50 w-full">
       {/* Main Navigation Bar */}
       <div
         className={`w-full bg-white/95 backdrop-blur-md transition-shadow duration-200 border-b border-line ${
@@ -89,14 +89,25 @@ export function Header() {
             href="/"
             className="flex items-center gap-3 shrink-0 group"
           >
-            <div className="relative h-10 w-10 sm:h-11 sm:w-11 shrink-0 overflow-hidden">
+            <div className="relative h-12 w-11 sm:h-14 sm:w-[3.25rem] shrink-0">
+              {/* light theme: black logo · dark theme: client's white logo (switched by CSS, .logo-on-light/.logo-on-dark) */}
               <Image
-                src="/images/brand/pak-arab-mark.png"
-                alt=""
+                src="/images/brand/pak-arab-logo-full.png"
+                alt="Pak Arab Manpower Supply LLC logo"
                 fill
-                sizes="44px"
-                className="object-contain"
+                sizes="(max-width: 640px) 44px, 52px"
+                quality={90}
+                className="logo-on-light object-contain"
                 priority
+              />
+              <Image
+                src="/images/brand/pak-arab-logo-full-white.png"
+                alt=""
+                aria-hidden="true"
+                fill
+                sizes="(max-width: 640px) 44px, 52px"
+                quality={90}
+                className="logo-on-dark object-contain"
               />
             </div>
             <div className="flex flex-col leading-tight">
@@ -221,7 +232,7 @@ export function Header() {
       {/* Mobile Drawer */}
       {mobileOpen && (
         <div
-          className="xl:hidden fixed inset-0 top-16 lg:top-[4.625rem] z-40 bg-white overflow-y-auto border-t border-line"
+          className="site-mobile-menu xl:hidden fixed inset-0 top-16 lg:top-[4.625rem] z-40 bg-white overflow-y-auto border-t border-line"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"

@@ -72,7 +72,7 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20 bg-mist border-t border-line">
         <div className="container-wide grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="rounded-xl bg-white border border-line p-8 space-y-4">
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand">
+            <div className="icon-pulse relative inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand">
               <Target className="h-6 w-6" />
             </div>
             <h2 className="text-2xl font-extrabold text-navy-900">
@@ -84,7 +84,7 @@ export default function AboutPage() {
           </div>
 
           <div className="rounded-xl bg-navy-800 text-white p-8 space-y-4">
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-white">
+            <div className="icon-pulse relative inline-flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-white">
               <Eye className="h-6 w-6" />
             </div>
             <h2 className="text-2xl font-extrabold">{COMPANY.vision.title}</h2>

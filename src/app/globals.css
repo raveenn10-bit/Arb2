@@ -196,3 +196,52 @@ a:hover svg.lucide-arrow-up-right {
     --fade-bottom: 14%;
   }
 }
+
+/* Mission & Vision icons: soft expanding pulse rings in the icon's own colour */
+.icon-pulse::before,
+.icon-pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid currentColor;
+  opacity: 0;
+  pointer-events: none;
+  animation: icon-pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+.icon-pulse::after { animation-delay: 1.2s; }
+.icon-pulse > svg { animation: icon-pulse-beat 2.4s ease-in-out infinite; }
+
+@keyframes icon-pulse-ring {
+  0% { transform: scale(1); opacity: 0.55; }
+  80%, 100% { transform: scale(1.75); opacity: 0; }
+}
+@keyframes icon-pulse-beat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.12); }
+  30% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .icon-pulse::before, .icon-pulse::after, .icon-pulse > svg { animation: none; }
+}
+
+/* ── Dark theme (device / browser dark mode): header turns dark and the logo switches to the white version ── */
+.logo-on-dark { display: none; }
+@media (prefers-color-scheme: dark) {
+  .logo-on-light { display: none; }
+  .logo-on-dark { display: block; }
+
+  .site-header > div { background-color: rgb(11 18 32 / 0.96); border-color: rgb(255 255 255 / 0.1); }
+  .site-header .text-navy-900 { color: #fff; }
+  .site-header .text-slate { color: rgb(255 255 255 / 0.65); }
+  .site-header nav a:not(.bg-brand), .site-header nav button { color: rgb(255 255 255 / 0.85); }
+  .site-header nav a:hover, .site-header nav button:hover { color: #fff; background-color: rgb(255 255 255 / 0.08); }
+  .site-header nav .bg-mist, .site-header nav [aria-current="page"] { background-color: rgb(255 255 255 / 0.08); color: #fff; }
+  .site-header .border-line { border-color: rgb(255 255 255 / 0.15); }
+  .site-header .hover\:bg-mist:hover { background-color: rgb(255 255 255 / 0.08); }
+  .site-header .bg-white { background-color: #0f1a2b; }
+  .site-mobile-menu { background-color: #0b1220; border-color: rgb(255 255 255 / 0.1); }
+  .site-mobile-menu .text-navy-900 { color: #fff; }
+  .site-mobile-menu .text-slate { color: rgb(255 255 255 / 0.65); }
+  .site-mobile-menu .border-line { border-color: rgb(255 255 255 / 0.12); }
+}

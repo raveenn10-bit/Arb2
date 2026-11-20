@@ -11,15 +11,16 @@ export function Footer() {
           {/* Col 1: Brand & Accreditations */}
           <div className="col-span-2 lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="bg-white rounded-md p-1.5 shadow-sm">
-                <Image
-                  src="/images/brand/pak-arab-mark.png"
-                  alt="Pak Arab Manpower Supply LLC logo"
-                  width={42}
-                  height={42}
-                  className="h-9 w-auto object-contain"
-                />
-              </div>
+              {/* client-supplied white logo for the dark footer */}
+              <Image
+                src="/images/brand/pak-arab-logo-full-white.png"
+                alt="Pak Arab Manpower Supply LLC logo"
+                width={1080}
+                height={1200}
+                quality={90}
+                sizes="56px"
+                className="h-16 w-auto object-contain"
+              />
               <div>
                 <p className="text-base font-extrabold tracking-tight leading-tight">
                   PAK ARAB MANPOWER
