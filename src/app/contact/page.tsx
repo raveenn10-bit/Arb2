@@ -9,7 +9,7 @@ import { ManpowerRequestForm } from "@/components/forms/ManpowerRequestForm";
 export const metadata: Metadata = pageMeta({
   title: "Contact & Request Manpower – Abu Dhabi",
   description:
-    "Request manpower or contact Pak Arab Manpower Supply LLC, Office A03, Wurth Gulf Building, M14 Musaffah, Abu Dhabi. WhatsApp +971 55 384 2555 · Tel +971 2 679 2576.",
+    "Request manpower or contact Pak Arab Manpower Supply LLC, Office 05, Building C-06, Shabiya-12, Mussafah, Abu Dhabi. WhatsApp +971 55 384 2555 · Tel +971 2 679 2576.",
   path: "/contact",
   keywords: ["request manpower Abu Dhabi", "manpower supply contact UAE"],
 });
@@ -20,7 +20,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Get In Touch"
         title="Contact Pak Arab Manpower Supply LLC"
-        description="Reach our Abu Dhabi coordination office by WhatsApp, telephone, email, or visit us at Wurth Gulf Building, Musaffah M14."
+        description="Reach our Abu Dhabi coordination office by WhatsApp, telephone, email, or visit us at Building C-06, Shabiya-12, Mussafah."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Contact Us", href: "/contact" },

@@ -9,7 +9,8 @@ const EMIRATES = ["Abu Dhabi", "Dubai", "Sharjah", "Ajman", "Umm Al Quwain", "Ra
 
 const ADDRESS = {
   "@type": "PostalAddress",
-  streetAddress: "Office No. A03, Wurth Gulf Building, Plot No. 42, M14, Musaffah",
+  streetAddress: "Office No. 05, M-Floor, Building C-06, Shabiya-12, Mussafah Commercial",
+  postOfficeBoxNumber: "133046",
   addressLocality: "Abu Dhabi",
   addressRegion: "Abu Dhabi",
   addressCountry: "AE",

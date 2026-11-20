@@ -18,7 +18,7 @@ export function GET() {
 
   const body = `# ${COMPANY.name}
 
-> ${COMPANY.name} (${COMPANY.arabicName}) is a manpower supply company headquartered in Musaffah (M14), Abu Dhabi, United Arab Emirates. It supplies skilled and unskilled industrial workforce, including Oil & Gas, MEP, Civil & Construction, Mechanical and Electrical personnel, to projects across all seven UAE emirates, on short- and long-term contracts. Mobilisation timelines are confirmed per requirement, depending on trades, headcount and site access.
+> ${COMPANY.name} (${COMPANY.arabicName}) is a manpower supply company headquartered in Shabiya-12, Mussafah, Abu Dhabi, United Arab Emirates. It supplies skilled and unskilled industrial workforce, including Oil & Gas, MEP, Civil & Construction, Mechanical and Electrical personnel, to projects across all seven UAE emirates, on short- and long-term contracts. Mobilisation timelines are confirmed per requirement, depending on trades, headcount and site access.
 
 ## Key facts
 - Legal name: ${COMPANY.name}

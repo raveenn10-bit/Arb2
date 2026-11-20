@@ -21,9 +21,9 @@ export const COMPANY = {
   },
   office: {
     label: "Abu Dhabi Head Office",
-    address: "Office No. A03, Wurth Gulf Building, Plot No. 42, M14, Abu Dhabi, UAE",
+    address: "Office No. 05, M-Floor, Building C-06, Shabiya-12, Mussafah Commercial, P.O. Box: 133046, Abu Dhabi, UAE",
     city: "Abu Dhabi",
-    district: "Musaffah M14",
+    district: "Shabiya-12, Mussafah",
     country: "United Arab Emirates",
     mapsUrl: "https://maps.app.goo.gl/kf37HP9V3XnApEXy6?g_st=aw",
     /**

@@ -13,7 +13,7 @@ export function MapFrame({ tone = "mono", className = "" }: { tone?: "mono" | "d
         : "";
   return (
     <iframe
-      title="Pak Arab Manpower Supply LLC office location, M14 Musaffah, Abu Dhabi"
+      title="Pak Arab Manpower Supply LLC office location, Shabiya-12, Mussafah, Abu Dhabi"
       src={EMBED}
       loading="lazy"
       referrerPolicy="no-referrer-when-downgrade"

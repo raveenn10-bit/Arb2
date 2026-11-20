@@ -9,7 +9,7 @@ import { PageHero } from "@/components/ui/PageHero";
 export const metadata: Metadata = pageMeta({
   title: "About Our Abu Dhabi Manpower Company",
   description:
-    "Pak Arab Manpower Supply LLC is an Abu Dhabi manpower supply company in Musaffah M14 delivering vetted, skilled industrial workforce across all 7 UAE emirates.",
+    "Pak Arab Manpower Supply LLC is an Abu Dhabi manpower supply company in Shabiya-12, Mussafah delivering vetted, skilled industrial workforce across all 7 UAE emirates.",
   path: "/about",
   keywords: ["manpower company Abu Dhabi", "about Pak Arab Manpower", "manpower supply company Musaffah"],
 });

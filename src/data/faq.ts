@@ -33,7 +33,7 @@ export const FAQS: FaqItem[] = [
     id: "faq-12",
     question: "Do you supply manpower outside Abu Dhabi?",
     answer:
-      "Yes. Pak Arab Manpower Supply LLC is headquartered in Musaffah (M14), Abu Dhabi, and supplies skilled and unskilled manpower to projects across all seven emirates: Abu Dhabi, Dubai, Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah and Fujairah.",
+      "Yes. Pak Arab Manpower Supply LLC is headquartered in Shabiya-12, Mussafah, Abu Dhabi, and supplies skilled and unskilled manpower to projects across all seven emirates: Abu Dhabi, Dubai, Sharjah, Ajman, Umm Al Quwain, Ras Al Khaimah and Fujairah.",
   },
   {
     id: "faq-13",
@@ -81,7 +81,7 @@ export const FAQS: FaqItem[] = [
     id: "faq-9",
     question: "Where is your Abu Dhabi office?",
     answer:
-      "Our Abu Dhabi office is located at Office No. A03, Wurth Gulf Building, Plot No. 42, M14, Abu Dhabi, United Arab Emirates.",
+      "Our Abu Dhabi office is located at Office No. 05, M-Floor, Building C-06, Shabiya-12, Mussafah Commercial, P.O. Box: 133046, Abu Dhabi, United Arab Emirates.",
   },
   {
     id: "faq-10",
