@@ -64,6 +64,15 @@ const nextConfig: NextConfig = {
         headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }],
       },
       {
+        // favicons: cache 1 day (stable URLs for Google's favicon crawler, still updatable)
+        source: "/:file(favicon.ico|icon.png|apple-icon.png)",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
+      },
+      {
+        source: "/icons/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
+      },
+      {
         // long-cache static images (logos, photos)
         source: "/images/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
