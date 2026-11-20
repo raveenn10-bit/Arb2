@@ -245,3 +245,19 @@ a:hover svg.lucide-arrow-up-right {
   .site-mobile-menu .text-slate { color: rgb(255 255 255 / 0.65); }
   .site-mobile-menu .border-line { border-color: rgb(255 255 255 / 0.12); }
 }
+
+/* ── Legal pages: print-friendly layout ── */
+@media print {
+  .legal-no-print,
+  header.site-header,
+  footer,
+  a[aria-label^="Chat with Pak Arab"],
+  [data-scroll-progress] { display: none !important; }
+  .legal-page { background: #fff !important; }
+  .legal-page .container-wide { max-width: none !important; padding: 0 !important; }
+  .legal-page .grid { display: block !important; }
+  .legal-page article { max-width: none !important; }
+  .legal-page h2 { break-after: avoid; }
+  .legal-page section { break-inside: avoid-page; }
+  .legal-page a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #555; }
+}

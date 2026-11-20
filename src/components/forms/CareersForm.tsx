@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { MessageCircle, AlertCircle, CheckCircle2 } from "lucide-react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
@@ -31,6 +32,9 @@ export function CareersForm() {
   const [form, setForm] = useState<CareersState>(INITIAL);
   const [errors, setErrors] = useState<Partial<Record<keyof CareersState, string>>>({});
   const [preparedUrl, setPreparedUrl] = useState<string | null>(null);
+  // Required, unticked by default: candidate consent to recruitment processing (PDPL Art. 6). Not marketing consent.
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState(false);
 
   const validate = () => {
     const next: Partial<Record<keyof CareersState, string>> = {};
@@ -44,7 +48,8 @@ export function CareersForm() {
     if (!form.currentLocation.trim())
       next.currentLocation = "Current location is required.";
     setErrors(next);
-    return Object.keys(next).length === 0;
+    setConsentError(!consent);
+    return Object.keys(next).length === 0 && consent;
   };
 
   const handleSubmit = (e: FormEvent) => {
@@ -229,6 +234,38 @@ export function CareersForm() {
           className="w-full rounded-md border border-line px-3.5 py-2.5 text-sm"
         />
       </div>
+
+      <div>
+        <div className="flex items-start gap-3">
+          <input
+            id="car-consent"
+            type="checkbox"
+            checked={consent}
+            onChange={(e) => {
+              setConsent(e.target.checked);
+              if (e.target.checked) setConsentError(false);
+            }}
+            aria-invalid={consentError ? true : undefined}
+            aria-describedby={consentError ? "car-consent-err" : undefined}
+            className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-line accent-brand"
+          />
+          <label htmlFor="car-consent" className="cursor-pointer text-xs leading-relaxed text-navy-900">
+            I have read the{" "}
+            <Link href="/privacy-policy" className="font-semibold text-brand underline underline-offset-2">Privacy Policy</Link> and agree that {COMPANY.name} may use the
+            details and CV I send to assess my application and, if I am shortlisted, share relevant information with the prospective client employer. <span className="text-brand">*</span>
+          </label>
+        </div>
+        {consentError && (
+          <p id="car-consent-err" className="mt-1.5 flex items-center gap-1 text-xs text-brand">
+            <AlertCircle className="h-3.5 w-3.5" /> Please confirm to continue.
+          </p>
+        )}
+      </div>
+
+      <p className="text-xs leading-relaxed text-slate">
+        Your details are not stored on this website. Pressing the button opens WhatsApp with your details prefilled; when you send the message, your information is transferred to WhatsApp and to our
+        recruitment team. We never charge candidates recruitment fees.
+      </p>
 
       <button
         type="submit"

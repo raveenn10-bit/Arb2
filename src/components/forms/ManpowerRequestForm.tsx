@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { AlertCircle, ExternalLink, Info, MessageCircle, Pencil } from "lucide-react";
@@ -241,7 +242,11 @@ export function ManpowerRequestForm() {
       </button>
       <p className="flex items-start gap-2 text-xs text-slate">
         <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-        Your details are not stored on this website. They are placed into a WhatsApp message to {COMPANY.whatsapp.display} that you review and send yourself.
+        <span>
+          Your details are not stored on this website. They are placed into a WhatsApp message to {COMPANY.whatsapp.display} that you review and send yourself. When you send it, your
+          information is transferred to WhatsApp and to our team, and is handled as described in our{" "}
+          <Link href="/privacy-policy" className="font-semibold text-brand underline underline-offset-2">Privacy Policy</Link>.
+        </span>
       </p>
 
       <AnimatePresence>

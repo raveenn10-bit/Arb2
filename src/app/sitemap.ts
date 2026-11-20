@@ -29,7 +29,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/careers", priority: 0.7, freq: "monthly" },
     { route: "/contact", priority: 0.8, freq: "monthly" },
     { route: "/guides", priority: 0.7, freq: "weekly" },
-    { route: "/privacy-policy", priority: 0.2, freq: "yearly" },
+    { route: "/privacy-policy", priority: 0.3, freq: "yearly" },
+    { route: "/terms-and-conditions", priority: 0.3, freq: "yearly" },
   ];
 
   const staticEntries: MetadataRoute.Sitemap = pages.map((p) => ({

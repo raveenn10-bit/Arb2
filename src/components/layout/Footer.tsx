@@ -145,6 +145,9 @@ export function Footer() {
             <Link href="/privacy-policy" className="inline-flex min-h-11 items-center hover:text-white transition-colors">
               Privacy Policy
             </Link>
+            <Link href="/terms-and-conditions" className="inline-flex min-h-11 items-center hover:text-white transition-colors">
+              Terms &amp; Conditions
+            </Link>
             <a
               href={COMPANY.developer.url}
               target="_blank"
