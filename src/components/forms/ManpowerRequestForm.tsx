@@ -1,13 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { AlertCircle, ExternalLink, Info, MessageCircle, Pencil, Trash2, Users } from "lucide-react";
+import { AlertCircle, ExternalLink, Info, MessageCircle, Pencil } from "lucide-react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { COMPANY } from "@/data/company";
-import { QtyStepper } from "@/components/workforce/QtyStepper";
-import { selection, selectionLines, totalWorkers, useWorkforceSelection } from "@/lib/workforce-selection";
+import { selectionLines, totalWorkers, useWorkforceSelection } from "@/lib/workforce-selection";
 
 interface FormState {
   fullName: string;
@@ -76,7 +74,7 @@ export function ManpowerRequestForm() {
     const digits = f.phone.replace(/\D/g, "");
     if (digits.length < 7 || digits.length > 15) e.phone = "Enter a valid phone or WhatsApp number, e.g. +971 50 123 4567.";
     if (!hasRoles && !f.workforceCategory.trim())
-      e.workforceCategory = "Add roles from the workforce directory, or type the trades you need.";
+      e.workforceCategory = "Type the trades you need.";
     if (!hasRoles) {
       const n = Number(f.workersCount);
       if (!Number.isInteger(n) || n < 1) e.workersCount = "Enter the number of workers (minimum 1).";
@@ -183,57 +181,6 @@ export function ManpowerRequestForm() {
       <p className="text-sm text-slate">
         Fields marked <span className="text-brand">*</span> are required.
       </p>
-
-      {/* Selected workforce from the directory */}
-      <div className="rounded-lg border border-line bg-mist p-4">
-        <div className="mb-2 flex items-center justify-between gap-3">
-          <p className="flex items-center gap-2 text-sm font-bold text-navy-900">
-            <Users className="h-4 w-4 text-brand" aria-hidden="true" />
-            Selected workforce
-          </p>
-          {hasRoles && (
-            <button type="button" onClick={() => selection.clear()} className="min-h-11 px-2 text-sm font-semibold text-slate hover:text-brand-dark">
-              Clear all
-            </button>
-          )}
-        </div>
-        {hasRoles ? (
-          <>
-            <ul className="divide-y divide-line" aria-live="polite">
-              {roles.map((r) => (
-                <li key={r.id} className="flex flex-wrap items-center justify-between gap-2 py-2.5">
-                  <span className="min-w-0">
-                    <span className="block text-sm font-semibold text-navy-900">{r.title}</span>
-                    <span className="block text-xs text-slate">{r.environment}</span>
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <QtyStepper id={`${uid}-sel-${r.id}`} value={r.qty} onChange={(n) => selection.setQty(r.id, n)} label={r.title} />
-                    <button
-                      type="button"
-                      onClick={() => selection.remove(r.id)}
-                      aria-label={`Remove ${r.title}`}
-                      className="inline-flex size-11 items-center justify-center rounded-md text-slate hover:bg-brand/10 hover:text-brand-dark"
-                    >
-                      <Trash2 className="h-4 w-4" aria-hidden="true" />
-                    </button>
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-2 text-sm font-semibold text-navy-900">
-              Total: {total} worker{total > 1 ? "s" : ""} across {roles.length} role{roles.length > 1 ? "s" : ""}
-            </p>
-          </>
-        ) : (
-          <p className="text-sm text-slate">
-            No roles selected yet.{" "}
-            <Link href="/workforce" className="font-semibold text-industrial underline underline-offset-4">
-              Choose from the workforce directory
-            </Link>{" "}
-            or describe the trades you need below.
-          </p>
-        )}
-      </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {Field({ k: "fullName", label: "Full name", required: true, children: <input type="text" autoComplete="name" value={form.fullName} onChange={(e) => update("fullName", e.target.value)} {...a11y("fullName")} /> })}

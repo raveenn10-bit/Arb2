@@ -65,7 +65,6 @@ export function Footer() {
             </h2>
             <ul className="space-y-2.5 text-sm text-line-strong">
               <li><Link href="/services" className="hover:text-white transition-colors">Manpower Services</Link></li>
-              <li><Link href="/workforce" className="hover:text-white transition-colors">Workforce Directory</Link></li>
               <li><Link href="/industries" className="hover:text-white transition-colors">Industries Served</Link></li>
               <li><Link href="/clients" className="hover:text-white transition-colors">Client Portfolio</Link></li>
               <li><Link href="/quality" className="hover:text-white transition-colors">Quality &amp; Certifications</Link></li>

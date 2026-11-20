@@ -103,10 +103,10 @@ export default function AboutPage() {
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
-            href="/workforce"
+            href="/contact"
             className="inline-flex items-center gap-2 rounded-md border border-navy-900 px-5 py-3 text-sm font-semibold text-navy-900 hover:bg-navy-900 hover:text-white transition-colors min-h-[2.75rem]"
           >
-            <span>Browse Workforce Directory</span>
+            <span>Request Manpower</span>
           </Link>
         </div>
       </section>

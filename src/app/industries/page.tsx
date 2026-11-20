@@ -57,10 +57,10 @@ export default function IndustriesPage() {
                 </div>
                 <div className="pt-4">
                   <Link
-                    href="/workforce"
+                    href="/contact"
                     className="inline-flex items-center gap-1.5 text-sm font-bold text-navy-900 hover:text-brand"
                   >
-                    <span>View Related Trades</span>
+                    <span>Request Manpower</span>
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>

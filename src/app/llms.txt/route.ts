@@ -30,7 +30,7 @@ export function GET() {
 - Email: ${COMPANY.email}
 - Website: ${d}
 - Compliance: ADNOC-compliant, CICPA-eligible workforce
-- Workforce directory: ${WORKFORCE_ROLES.length} active trade categories (${mep.length} Onshore & Offshore MEP, ${civil.length} Civil & Construction)
+- Trades supplied: ${WORKFORCE_ROLES.length} active trade categories (${mep.length} Onshore & Offshore MEP, ${civil.length} Civil & Construction)
 - Clients supplied: ${CLIENTS.length} UAE companies
 
 ## Services
@@ -59,7 +59,6 @@ ${FAQS.map((f) => `### ${f.question}\n${f.answer}`).join("\n\n")}
 - [About](${d}/about)
 - [Services](${d}/services)
 - [Industries](${d}/industries)
-- [Workforce Directory](${d}/workforce)
 - [Clients](${d}/clients)
 - [Quality & Certifications](${d}/quality)
 - [Careers](${d}/careers)

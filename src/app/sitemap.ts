@@ -21,7 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ],
     },
     { route: "/services", priority: 0.9, freq: "monthly" },
-    { route: "/workforce", priority: 0.9, freq: "monthly" },
     { route: "/industries", priority: 0.8, freq: "monthly" },
     { route: "/about", priority: 0.8, freq: "monthly" },
     { route: "/clients", priority: 0.7, freq: "monthly" },

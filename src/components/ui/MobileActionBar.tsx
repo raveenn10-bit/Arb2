@@ -23,9 +23,9 @@ export function MobileActionBar() {
           <Phone className="h-5 w-5" aria-hidden="true" />
           Call
         </a>
-        <Link href="/workforce" className={`${item} border-x border-white/10 text-white/85 hover:text-white`}>
+        <Link href="/services" className={`${item} border-x border-white/10 text-white/85 hover:text-white`}>
           <Users className="h-5 w-5" aria-hidden="true" />
-          Workforce
+          Services
         </Link>
         <a
           href={`${COMPANY.whatsapp.url}?text=${WA_TEXT}`}

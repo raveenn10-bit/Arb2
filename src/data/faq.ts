@@ -67,7 +67,7 @@ export const FAQS: FaqItem[] = [
     id: "faq-6",
     question: "Which workforce categories are available?",
     answer:
-      `Our Workforce Directory covers ${WORKFORCE_ROLES.length} active supply categories across two divisions: ${MEP_COUNT} Onshore & Offshore MEP roles (GTAW/SMAW welders, pipe fitters, fabricators, riggers, scaffolders, industrial electricians, instrument technicians) and ${WORKFORCE_ROLES.length - MEP_COUNT} Civil & Construction trades (masons, carpenters, steel fixers, HVAC technicians, plumbers, operators, drivers, and site support).`,
+      `We supply ${WORKFORCE_ROLES.length} trade categories across two divisions: ${MEP_COUNT} Onshore & Offshore MEP roles (GTAW/SMAW welders, pipe fitters, fabricators, riggers, scaffolders, industrial electricians, instrument technicians) and ${WORKFORCE_ROLES.length - MEP_COUNT} Civil & Construction trades (masons, carpenters, steel fixers, HVAC technicians, plumbers, operators, drivers, and site support).`,
   },
   {
     id: "faq-7",

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { WORKFORCE_ROLES } from "@/data/workforce";
 
-// Curated, high-demand trades shown on the home page (all exist in the workforce directory)
+// Curated, high-demand trades shown on the home page (all exist in WORKFORCE_ROLES)
 const FEATURED = [
   "Piping Foreman",
   "Structural Supervisor",
@@ -94,10 +94,10 @@ export function TradesShowcase() {
           </dl>
 
           <Link
-            href="/workforce"
+            href="/contact"
             className="group inline-flex min-h-[3.25rem] items-center gap-3 rounded-md bg-brand px-7 text-sm font-extrabold uppercase tracking-[0.08em] text-white shadow-lg shadow-brand/20 transition-colors hover:bg-brand-dark"
           >
-            <span>Browse All Trades</span>
+            <span>Request These Trades</span>
             <ArrowUpRight className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
           </Link>
         </div>
@@ -115,7 +115,7 @@ export function TradesShowcase() {
             ))}
             <li className="flex">
               <Link
-                href="/workforce"
+                href="/contact"
                 className="flex items-center gap-2 rounded-md border border-dashed border-brand-light/60 px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base font-bold text-brand-light transition-colors hover:border-brand-light hover:bg-brand/10"
               >
                 <span className="sm:hidden">+{total - MOBILE_VISIBLE} more trades</span>

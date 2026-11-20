@@ -32,9 +32,7 @@ export default function PrivacyPolicyPage() {
               {COMPANY.name}. Enquiry forms on this website format your entered project
               or career details locally in your browser and open a direct WhatsApp
               conversation with our team at {COMPANY.whatsapp.display}. No form
-              submissions are stored in a website database. Workforce roles you select in
-              the directory are kept only in your own browser&apos;s session storage so they
-              stay selected while you browse; they are cleared when you close the tab.
+              submissions are stored in a website database.
             </p>
           </div>
 

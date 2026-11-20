@@ -7,7 +7,6 @@ import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { MobileActionBar } from "@/components/ui/MobileActionBar";
-import { SelectionTray } from "@/components/workforce/SelectionTray";
 import { ScrollProgressBar } from "@/components/animations/ScrollProgressBar";
 import { PageAnimations } from "@/components/animations/PageAnimations";
 import { getSiteSchemaGraph } from "@/lib/seo";
@@ -153,7 +152,6 @@ export default function RootLayout({
         </main>
         <Footer />
         <FloatingWhatsApp />
-        <SelectionTray />
         <MobileActionBar />
         {GA_ID && (
           <>

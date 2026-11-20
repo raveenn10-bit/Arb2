@@ -20,7 +20,6 @@ const NAV_LINKS = [
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services", hasDropdown: true },
   { label: "Industries", href: "/industries" },
-  { label: "Workforce", href: "/workforce" },
   { label: "Our Clients", href: "/clients" },
   { label: "Contact", href: "/contact" },
 ];

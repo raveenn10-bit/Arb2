@@ -35,6 +35,7 @@ const nextConfig: NextConfig = {
       { source: "/our-clients", destination: "/clients", permanent: true },
       { source: "/request-manpower", destination: "/contact#request-form", permanent: true },
       { source: "/jobs", destination: "/careers", permanent: true },
+      { source: "/workforce", destination: "/#trades", permanent: true },
     ];
   },
 };
