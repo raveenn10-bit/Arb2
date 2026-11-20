@@ -8,10 +8,10 @@ const HIGHLIGHTS = [
   { icon: Users, label: "Supervised site teams" },
 ];
 
-const BLUE = "/images/team/pak-arab-crew-blue-hd.webp";
-const RED = "/images/team/pak-arab-crew-red-hd.webp";
-const BLUE_ALT = "Pak Arab Manpower Supply crew in branded blue coveralls and hard hats at a UAE oil and gas facility";
-const RED_ALT = "Pak Arab Manpower Supply supervisors in red coveralls reviewing work plans at a refinery at sunset";
+const BLUE = "/images/team/pak-arab-crew-lineup.webp";
+const RED = "/images/team/pak-arab-supervisor-briefing.webp";
+const BLUE_ALT = "Pak Arab Manpower Supply crew in branded navy coveralls and hard hats standing arms crossed at a UAE refinery";
+const RED_ALT = "Pak Arab Manpower Supply site supervisor in a hi-vis jacket briefing his crew with a clipboard at a UAE plant";
 
 function Kicker({ light = false }: { light?: boolean }) {
   return (

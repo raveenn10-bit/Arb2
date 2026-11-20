@@ -15,8 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: [
         "/images/hero/hero-desktop-crew-blue.webp",
         "/images/hero/hero-desktop-crew-red.webp",
-        "/images/team/pak-arab-crew-blue-hd.webp",
-        "/images/team/pak-arab-crew-red-hd.webp",
+        "/images/team/pak-arab-crew-lineup.webp",
+        "/images/team/pak-arab-supervisor-briefing.webp",
         "/images/services/manpower-briefing.webp",
       ],
     },
