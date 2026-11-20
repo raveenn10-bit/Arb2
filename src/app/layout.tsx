@@ -9,7 +9,7 @@ import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { ConversionTracking } from "@/components/analytics/ConversionTracking";
 import { ScrollProgressBar } from "@/components/animations/ScrollProgressBar";
 import { PageAnimations } from "@/components/animations/PageAnimations";
-import { getSiteSchemaGraph } from "@/lib/seo";
+import { getSiteSchemaGraph, jsonLd } from "@/lib/seo";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -145,7 +145,7 @@ export default function RootLayout({
         </a>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema).replace(/</g, "\\u003c") }}
+          dangerouslySetInnerHTML={{ __html: jsonLd(siteSchema) }}
         />
         <ScrollProgressBar />
         <PageAnimations />

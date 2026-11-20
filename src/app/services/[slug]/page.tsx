@@ -7,7 +7,7 @@ import { SERVICES } from "@/data/services";
 import { PageHero } from "@/components/ui/PageHero";
 import { ManpowerRequestForm } from "@/components/forms/ManpowerRequestForm";
 import { buildQuickEnquiryUrl } from "@/lib/whatsapp";
-import { getServiceSchema, getFaqSchema } from "@/lib/seo";
+import { getServiceSchema, getFaqSchema, jsonLd } from "@/lib/seo";
 import { SERVICE_FAQS } from "@/data/service-faqs";
 import { GUIDES } from "@/data/guides";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
@@ -93,7 +93,7 @@ export default async function ServiceDetailPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(serviceSchema) }}
       />
       <PageHero
         eyebrow={`Service ${service.number}`}
@@ -178,7 +178,7 @@ export default async function ServiceDetailPage({
         <section className="py-14 sm:py-16 bg-white border-t border-line">
           <script
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqSchema(SERVICE_FAQS[service.slug])) }}
+            dangerouslySetInnerHTML={{ __html: jsonLd(getFaqSchema(SERVICE_FAQS[service.slug])) }}
           />
           <div className="container-wide max-w-4xl space-y-6">
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-navy-900">

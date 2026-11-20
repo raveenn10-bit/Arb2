@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { getBreadcrumbSchema } from "@/lib/seo";
+import { getBreadcrumbSchema, jsonLd } from "@/lib/seo";
 
 interface PageHeroProps {
   eyebrow: string;
@@ -18,7 +18,7 @@ export function PageHero({ eyebrow, title, description, breadcrumbs }: PageHeroP
     <section data-page-hero className="relative overflow-hidden bg-navy-900 text-white border-b border-white/10 py-14 sm:py-20">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(schema) }}
       />
       <div
         aria-hidden="true"

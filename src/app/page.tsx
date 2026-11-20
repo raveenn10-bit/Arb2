@@ -31,7 +31,7 @@ import { GsapReveal } from "@/components/animations/GsapReveal";
 import { MobileAutoTrack } from "@/components/animations/MobileAutoTrack";
 import { VantaNetBackground } from "@/components/animations/VantaNetBackground";
 import { buildQuickEnquiryUrl } from "@/lib/whatsapp";
-import { getFaqSchema, getWebPageSchema } from "@/lib/seo";
+import { getFaqSchema, getWebPageSchema, jsonLd } from "@/lib/seo";
 
 const WHY_ICONS: Record<string, typeof Users> = {
   Users,
@@ -57,8 +57,8 @@ export default function HomePage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(pageSchema) }} />
       {/* 2. Cinematic Industrial Hero */}
       <HeroSection />
 

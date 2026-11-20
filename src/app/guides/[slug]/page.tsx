@@ -9,7 +9,7 @@ import { SERVICES } from "@/data/services";
 import { COMPANY } from "@/data/company";
 import { PageHero } from "@/components/ui/PageHero";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
-import { getFaqSchema } from "@/lib/seo";
+import { getFaqSchema, jsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
   return GUIDES.map((g) => ({ slug: g.slug }));
@@ -50,8 +50,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqSchema(g.faqs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(getFaqSchema(g.faqs)) }} />
       <PageHero
         eyebrow={`Guide · ${g.readMinutes} min read`}
         title={g.title}
