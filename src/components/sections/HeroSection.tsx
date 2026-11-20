@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { COMPANY } from "@/data/company";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -328,7 +329,7 @@ export function HeroSection() {
             <div className="hero-stagger mb-7 inline-flex items-center gap-3 lg:mb-9">
               <span className="h-[2px] w-10 bg-brand" />
               <span className="hero-kicker text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white/90">
-                MANPOWER SUPPLY COMPANY · ABU DHABI, UAE
+                {COMPANY.siteName}
               </span>
             </div>
 

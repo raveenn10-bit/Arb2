@@ -33,8 +33,8 @@ const inter = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(COMPANY.domain),
   title: {
-    default: "Manpower Supply Company in Abu Dhabi, UAE | Pak Arab Manpower",
-    template: "%s | Pak Arab Manpower",
+    default: `${COMPANY.siteName} | Manpower Supply Company UAE`,
+    template: `${COMPANY.siteName} | %s`,
   },
   description:
     "Skilled industrial manpower in Abu Dhabi & all 7 UAE emirates for Oil & Gas, MEP, Civil, Mechanical & Electrical projects. Short- and long-term contracts.",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     canonical: "/",
     languages: { "en-AE": "/", "x-default": "/" },
   },
-  applicationName: COMPANY.name,
+  applicationName: COMPANY.siteName,
   authors: [{ name: COMPANY.name, url: COMPANY.domain }],
   creator: COMPANY.name,
   publisher: COMPANY.name,
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_AE",
     url: COMPANY.domain,
-    siteName: COMPANY.name,
+    siteName: COMPANY.siteName,
     title: "Pak Arab Manpower Supply LLC | Industrial Workforce Solutions UAE",
     description:
       "Skilled onshore & offshore MEP, Oil & Gas, Civil Construction, and Electrical manpower supply in Abu Dhabi, UAE.",

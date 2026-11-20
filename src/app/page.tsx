@@ -50,7 +50,7 @@ export default function HomePage() {
   const faqSchema = getFaqSchema();
   const pageSchema = getWebPageSchema({
     path: "/",
-    name: "Manpower Supply Company in Abu Dhabi, UAE | Pak Arab Manpower",
+    name: `${COMPANY.siteName} | Manpower Supply Company UAE`,
     description:
       "Skilled industrial manpower supply in Abu Dhabi and across all 7 UAE emirates for Oil & Gas, MEP, Civil & Construction, Mechanical and Electrical projects.",
   });

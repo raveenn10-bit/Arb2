@@ -1,6 +1,8 @@
 export const COMPANY = {
   name: "Pak Arab Manpower Supply LLC",
   shortName: "Pak Arab Manpower",
+  /** Brand name Google should show as the site name on every search result (client requirement) */
+  siteName: "PAK ARAB MANPOWER SUPPLY LLC – ABU DHABI",
   arabicName: "باك عرب لتوريد العمالة ذ.م.م",
   tagline: "Industrial Workforce Solutions · United Arab Emirates",
   domain: "https://pakarabmanpowersupply.ae",

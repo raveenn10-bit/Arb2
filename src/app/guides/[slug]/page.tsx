@@ -22,7 +22,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const base = pageMeta({ title: g.seoTitle, description: g.description, path: `/guides/${g.slug}`, keywords: g.keywords });
   return {
     ...base,
-    title: { absolute: `${g.seoTitle} | Pak Arab` },
     openGraph: { ...base.openGraph, type: "article", publishedTime: g.published, modifiedTime: g.updated },
   };
 }
