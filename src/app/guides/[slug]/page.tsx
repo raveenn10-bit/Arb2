@@ -42,8 +42,14 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     dateModified: g.updated,
     inLanguage: "en-AE",
     mainEntityOfPage: url,
-    author: { "@id": `${COMPANY.domain}/#organization`, "@type": "Organization", name: COMPANY.name },
-    publisher: { "@id": `${COMPANY.domain}/#organization`, "@type": "Organization", name: COMPANY.name },
+    author: { "@id": `${COMPANY.domain}/#organization`, "@type": "Organization", name: COMPANY.name, url: COMPANY.domain },
+    publisher: {
+      "@id": `${COMPANY.domain}/#organization`,
+      "@type": "Organization",
+      name: COMPANY.name,
+      url: COMPANY.domain,
+      logo: { "@type": "ImageObject", url: `${COMPANY.domain}/images/brand/pak-arab-logo.png` },
+    },
   };
   const related = SERVICES.filter((s) => g.relatedServices.includes(s.slug));
   const updated = new Date(g.updated).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });

@@ -25,7 +25,7 @@ export function pageMeta({
     title,
     description,
     keywords,
-    alternates: { canonical: path },
+    alternates: { canonical: path, languages: { "en-AE": path, "x-default": path } },
     openGraph: {
       type: "website",
       locale: "en_AE",
