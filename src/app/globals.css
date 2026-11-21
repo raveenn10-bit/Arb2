@@ -225,26 +225,29 @@ a:hover svg.lucide-arrow-up-right {
   .icon-pulse::before, .icon-pulse::after, .icon-pulse > svg { animation: none; }
 }
 
-/* ── Dark theme (device / browser dark mode): header turns dark and the logo switches to the white version ── */
-.logo-on-dark { display: none; }
-@media (prefers-color-scheme: dark) {
-  .logo-on-light { display: none; }
-  .logo-on-dark { display: block; }
+/* ── Header colour states ──
+   Header is dark navy (white text + client's white logo) while the page is at the top,
+   then turns white (dark text + black logo) once the visitor scrolls. Header.tsx adds .header-dark at the top.
+   Same behaviour in device light and dark mode, so the scroll change is always visible. */
+.site-header > div,
+.site-header nav a,
+.site-header nav button,
+.site-header .text-navy-900,
+.site-header .text-slate { transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; }
+.logo-on-light, .logo-on-dark { transition: opacity 0.35s ease; }
+.logo-on-dark { opacity: 0; }
 
-  .site-header > div { background-color: rgb(11 18 32 / 0.96); border-color: rgb(255 255 255 / 0.1); }
-  .site-header .text-navy-900 { color: #fff; }
-  .site-header .text-slate { color: rgb(255 255 255 / 0.65); }
-  .site-header nav a:not(.bg-brand), .site-header nav button { color: rgb(255 255 255 / 0.85); }
-  .site-header nav a:hover, .site-header nav button:hover { color: #fff; background-color: rgb(255 255 255 / 0.08); }
-  .site-header nav .bg-mist, .site-header nav [aria-current="page"] { background-color: rgb(255 255 255 / 0.08); color: #fff; }
-  .site-header .border-line { border-color: rgb(255 255 255 / 0.15); }
-  .site-header .hover\:bg-mist:hover { background-color: rgb(255 255 255 / 0.08); }
-  .site-header .bg-white { background-color: #0f1a2b; }
-  .site-mobile-menu { background-color: #0b1220; border-color: rgb(255 255 255 / 0.1); }
-  .site-mobile-menu .text-navy-900 { color: #fff; }
-  .site-mobile-menu .text-slate { color: rgb(255 255 255 / 0.65); }
-  .site-mobile-menu .border-line { border-color: rgb(255 255 255 / 0.12); }
-}
+.site-header.header-dark > div { background-color: rgb(11 31 51 / 0.97); border-color: rgb(255 255 255 / 0.08); }
+.site-header.header-dark .text-navy-900 { color: #fff; }
+.site-header.header-dark .text-slate { color: rgb(255 255 255 / 0.65); }
+.site-header.header-dark nav a:not(.bg-brand), .site-header.header-dark nav button { color: rgb(255 255 255 / 0.85); }
+.site-header.header-dark nav a:hover, .site-header.header-dark nav button:hover { color: #fff; background-color: rgb(255 255 255 / 0.08); }
+.site-header.header-dark nav .bg-mist, .site-header.header-dark nav [aria-current="page"] { background-color: rgb(255 255 255 / 0.08); color: #fff; }
+.site-header.header-dark .border-line { border-color: rgb(255 255 255 / 0.15); }
+.site-header.header-dark .hover\:bg-mist:hover { background-color: rgb(255 255 255 / 0.08); }
+.site-header.header-dark .bg-white { background-color: #0f1a2b; }
+.site-header.header-dark .logo-on-light { opacity: 0; }
+.site-header.header-dark .logo-on-dark { opacity: 1; }
 
 /* ── Legal pages: print-friendly layout ── */
 @media print {

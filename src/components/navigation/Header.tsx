@@ -76,10 +76,10 @@ export function Header() {
   }, []);
 
   return (
-    <header className="site-header sticky top-0 z-50 w-full">
+    <header className={`site-header sticky top-0 z-50 w-full ${!scrolled && !mobileOpen ? "header-dark" : ""}`}>
       {/* Main Navigation Bar */}
       <div
-        className={`w-full bg-white/95 backdrop-blur-md transition-shadow duration-200 border-b border-line ${
+        className={`w-full bg-white/95 backdrop-blur-md border-b border-line ${
           scrolled ? "shadow-md" : ""
         }`}
       >
@@ -90,7 +90,7 @@ export function Header() {
             className="flex items-center gap-3 shrink-0 group"
           >
             <div className="relative h-12 w-11 sm:h-14 sm:w-[3.25rem] shrink-0">
-              {/* light theme: black logo · dark theme: client's white logo (switched by CSS, .logo-on-light/.logo-on-dark) */}
+              {/* white logo while the header is dark (page top), black logo once it turns white on scroll — crossfaded by CSS */}
               <Image
                 src="/images/brand/pak-arab-logo-full.png"
                 alt="Pak Arab Manpower Supply LLC logo"
