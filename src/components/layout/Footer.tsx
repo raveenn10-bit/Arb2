@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone, Mail, MessageCircle, ExternalLink, ShieldCheck, ArrowUp } from "lucide-react";
+import { MapPin, Phone, Mail, MessageCircle, ExternalLink, ShieldCheck, ArrowUp, BadgeCheck } from "lucide-react";
 import { COMPANY } from "@/data/company";
 
 export function Footer() {
@@ -45,6 +45,14 @@ export function Footer() {
               </span>
               <span className="inline-flex items-center rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-[0.6875rem] font-semibold text-white/90">
                 MOHRE &amp; WPS
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-[0.6875rem] font-semibold text-white/90">
+                <BadgeCheck className="h-3.5 w-3.5 text-brand-light" />
+                MOHRE Approved
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-[0.6875rem] font-semibold text-white/90">
+                <BadgeCheck className="h-3.5 w-3.5 text-brand-light" />
+                TAQA Approved
               </span>
             </div>
 

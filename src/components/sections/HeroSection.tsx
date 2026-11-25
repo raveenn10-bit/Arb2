@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { COMPANY } from "@/data/company";
+import { ApprovalBadges } from "@/components/ui/ApprovalBadges";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -246,6 +247,7 @@ export function HeroSection() {
         </div>
 
         <div className="hero-m hero-content relative z-10 px-4 pb-5 pt-6 min-[375px]:pt-10 space-y-3 min-[375px]:space-y-3.5">
+          <ApprovalBadges size="sm" />
           <div className="inline-flex items-center gap-2">
             <span className="h-[2px] w-6 bg-brand" />
             <span className="hero-kicker whitespace-nowrap text-[0.625rem] font-bold uppercase tracking-[0.12em] min-[375px]:tracking-[0.18em] text-white/90">
@@ -326,6 +328,7 @@ export function HeroSection() {
 
         <div className="container-wide relative z-10 py-20">
           <div className="hero-content max-w-3xl">
+            <ApprovalBadges className="hero-stagger mb-6 lg:mb-8" />
             <div className="hero-stagger mb-7 inline-flex items-center gap-3 lg:mb-9">
               <span className="h-[2px] w-10 bg-brand" />
               <span className="hero-kicker text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white/90">
