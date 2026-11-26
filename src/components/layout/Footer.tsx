@@ -1,12 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone, Mail, MessageCircle, ExternalLink, ShieldCheck, ArrowUp, BadgeCheck } from "lucide-react";
+import { MapPin, Phone, Mail, MessageCircle, ExternalLink, ShieldCheck, ArrowUp, BadgeCheck, ArrowRight } from "lucide-react";
 import { COMPANY } from "@/data/company";
 
 export function Footer() {
   return (
-    <footer className="bg-navy-950 text-white border-t border-white/10">
-      <div className="container-wide pt-14 pb-10">
+    <footer className="relative overflow-hidden bg-navy-950 text-white border-t border-white/10">
+      {/* large crimson logo-mark watermark (decorative) */}
+      <div aria-hidden="true" className="footer-watermark pointer-events-none absolute -bottom-16 -right-10 h-[34rem] w-[30rem] sm:h-[42rem] sm:w-[38rem] lg:-bottom-24 lg:right-0" />
+
+      {/* CTA band */}
+      <div className="relative border-b border-white/10">
+        <div className="container-wide flex flex-col gap-6 py-10 sm:py-12 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-2xl">
+            <h2 className="font-display text-2xl font-extrabold tracking-tight sm:text-3xl">Need a custom workforce for your project?</h2>
+            <p className="mt-2 text-sm text-white/70 sm:text-base">Share your trade requirements and mobilisation schedule with our coordination team.</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/contact#request-form" className="btn-glow inline-flex min-h-12 items-center gap-2 rounded-lg bg-brand px-6 text-sm font-bold text-white hover:bg-brand-dark transition-[background-color,box-shadow]">
+              Request Manpower <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <a href={COMPANY.whatsapp.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-6 text-sm font-semibold text-white hover:bg-white/10 transition-colors">
+              <MessageCircle className="h-4 w-4" aria-hidden="true" /> WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="container-wide relative pt-14 pb-10">
         <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-8 pb-10 border-b border-white/10">
           {/* Col 1: Brand & Accreditations */}
           <div className="col-span-2 lg:col-span-4 space-y-4">

@@ -28,12 +28,33 @@ export default function ServicesPage() {
         ]}
       />
 
+      {/* sticky service quick-nav (chips) */}
+      <nav aria-label="Services on this page" className="sticky top-16 lg:top-[4.625rem] z-30 border-b border-line bg-white/90 backdrop-blur-md">
+        <div className="container-wide">
+          <ul className="flex gap-2 overflow-x-auto py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {SERVICES.map((s) => (
+              <li key={s.slug} className="shrink-0">
+                <a
+                  href={`#${s.slug}`}
+                  className="group inline-flex min-h-10 items-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-mist px-4 text-xs font-semibold text-navy-900 transition-colors hover:border-brand hover:bg-brand hover:text-white"
+                >
+                  <span className="tabular-nums text-brand group-hover:text-white">{s.number}</span>
+                  <span aria-hidden="true">·</span>
+                  {s.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+
       <section className="py-16 sm:py-20 bg-white">
         <div className="container-wide space-y-12">
           {SERVICES.map((service, idx) => (
             <div
               key={service.slug}
-              className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center rounded-xl border border-line p-6 sm:p-8 ${
+              id={service.slug}
+              className={`scroll-mt-36 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center rounded-xl border border-line p-6 sm:p-8 ${
                 idx % 2 === 1 ? "bg-mist" : "bg-white"
               }`}
             >
