@@ -6,22 +6,22 @@
    official brand red for actions and emphasis.
    ------------------------------------------------------------------ */
 @theme {
-  --color-brand: #d40820;
-  --color-brand-dark: #a40e21;
+  --color-brand: #8b0d1a;            /* Crimson Red */
+  --color-brand-dark: #6a0a14;
   /* Brand red for text on navy backgrounds (≥5:1 contrast on all navy shades) */
-  --color-brand-light: #ff6f79;
-  --color-navy-950: #071526;
-  --color-navy-900: #0b1f33;
-  --color-navy-800: #132e4c;
-  --color-navy-700: #1b3d63;
-  --color-industrial: #1f5fa8;
-  --color-industrial-light: #e8f0fa;
+  --color-brand-light: #e0525f;      /* crimson for text on black (5.2:1) */
+  --color-navy-950: #050505;
+  --color-navy-900: #0b0b0b;          /* Black */
+  --color-navy-800: #161616;
+  --color-navy-700: #242222;
+  --color-industrial: #8b0d1a;
+  --color-industrial-light: #f6e9ea;
   --color-amber: #f2a900;
-  --color-mist: #f4f6f9;
-  --color-line: #e3e7ee;
-  --color-line-strong: #cfd6e0;
-  --color-slate: #5a6677;
-  --color-steel: #9aa5b4;
+  --color-mist: #f5f2ed;              /* Off White */
+  --color-line: #e7e1d7;
+  --color-line-strong: #d6cdbf;
+  --color-slate: #5e5a55;
+  --color-steel: #a39e96;
   --color-whatsapp: #25d366;
   --color-whatsapp-dark: #128c7e;
 
@@ -32,15 +32,15 @@
 }
 
 :root {
-  --brand-red: #d40820;
-  --brand-red-deep: #a40e21;
-  --industrial-black: #0b1f33;
-  --dark-charcoal: #132e4c;
+  --brand-red: #8b0d1a;
+  --brand-red-deep: #6a0a14;
+  --industrial-black: #0b0b0b;
+  --dark-charcoal: #161616;
   --bg-white: #ffffff;
-  --bg-light: #f4f6f9;
-  --text-primary: #0b1f33;
-  --text-secondary: #5a6677;
-  --border-subtle: #e3e7ee;
+  --bg-light: #f5f2ed;
+  --text-primary: #0b0b0b;
+  --text-secondary: #5e5a55;
+  --border-subtle: #e7e1d7;
   --whatsapp-green: #25d366;
 }
 
@@ -237,7 +237,7 @@ a:hover svg.lucide-arrow-up-right {
 .logo-on-light, .logo-on-dark { transition: opacity 0.35s ease; }
 .logo-on-dark { opacity: 0; }
 
-.site-header.header-dark > div { background-color: rgb(11 31 51 / 0.97); border-color: rgb(255 255 255 / 0.08); }
+.site-header.header-dark > div { background-color: rgb(11 11 11 / 0.96); border-color: rgb(255 255 255 / 0.08); }
 .site-header.header-dark .text-navy-900 { color: #fff; }
 .site-header.header-dark .text-slate { color: rgb(255 255 255 / 0.65); }
 .site-header.header-dark nav a:not(.bg-brand), .site-header.header-dark nav button { color: rgb(255 255 255 / 0.85); }
@@ -245,7 +245,7 @@ a:hover svg.lucide-arrow-up-right {
 .site-header.header-dark nav .bg-mist, .site-header.header-dark nav [aria-current="page"] { background-color: rgb(255 255 255 / 0.08); color: #fff; }
 .site-header.header-dark .border-line { border-color: rgb(255 255 255 / 0.15); }
 .site-header.header-dark .hover\:bg-mist:hover { background-color: rgb(255 255 255 / 0.08); }
-.site-header.header-dark .bg-white { background-color: #0f1a2b; }
+.site-header.header-dark .bg-white { background-color: #161616; }
 .site-header.header-dark .logo-on-light { opacity: 0; }
 .site-header.header-dark .logo-on-dark { opacity: 1; }
 
@@ -264,3 +264,63 @@ a:hover svg.lucide-arrow-up-right {
   .legal-page section { break-inside: avoid-page; }
   .legal-page a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #555; }
 }
+
+/* ── Crimson text on black surfaces: #8B0D1A is too dark to read on #0B0B0B, so use the lighter crimson there ── */
+:where(.bg-navy-950, .bg-navy-900, .bg-navy-800, .bg-navy-700, footer, .hero-dark, .header-dark, .on-dark) .text-brand {
+  color: var(--color-brand-light);
+}
+
+/* ── 3D tilt cards ── */
+.tilt-wrap { perspective: 1100px; }
+.tilt-card {
+  position: relative;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  will-change: transform;
+}
+.tilt-card:hover { box-shadow: 0 40px 80px -40px rgb(139 13 26 / 0.55); }
+.tilt-glare {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: calc(var(--glare, 0) * 0.55);
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgb(255 255 255 / 0.35), transparent 45%);
+  transition: opacity 0.3s ease;
+  mix-blend-mode: soft-light;
+}
+.tilt-card > .tilt-depth { transform: translateZ(40px); }
+
+/* ── Kinetic marquee outline text ── */
+.text-outline-crimson { color: transparent; -webkit-text-stroke: 1.5px #c41a2e; }
+
+/* ── Crimson glow button ── */
+.btn-glow { box-shadow: 0 10px 40px -10px rgb(255 45 67 / 0.55), inset 0 1px 0 rgb(255 255 255 / 0.15); }
+.btn-glow:hover { box-shadow: 0 14px 50px -8px rgb(255 45 67 / 0.75), inset 0 1px 0 rgb(255 255 255 / 0.2); }
+
+/* ── Grain texture for black sections ── */
+.grain::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Lenis handles smooth scrolling itself */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ── Inner page hero: receding 3D grid floor in crimson ── */
+.page-hero-grid {
+  background-image:
+    linear-gradient(to right, rgb(196 26 46 / 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(196 26 46 / 0.35) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: perspective(520px) rotateX(62deg);
+  transform-origin: 50% 100%;
+  mask-image: linear-gradient(to top, #000 0%, transparent 85%);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 85%);
+  animation: grid-drift 14s linear infinite;
+}
+@keyframes grid-drift { to { background-position: 0 56px, 0 56px; } }
+@media (prefers-reduced-motion: reduce) { .page-hero-grid { animation: none; } }

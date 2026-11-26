@@ -5,6 +5,7 @@ import Link from "next/link";
 import { COMPANY } from "@/data/company";
 import { ApprovalBadges } from "@/components/ui/ApprovalBadges";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
@@ -12,6 +13,9 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { ArrowRight, ShieldCheck, Layers, CheckCircle2, Globe } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
+
+// WebGL particle layer, loaded after hydration so it never blocks the hero paint
+const HeroParticles = dynamic(() => import("@/components/three/HeroParticles"), { ssr: false });
 
 const HERO_SLIDES = [
   {
@@ -56,6 +60,15 @@ export function HeroSection() {
   const touchStartX = useRef<number | null>(null);
 
   const [paused, setPaused] = useState(false);
+  // which hero variant is visible, so only one WebGL particle canvas mounts (null until known)
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   // Auto-advance every 6s; paused on hover, keyboard focus and touch, when the tab is hidden,
   // and never for visitors who prefer reduced motion (WCAG 2.2.2).
@@ -220,6 +233,9 @@ export function HeroSection() {
         </div>
 
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-45% to-navy-950/95 pointer-events-none" />
+        <div className="absolute inset-0 pointer-events-none mix-blend-screen opacity-80" aria-hidden="true">
+          {isMobile === true && <HeroParticles mobile />}
+        </div>
 
         <div className="relative z-10 px-4 pt-4 flex items-center justify-between gap-2">
           <span className="inline-flex items-center gap-1.5 text-[0.625rem] font-bold uppercase tracking-[0.12em] text-white bg-black/55 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-full shadow-sm">
@@ -268,7 +284,7 @@ export function HeroSection() {
           <div className="grid grid-cols-2 gap-2.5 pt-1">
             <Link
               href="/contact#request-form"
-              className="flex items-center justify-center rounded-lg bg-brand px-3.5 py-3 text-xs font-bold text-white shadow-md"
+              className="btn-glow flex items-center justify-center rounded-lg bg-brand px-3.5 py-3 text-xs font-bold text-white"
             >
               Request Manpower →
             </Link>
@@ -325,6 +341,10 @@ export function HeroSection() {
         </div>
 
         <div className="absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-900/80 to-navy-900/45 pointer-events-none" />
+        <div className="absolute inset-0 pointer-events-none mix-blend-screen" aria-hidden="true">
+          {isMobile === false && <HeroParticles />}
+        </div>
+        <div className="grain absolute inset-0 pointer-events-none" aria-hidden="true" />
 
         <div className="container-wide relative z-10 py-20">
           <div className="hero-content max-w-3xl">
@@ -349,7 +369,7 @@ export function HeroSection() {
             <div className="hero-stagger mt-9 lg:mt-11 flex flex-wrap gap-4">
               <Link
                 href="/contact#request-form"
-                className="inline-flex items-center gap-2 rounded-md bg-brand px-6 py-3.5 text-sm sm:text-base font-bold text-white hover:bg-brand-dark transition-colors"
+                className="btn-glow inline-flex items-center gap-2 rounded-md bg-brand px-6 py-3.5 text-sm sm:text-base font-bold text-white hover:bg-brand-dark transition-[background-color,box-shadow]"
               >
                 Request Manpower
                 <ArrowRight className="h-4 w-4" />

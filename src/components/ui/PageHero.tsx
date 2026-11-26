@@ -22,8 +22,11 @@ export function PageHero({ eyebrow, title, description, breadcrumbs }: PageHeroP
       />
       <div
         aria-hidden="true"
-        className="page-hero-glow pointer-events-none absolute -top-1/2 -right-1/4 h-[140%] w-[70%] rounded-full bg-brand/15 blur-3xl"
+        className="page-hero-glow pointer-events-none absolute -top-1/2 -right-1/4 h-[140%] w-[70%] rounded-full bg-brand/30 blur-3xl"
       />
+      {/* 3D perspective grid floor + grain */}
+      <div aria-hidden="true" className="page-hero-grid pointer-events-none absolute inset-x-0 bottom-0 h-[70%]" />
+      <div aria-hidden="true" className="grain pointer-events-none absolute inset-0" />
       <div className="container-wide relative space-y-4">
         <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-white/65">
           {breadcrumbs.map((crumb, idx) => {

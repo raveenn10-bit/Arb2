@@ -48,7 +48,7 @@ export function MapFrame({ tone = "mono", className = "" }: { tone?: "mono" | "d
         className={`pointer-events-none absolute inset-0 [background-size:2.5rem_2.5rem] ${
           dark
             ? "opacity-[0.12] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)]"
-            : "opacity-[0.5] [background-image:linear-gradient(to_right,#dfe3e8_1px,transparent_1px),linear-gradient(to_bottom,#dfe3e8_1px,transparent_1px)]"
+            : "opacity-[0.5] [background-image:linear-gradient(to_right,#e2dbcf_1px,transparent_1px),linear-gradient(to_bottom,#e2dbcf_1px,transparent_1px)]"
         }`}
       />
       <span className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand text-white shadow-lg shadow-brand/30 transition-transform group-hover:scale-110">

@@ -20,6 +20,10 @@ import { COMPANY } from "@/data/company";
 import { SERVICES, INDUSTRIES } from "@/data/services";
 import { CERTIFICATIONS } from "@/data/certifications";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { SiteStory3D } from "@/components/three/SiteStory3D";
+import { KineticMarquee } from "@/components/fx/KineticMarquee";
+import { StatsBand } from "@/components/fx/StatsBand";
+import { TiltCard } from "@/components/fx/TiltCard";
 import { ClientLogoGrid } from "@/components/sections/ClientLogoGrid";
 import { CLIENTS } from "@/data/clients";
 import { TeamShowcase } from "@/components/sections/TeamShowcase";
@@ -61,6 +65,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(pageSchema) }} />
       {/* 2. Cinematic Industrial Hero */}
       <HeroSection />
+      <KineticMarquee />
 
       {/* 3. About Pak Arab */}
       <section id="about-company" className="py-16 sm:py-24 bg-white">
@@ -123,6 +128,22 @@ export default function HomePage() {
       </section>
 
       {/* 3b. Our Teams On Site (client-supplied branded crew photos) */}
+      {/* Real figures only, taken from the site's own data */}
+      <section aria-label="Pak Arab Manpower at a glance" className="relative bg-navy-900 py-14 sm:py-20">
+        <div className="container-wide">
+          <StatsBand
+            stats={[
+              { value: CLIENTS.length, suffix: "+", label: "Clients served" },
+              { value: SERVICES.length, label: "Core services" },
+              { value: INDUSTRIES.length, label: "Industries" },
+              { value: 7, label: "Emirates covered" },
+            ]}
+          />
+        </div>
+      </section>
+
+      <SiteStory3D />
+
       <TeamShowcase />
 
       {/* 4. Mission & Vision (Upper-section priority per client request) */}
@@ -197,9 +218,9 @@ export default function HomePage() {
 
           <MobileAutoTrack desktopGridClass="md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {SERVICES.map((service) => (
+              <TiltCard key={service.slug} className="min-w-[18.125rem] sm:min-w-[20rem] md:min-w-0 shrink-0 md:shrink snap-start">
               <div
-                key={service.slug}
-                className="group min-w-[18.125rem] sm:min-w-[20rem] md:min-w-0 shrink-0 md:shrink snap-start flex flex-col rounded-xl border border-line bg-white overflow-hidden hover:border-brand/60 hover:shadow-lg transition-all duration-200"
+                className="group h-full flex flex-col rounded-2xl border border-line bg-white overflow-hidden hover:border-brand/60 transition-colors duration-200"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-navy-900">
                   <Image
@@ -244,6 +265,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
+              </TiltCard>
             ))}
           </MobileAutoTrack>
         </div>
@@ -276,9 +298,9 @@ export default function HomePage() {
 
           <MobileAutoTrack desktopGridClass="md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
             {INDUSTRIES.map((industry) => (
+              <TiltCard key={industry.id} max={12} className="min-w-[16.875rem] sm:min-w-[18.75rem] md:min-w-0 shrink-0 md:shrink snap-start">
               <div
-                key={industry.id}
-                className="group relative min-w-[16.875rem] sm:min-w-[18.75rem] md:min-w-0 shrink-0 md:shrink snap-start aspect-[4/5] md:aspect-[4/3] rounded-xl overflow-hidden border border-white/10"
+                className="group relative aspect-[4/5] md:aspect-[4/3] rounded-2xl overflow-hidden border border-white/10"
               >
                 <Image
                   src={industry.image}
@@ -300,6 +322,7 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
+              </TiltCard>
             ))}
           </MobileAutoTrack>
         </div>
