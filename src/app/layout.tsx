@@ -9,7 +9,6 @@ import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { ConversionTracking } from "@/components/analytics/ConversionTracking";
 import { ScrollProgressBar } from "@/components/animations/ScrollProgressBar";
 import { PageAnimations } from "@/components/animations/PageAnimations";
-import { SmoothScroll } from "@/components/fx/SmoothScroll";
 import { getSiteSchemaGraph, jsonLd } from "@/lib/seo";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
@@ -129,7 +128,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0b0b",
+  themeColor: "#0b1f33",
   width: "device-width",
   initialScale: 1,
 };
@@ -156,7 +155,6 @@ export default function RootLayout({
         />
         <ScrollProgressBar />
         <PageAnimations />
-        <SmoothScroll />
         <Header />
         <main id="main-content" className="flex-1">
           {children}
